@@ -1,0 +1,4 @@
+<WatchFaces>
+    <WatchFace shape="CIRCLE" width="450" height="450"
+        file="@raw/watchface_large_circle" />
+</WatchFaces>
