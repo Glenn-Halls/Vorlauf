@@ -15,6 +15,9 @@
         <property
             android:name="com.google.wear.watchface.format.publisher"
             android:value="@string/glenn_halls" />
+        <meta-data
+            android:name="com.google.android.wearable.standalone"
+            android:value="true" />
     </application>
 
 </manifest>
