@@ -12,5 +12,18 @@
                 <Sweep frequency="15" />
             </SecondHand>
         </AnalogClock>
+        <Group x="0" y="0" width="450" height="450" name="index">
+            <PartDraw x="0" y="0" width="450" height="450"
+                name = "index_minute"
+                alpha="100">
+                <Arc centerX="225" centerY="225" width="450" height="450"
+                    startAngle="0" endAngle="360">
+                    <Stroke color="#ffffffff" thickness="20"
+                        dashIntervals="117.8 117.8"
+                        dashPhase="-58.9"
+                        />
+                </Arc>
+            </PartDraw>
+        </Group>
     </Scene>
 </WatchFace>
