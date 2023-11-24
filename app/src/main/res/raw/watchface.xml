@@ -1,0 +1,16 @@
+<WatchFace width="450" height="450" shape="CIRCLE">
+    <Scene backgroundColor="#ff000000">
+        <AnalogClock x="0" y="0" width="450" height="450">
+            <HourHand resource="@drawable/index_large" x="220" y="75" width="10" height="150" pivotX="0.5" pivotY="1">
+                <Variant mode="AMBIENT" target="alpha" value="255" />
+            </HourHand>
+            <MinuteHand resource="@drawable/index_large" x="220" y="125" width="10" height="100" pivotX="0.5" pivotY="1">
+                <Variant mode="AMBIENT" target="alpha" value="255" />
+            </MinuteHand>
+            <SecondHand resource="@drawable/index_large" x="224" y="25" width="2" height="200" pivotX="0.5" pivotY="1">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Sweep frequency="15" />
+            </SecondHand>
+        </AnalogClock>
+    </Scene>
+</WatchFace>
