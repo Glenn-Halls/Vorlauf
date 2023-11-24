@@ -1,29 +1,37 @@
 <WatchFace width="450" height="450" shape="CIRCLE">
     <Scene backgroundColor="#ff000000">
         <AnalogClock x="0" y="0" width="450" height="450">
-            <HourHand resource="@drawable/index_large" x="220" y="75" width="10" height="150" pivotX="0.5" pivotY="1">
-                <Variant mode="AMBIENT" target="alpha" value="255" />
+            <HourHand resource="@drawable/hand" x="220" y="125" width="10" height="100" pivotX="0.5" pivotY="1">
+                <Variant mode="AMBIENT" target="alpha" value="170" />
             </HourHand>
-            <MinuteHand resource="@drawable/index_large" x="220" y="125" width="10" height="100" pivotX="0.5" pivotY="1">
-                <Variant mode="AMBIENT" target="alpha" value="255" />
+            <MinuteHand resource="@drawable/hand" x="220" y="75" width="10" height="150" pivotX="0.5" pivotY="1">
+                <Variant mode="AMBIENT" target="alpha" value="170" />
             </MinuteHand>
-            <SecondHand resource="@drawable/index_large" x="224" y="25" width="2" height="200" pivotX="0.5" pivotY="1">
+            <SecondHand resource="@drawable/hand" x="224" y="25" width="2" height="200" pivotX="0.5" pivotY="1">
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Sweep frequency="15" />
             </SecondHand>
         </AnalogClock>
-        <Group x="0" y="0" width="450" height="450" name="index">
-            <PartDraw x="0" y="0" width="450" height="450"
-                name = "index_minute"
-                alpha="100">
-                <Arc centerX="225" centerY="225" width="450" height="450"
-                    startAngle="0" endAngle="360">
-                    <Stroke color="#ffffffff" thickness="20"
-                        dashIntervals="117.8 117.8"
-                        dashPhase="-58.9"
-                        />
-                </Arc>
-            </PartDraw>
+        <Group name="index"
+            x="0" y="0" width="450" height="450">
+            <PartImage name="index_minute"
+                x="0" y="0" width="450" height="450"
+                alpha="170" tintColor="#ffffffff">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Image resource="index_small" />
+            </PartImage>
+            <PartImage name="index_hour_odd"
+                x="0" y="0" width="450" height="450"
+                alpha="170" tintColor="#ffffffff">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Image resource="index_large" />
+            </PartImage>
+            <PartImage name="index_hour_even"
+                x="0" y="0" width="450" height="450"
+                alpha="170" tintColor="#ffffffff">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Image resource="index_medium" />
+            </PartImage>
         </Group>
     </Scene>
 </WatchFace>
