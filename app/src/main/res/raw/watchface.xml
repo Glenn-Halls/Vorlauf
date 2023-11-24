@@ -2,10 +2,10 @@
     <Scene backgroundColor="#ff000000">
         <AnalogClock x="0" y="0" width="450" height="450">
             <HourHand resource="@drawable/hand" x="220" y="125" width="10" height="100" pivotX="0.5" pivotY="1">
-                <Variant mode="AMBIENT" target="alpha" value="170" />
+                <Variant mode="AMBIENT" target="alpha" value="200" />
             </HourHand>
             <MinuteHand resource="@drawable/hand" x="220" y="75" width="10" height="150" pivotX="0.5" pivotY="1">
-                <Variant mode="AMBIENT" target="alpha" value="170" />
+                <Variant mode="AMBIENT" target="alpha" value="200" />
             </MinuteHand>
             <SecondHand resource="@drawable/hand" x="224" y="25" width="2" height="200" pivotX="0.5" pivotY="1">
                 <Variant mode="AMBIENT" target="alpha" value="0" />
@@ -14,6 +14,12 @@
         </AnalogClock>
         <Group name="index"
             x="0" y="0" width="450" height="450">
+            <PartImage name="index_numerals"
+                x="30" y="30" width="390" height="390"
+                alpha="230" tintColor="#ffffffff">
+                <Variant mode="AMBIENT" target="alpha" value="170" />
+                <Image resource="numerals" />
+            </PartImage>
             <PartImage name="index_minute"
                 x="0" y="0" width="450" height="450"
                 alpha="170" tintColor="#ffffffff">
