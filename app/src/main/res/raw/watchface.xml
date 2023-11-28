@@ -1,11 +1,30 @@
 <WatchFace width="450" height="450" shape="CIRCLE">
     <Scene backgroundColor="#ff000000">
         <AnalogClock x="0" y="0" width="450" height="450">
-            <HourHand resource="@drawable/test_hour" x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5">
-                <Variant mode="AMBIENT" target="alpha" value="200" />
+            <HourHand name="hand_hour_active"
+                x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
+                resource="@drawable/test_hour">
+                <Variant mode="AMBIENT" target="alpha" value="0"/>
             </HourHand>
-            <MinuteHand resource="@drawable/test_minute" x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5">
-                <Variant mode="AMBIENT" target="alpha" value="200" />
+            <HourHand name="hand_hour_ambient"
+                x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
+                resource="@drawable/test_hour"
+                tintColor="#999999"
+                alpha="0">
+                <Variant mode="AMBIENT" target="alpha" value="255"/>
+            </HourHand>
+            <MinuteHand name="hand_minute_active"
+                x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
+                resource="@drawable/test_minute"
+                alpha="255">
+                <Variant mode="AMBIENT" target="alpha" value="0"/>
+            </MinuteHand>
+            <MinuteHand name="hand_minute_ambient"
+                x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
+                resource="@drawable/test_minute"
+                tintColor="#999999"
+                alpha="0">
+                <Variant mode="AMBIENT" target="alpha" value="255"/>
             </MinuteHand>
             <SecondHand resource="@drawable/hand" x="224" y="25" width="2" height="200" pivotX="0.5" pivotY="1">
                 <Variant mode="AMBIENT" target="alpha" value="0" />
