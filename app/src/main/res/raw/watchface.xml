@@ -1,5 +1,41 @@
 <WatchFace width="450" height="450" shape="CIRCLE">
     <Scene backgroundColor="#ff000000">
+        <Group name="background"
+            x="0" y="0" width="450" height="450">
+            <PartImage name="background_image"
+                x="0" y="0" width="450" height="450"
+                alpha="255">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Image resource="background" />
+            </PartImage>
+        </Group>
+        <Group name="index"
+            x="0" y="0" width="450" height="450">
+            <PartImage name="index_numerals"
+                x="30" y="30" width="390" height="390"
+                alpha="230" tintColor="#ffffffff">
+                <Variant mode="AMBIENT" target="alpha" value="170" />
+                <Image resource="numerals" />
+            </PartImage>
+            <PartImage name="index_minute"
+                x="0" y="0" width="450" height="450"
+                alpha="170" tintColor="#ffffffff">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Image resource="index_small" />
+            </PartImage>
+            <PartImage name="index_hour_odd"
+                x="0" y="0" width="450" height="450"
+                alpha="170" tintColor="#ffffffff">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Image resource="index_large" />
+            </PartImage>
+            <PartImage name="index_hour_even"
+                x="0" y="0" width="450" height="450"
+                alpha="170" tintColor="#ffffffff">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Image resource="index_medium" />
+            </PartImage>
+        </Group>
         <AnalogClock x="0" y="0" width="450" height="450">
             <HourHand name="hand_hour_active"
                 x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
@@ -31,32 +67,5 @@
                 <Sweep frequency="15" />
             </SecondHand>
         </AnalogClock>
-        <Group name="index"
-            x="0" y="0" width="450" height="450">
-            <PartImage name="index_numerals"
-                x="30" y="30" width="390" height="390"
-                alpha="230" tintColor="#ffffffff">
-                <Variant mode="AMBIENT" target="alpha" value="170" />
-                <Image resource="numerals" />
-            </PartImage>
-            <PartImage name="index_minute"
-                x="0" y="0" width="450" height="450"
-                alpha="170" tintColor="#ffffffff">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Image resource="index_small" />
-            </PartImage>
-            <PartImage name="index_hour_odd"
-                x="0" y="0" width="450" height="450"
-                alpha="170" tintColor="#ffffffff">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Image resource="index_large" />
-            </PartImage>
-            <PartImage name="index_hour_even"
-                x="0" y="0" width="450" height="450"
-                alpha="170" tintColor="#ffffffff">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Image resource="index_medium" />
-            </PartImage>
-        </Group>
     </Scene>
 </WatchFace>
