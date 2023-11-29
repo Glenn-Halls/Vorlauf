@@ -4,6 +4,7 @@
             x="0" y="0" width="450" height="450">
             <PartImage name="background_image"
                 x="0" y="0" width="450" height="450"
+                tintColor="#c9c9c9"
                 alpha="255">
                 <Image resource="background" />
                 <Variant mode="AMBIENT" target="alpha" value="0" />
