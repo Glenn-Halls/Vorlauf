@@ -22,6 +22,7 @@
                     alpha="255">
                     <Image resource="numeral_02" />
                     <Variant mode="AMBIENT" target="alpha" value="120" />
+                    <Launch target="ALARM" />
                 </PartImage>
                 <PartImage name="numeral_4"
                     x="344" y="284" width="56" height="52"
@@ -31,6 +32,7 @@
                     alpha="255">
                     <Image resource="numeral_04" />
                     <Variant mode="AMBIENT" target="alpha" value="120" />
+                    <Launch target="MUSIC_PLAYER" />
                 </PartImage>
                 <PartImage name="numeral_6"
                     x="192" y="369" width="56" height="52"
@@ -47,6 +49,7 @@
                     alpha="255">
                     <Image resource="numeral_08" />
                     <Variant mode="AMBIENT" target="alpha" value="120" />
+                    <Launch target="HEALTH_HEART_RATE" />
                 </PartImage>
                 <PartImage name="numeral_10"
                     x="48" y="117" width="60" height="45"
@@ -56,6 +59,7 @@
                     alpha="255">
                     <Image resource="numeral_10" />
                     <Variant mode="AMBIENT" target="alpha" value="120" />
+                    <Launch target="CALENDAR" />
                 </PartImage>
                 <PartImage name="numeral_12"
                     x="175" y="30" width="95" height="50"
