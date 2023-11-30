@@ -12,12 +12,59 @@
         </Group>
         <Group name="index"
             x="0" y="0" width="450" height="450">
-            <PartImage name="index_numerals"
-                x="30" y="30" width="390" height="390"
-                alpha="230" tintColor="#eeeeee">
-                <Image resource="numerals" />
-                <Variant mode="AMBIENT" target="alpha" value="90" />
-            </PartImage>
+            <Group name="numerals"
+                x="0" y="0" width="450" height="450">
+                <PartImage name="numeral_2"
+                    x="358" y="115" width="28" height="50"
+                    pivotX="0.5" pivotY="0.5"
+                    angle="60"
+                    tintColor="#d3d3d3"
+                    alpha="255">
+                    <Image resource="numeral_02" />
+                    <Variant mode="AMBIENT" target="alpha" value="120" />
+                </PartImage>
+                <PartImage name="numeral_4"
+                    x="344" y="284" width="56" height="52"
+                    pivotX="0.5" pivotY="0.5"
+                    angle="300"
+                    tintColor="#d3d3d3"
+                    alpha="255">
+                    <Image resource="numeral_04" />
+                    <Variant mode="AMBIENT" target="alpha" value="120" />
+                </PartImage>
+                <PartImage name="numeral_6"
+                    x="192" y="369" width="56" height="52"
+                    tintColor="#d3d3d3"
+                    alpha="255">
+                    <Image resource="numeral_06" />
+                    <Variant mode="AMBIENT" target="alpha" value="120" />
+                </PartImage>
+                <PartImage name="numeral_8"
+                    x="30" y="281" width="91" height="52"
+                    pivotX="0.5" pivotY="0.5"
+                    angle="59"
+                    tintColor="#d3d3d3"
+                    alpha="255">
+                    <Image resource="numeral_08" />
+                    <Variant mode="AMBIENT" target="alpha" value="120" />
+                </PartImage>
+                <PartImage name="numeral_10"
+                    x="48" y="117" width="60" height="45"
+                    pivotX="0.5" pivotY="0.5"
+                    angle="300"
+                    tintColor="#d3d3d3"
+                    alpha="255">
+                    <Image resource="numeral_10" />
+                    <Variant mode="AMBIENT" target="alpha" value="120" />
+                </PartImage>
+                <PartImage name="numeral_12"
+                    x="175" y="30" width="95" height="50"
+                    tintColor="#d3d3d3"
+                    alpha="255">
+                    <Image resource="numeral_12" />
+                    <Variant mode="AMBIENT" target="alpha" value="120" />
+                </PartImage>
+            </Group>
             <PartImage name="index_minute"
                 x="0" y="0" width="450" height="450"
                 alpha="170" tintColor="#dddddd">
