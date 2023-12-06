@@ -4,5 +4,5 @@
     <Category value="CATEGORY_CLASSIC" />
     <AvailableInRetail value="true" />
     <MultipleInstancesAllowed value="false" />
-    <Editable value="false" />
+    <Editable value="true" />
 </WatchFaceInfo>

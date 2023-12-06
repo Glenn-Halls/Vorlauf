@@ -1,4 +1,12 @@
 <WatchFace width="450" height="450" shape="CIRCLE">
+    <Metadata key="CLOCK_TYPE" value="ANALOG" />
+    <Metadata key="TICK_PER_SECOND" value="15" />
+    <Metadata key="PREVIEW_TIME" value="2:42:27" />
+
+
+    <!--
+        The Scene element is required and must be the root element of the displayed elements.
+    -->
     <Scene backgroundColor="#ff000000">
         <Group name="background"
             x="0" y="0" width="450" height="450">
@@ -10,6 +18,18 @@
                 <Variant mode="AMBIENT" target="alpha" value="0" />
             </PartImage>
         </Group>
+
+        <!--
+            The index group below contains the watch face index, including the numerals displaying
+            hour slots 2, 4, 6, 8, 10 and 12. Currently, slots 2, 4, 8 and 10 open apps as follows:
+            2 -> Alarm
+            4 -> Music Player
+            8 -> Health Heart Rate
+            10 -> Calendar
+
+            At a later date, these will be substituted for user-defined shortcuts via use of
+            complication slots.
+        -->
         <Group name="index"
             x="0" y="0" width="450" height="450">
             <Group name="numerals"
@@ -88,6 +108,66 @@
                 <Variant mode="AMBIENT" target="alpha" value="0" />
             </PartImage>
         </Group>
+
+        <!--
+            The left complication slot is for ranged values such as step count, battery level,
+            heart rate, etc. The default provider is step count. It can optionally be left empty.
+        -->
+        <ComplicationSlot
+            x="87" y="168"
+            width="112" height="112"
+            slotId="9"
+            name="left_complication" displayName="Left"
+            supportedTypes="RANGED_VALUE EMPTY">
+            <DefaultProviderPolicy
+                primaryProvider="WATCH_BATTERY"
+                primaryProviderType="RANGED_VALUE"
+                defaultSystemProvider="STEP_COUNT"
+                defaultSystemProviderType="RANGED_VALUE"
+                />
+            <BoundingOval x="0" y="0" width="112" height="112" outlinePadding="2" />
+            <Complication type="RANGED_VALUE">
+                <Group name="complication_text" x="0" y="0" width="112" height="112" alpha="255">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                <PartText x="-160" y="0" width="240" height="112" scaleX="2" scaleY="2">
+                    <Text align="CENTER" ellipsis="FALSE">
+                        <Font family="font" size="12"
+                            color="#ffffff"
+                            alpha="255">
+                            <Template>
+                                %s
+                                <Parameter expression="[COMPLICATION.TEXT]" />
+                            </Template>
+                        </Font>
+                    </Text>
+                </PartText>
+                    <PartDraw x="0" y="0" width="112" height="112">
+                    <Arc direction="CLOCKWISE" startAngle="0" endAngle="360" centerX="56" centerY="56" width="112" height="112">
+                        <!--
+                            Value of transformation equation, line-by-line:
+                            1) Clamp the value between the min and max values
+                            2) Subtract the minimum value (in case it is less than 0)
+                            3) Convert the value to a percentage.
+                            4) Multiply the percentage by 360.
+                        -->
+                        <Transform target="endAngle"
+                            value="(
+                            ((clamp([COMPLICATION.RANGED_VALUE_VALUE], [COMPLICATION.RANGED_VALUE_MIN], [COMPLICATION.RANGED_VALUE_MAX])
+                            - [COMPLICATION.RANGED_VALUE_MIN])
+                            / ([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN]) )
+                            * 360
+                            )" />
+                        <Stroke color="#77ffffff" cap="ROUND" thickness="10" />
+                    </Arc>
+                    </PartDraw>
+                </Group>
+            </Complication>
+        </ComplicationSlot>
+
+        <!--
+            Code for the analog clock hands must be placed last in order to be drawn on top
+            of the index group.
+        -->
         <AnalogClock x="0" y="0" width="450" height="450">
             <HourHand name="hand_hour_active"
                 x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
