@@ -120,8 +120,6 @@
             name="left_complication" displayName="Left"
             supportedTypes="RANGED_VALUE EMPTY">
             <DefaultProviderPolicy
-                primaryProvider="WATCH_BATTERY"
-                primaryProviderType="RANGED_VALUE"
                 defaultSystemProvider="STEP_COUNT"
                 defaultSystemProviderType="RANGED_VALUE"
                 />
@@ -136,7 +134,7 @@
                             alpha="255">
                             <Template>
                                 %s
-                                <Parameter expression="[COMPLICATION.TEXT]" />
+                                <Parameter expression="[BATTERY_PERCENT]" />
                             </Template>
                         </Font>
                     </Text>
@@ -163,6 +161,45 @@
                 </Group>
             </Complication>
         </ComplicationSlot>
+
+        <!--
+            The bottom complication slot is used for step count, with the rotating hand
+            indicating the number of steps x100, the bezel color indicating the number of
+            steps x1,000 and the highlighted number indicating the number of steps x10,000.
+            The user can optionally use a complication in order to launch an app of their
+            choosing.
+        -->
+        <ComplicationSlot
+            x="168" y="245"
+            width="112" height="112"
+            slotId="6"
+            name="bottom_complication" displayName="Bottom"
+            supportedTypes="LONG_TEXT EMPTY">
+            <DefaultProviderPolicy
+                defaultSystemProvider="APP_SHORTCUT"
+                defaultSystemProviderType="LONG_TEXT"
+                />
+            <BoundingOval x="0" y="0" width="112" height="112" outlinePadding="2" />
+            <Complication type="LONG_TEXT">
+                <Group name="complication_shortcut" x="0" y="0" width="120" height="120">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <PartText x="-170" y="0" width="240" height="112" scaleX="2" scaleY="2">
+                        <Text align="CENTER" ellipsis="FALSE">
+                            <Font family="font" size="12"
+                                color="#ffffff"
+                                alpha="255">
+                                <Template>
+                                    %s
+                                    <Parameter expression="[STEP_COUNT]" />
+                                </Template>
+                            </Font>
+                        </Text>
+                    </PartText>
+                </Group>
+            </Complication>
+        </ComplicationSlot>
+
+
 
         <!--
             Code for the analog clock hands must be placed last in order to be drawn on top
