@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Vorlauf</string>
     <string name="glenn_halls">Glenn Halls</string>
+    <string name="percent">%</string>
 </resources>
