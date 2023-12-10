@@ -114,7 +114,7 @@
             heart rate, etc. The default provider is step count. It can optionally be left empty.
         -->
         <ComplicationSlot
-            x="87" y="168"
+            x="168" y="56"
             width="112" height="112"
             slotId="9"
             name="left_complication" displayName="Left"
@@ -203,9 +203,9 @@
             <Variant mode="AMBIENT" target="alpha" value="0" />
             <PartDraw x="0" y="0" width="112" height="112">
                 <Arc centerX="56" centerY="56" width="112" height="112"
-                    startAngle="0" endAngle="360">
-                    <Transform target="endAngle" value="[STEP_COUNT]*36/1000" />
-                    <Stroke color="#ff777777" cap="SQUARE" thickness="14" />
+                    startAngle="18" endAngle="18">
+                    <Transform target="endAngle" value="floor([STEP_COUNT]/1000)*36 + 18" />
+                    <Stroke color="#ff777777" cap="BUTT" thickness="14" />
                 </Arc>
             </PartDraw>
             <PartImage name="step_hand"
@@ -426,7 +426,7 @@
         <!--
             The left complication analog component, representing watch battery percent
         -->
-        <Group name="left_complication_analog" x="87" y="168"
+        <Group name="left_complication_analog" x="168" y="56"
             width="112" height="112">
             <Variant mode="AMBIENT" target="alpha" value="0" />
             <PartImage name="battery_hand"
