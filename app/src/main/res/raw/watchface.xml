@@ -114,8 +114,8 @@
             heart rate, etc. The default provider is step count. It can optionally be left empty.
         -->
         <ComplicationSlot
-            x="168" y="56"
-            width="112" height="112"
+            x="84" y="183"
+            width="84" height="84"
             slotId="9"
             name="left_complication" displayName="Left"
             supportedTypes="RANGED_VALUE EMPTY">
@@ -123,11 +123,11 @@
                 defaultSystemProvider="STEP_COUNT"
                 defaultSystemProviderType="RANGED_VALUE"
                 />
-            <BoundingOval x="0" y="0" width="112" height="112" outlinePadding="2" />
+            <BoundingOval x="0" y="0" width="84" height="84" outlinePadding="2" />
             <Complication type="RANGED_VALUE">
-                <Group name="complication_text" x="0" y="0" width="112" height="112" alpha="255">
+                <Group name="complication_text" x="0" y="0" width="84" height="84" alpha="255">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
-                <PartText x="-160" y="28" width="240" height="112" scaleX="2" scaleY="2">
+                <PartText x="-150" y="0" width="240" height="112" scaleX="1.5" scaleY="1.5">
                     <Text align="CENTER" ellipsis="FALSE">
                         <Font family="font" size="12"
                             color="#ffffff"
@@ -140,14 +140,15 @@
                         </Font>
                     </Text>
                 </PartText>
-                    <PartDraw x="0" y="0" width="112" height="112">
-                    <Arc direction="CLOCKWISE" startAngle="0" endAngle="360" centerX="56" centerY="56" width="112" height="112">
+                    <PartDraw x="0" y="0" width="84" height="84">
+                    <Arc direction="CLOCKWISE" startAngle="18" endAngle="360" centerX="42" centerY="42" width="84" height="84">
                         <!--
                             Value of transformation equation, line-by-line:
                             1) Clamp the value between the min and max values
                             2) Subtract the minimum value (in case it is less than 0)
                             3) Convert the value to a percentage.
                             4) Multiply the percentage by 360.
+                            5) Add 18 to the result, due to 18 degree start angle
                         -->
                         <Transform target="endAngle"
                             value="(
@@ -155,27 +156,14 @@
                             - [COMPLICATION.RANGED_VALUE_MIN])
                             / ([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN]) )
                             * 360
+                            +18
                             )" />
-                        <Stroke color="#77ffffff" cap="ROUND" thickness="10" />
+                        <Stroke color="#77ffffff" cap="BUTT" thickness="14" />
                     </Arc>
                     </PartDraw>
                 </Group>
             </Complication>
         </ComplicationSlot>
-
-        <!--
-            Test for left complication slot in order to determine size
-        -->
-        <Group name="test"
-            x="84" y="183"
-            width="84" height="84">
-            <PartDraw x="0" y="0" width="84" height="84">
-                <Arc direction="CLOCKWISE" startAngle="0" endAngle="360" centerX="42" centerY="42" width="84" height="84">
-                    <Stroke color="#77ffffff" cap="SQUARE" thickness="10" />
-                </Arc>
-            </PartDraw>
-        </Group>
-
 
         <!--
             The bottom complication slot is used for step count, with the rotating hand
@@ -440,16 +428,56 @@
         <!--
             The left complication analog component, representing watch battery percent
         -->
-        <Group name="left_complication_analog" x="168" y="56"
-            width="112" height="112">
+        <Group name="left_complication_analog" x="84" y="183"
+            width="84" height="84">
             <Variant mode="AMBIENT" target="alpha" value="0" />
             <PartImage name="battery_hand"
-                x="50" y="-56" width="12" height="224"
+                x="38" y="-42" width="8" height="168"
                 pivotX=".5" pivotY=".5"
                 angle="0">
                 <Transform target="angle" value="[BATTERY_PERCENT]*36/10" />
                 <Image resource="@drawable/hand_hour" />
             </PartImage>
+        </Group>
+
+        <Group name="left_complication_index_marks"
+            x="81" y="183"
+            width="96" height="96"
+            pivotX=".5" pivotY=".5"
+            angle="18"
+            tintColor="#ff999999">
+            <Variant mode="AMBIENT" target="alpha" value="0" />
+            <PartImage name="complication_mark_0_degrees"
+                x="0" y="0" width="84" height="84"
+                pivotX=".5" pivotY=".5"
+                angle="0">
+                <Image resource="@drawable/step_index_mark" />
+            </PartImage>
+            <PartImage name="complication_mark_36_degrees"
+                x="0" y="0" width="84" height="84"
+                pivotX=".5" pivotY=".5"
+                angle="36">
+                <Image resource="@drawable/step_index_mark" />
+            </PartImage>
+            <PartImage name="complication_mark_72_degrees"
+                x="0" y="0" width="84" height="84"
+                pivotX=".5" pivotY=".5"
+                angle="72">
+                <Image resource="@drawable/step_index_mark" />
+            </PartImage>
+            <PartImage name="complication_mark_108_degrees"
+                x="0" y="0" width="84" height="84"
+                pivotX=".5" pivotY=".5"
+                angle="108">
+                <Image resource="@drawable/step_index_mark" />
+            </PartImage>
+            <PartImage name="complication_mark_144_degrees"
+                x="0" y="0" width="84" height="84"
+                pivotX=".5" pivotY=".5"
+                angle="144">
+                <Image resource="@drawable/step_index_mark" />
+            </PartImage>
+            <Image resource="@drawable/step_index_mark" />
         </Group>
 
 
