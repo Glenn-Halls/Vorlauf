@@ -123,7 +123,7 @@
                 defaultSystemProvider="STEP_COUNT"
                 defaultSystemProviderType="RANGED_VALUE"
                 />
-            <BoundingOval x="0" y="0" width="84" height="84" outlinePadding="2" />
+            <BoundingOval x="-10" y="-10" width="104" height="104" outlinePadding="2" />
             <Complication type="RANGED_VALUE">
                 <Group name="complication_text" x="0" y="0" width="84" height="84" alpha="255">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
@@ -144,21 +144,23 @@
                     <Arc direction="CLOCKWISE" startAngle="18" endAngle="360" centerX="42" centerY="42" width="84" height="84">
                         <!--
                             Value of transformation equation, line-by-line:
-                            1) Clamp the value between the min and max values
-                            2) Subtract the minimum value (in case it is less than 0)
-                            3) Convert the value to a percentage.
-                            4) Multiply the percentage by 360.
-                            5) Add 18 to the result, due to 18 degree start angle
+                            1) Round the value to the nearest integer
+                            2) Clamp the value between the min and max values
+                            3) Subtract the minimum value (in case it is less than 0)
+                            4) Convert the value to a percentage.
+                            5) Multiply the percentage by 36.
+                            6) Add 18 to the result, due to 18 degree start angle
                         -->
                         <Transform target="endAngle"
-                            value="(
+                            value="(round(
                             ((clamp([COMPLICATION.RANGED_VALUE_VALUE], [COMPLICATION.RANGED_VALUE_MIN], [COMPLICATION.RANGED_VALUE_MAX])
                             - [COMPLICATION.RANGED_VALUE_MIN])
                             / ([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN]) )
-                            * 360
+                            * 10)
+                            *36
                             +18
                             )" />
-                        <Stroke color="#77ffffff" cap="BUTT" thickness="10" />
+                        <Stroke color="#77ffffff" cap="BUTT" thickness="12" />
                     </Arc>
                     </PartDraw>
                 </Group>
