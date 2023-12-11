@@ -184,7 +184,7 @@
                 defaultSystemProvider="APP_SHORTCUT"
                 defaultSystemProviderType="LONG_TEXT"
                 />
-            <BoundingOval x="0" y="0" width="112" height="112" outlinePadding="2" />
+            <BoundingOval x="-6" y="-6" width="126" height="126" outlinePadding="2" />
             <Complication type="LONG_TEXT">
                 <Group name="complication_shortcut" x="0" y="0" width="120" height="120">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
