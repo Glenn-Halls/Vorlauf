@@ -164,6 +164,20 @@
         </ComplicationSlot>
 
         <!--
+            Test for left complication slot in order to determine size
+        -->
+        <Group name="test"
+            x="84" y="183"
+            width="84" height="84">
+            <PartDraw x="0" y="0" width="84" height="84">
+                <Arc direction="CLOCKWISE" startAngle="0" endAngle="360" centerX="42" centerY="42" width="84" height="84">
+                    <Stroke color="#77ffffff" cap="SQUARE" thickness="10" />
+                </Arc>
+            </PartDraw>
+        </Group>
+
+
+        <!--
             The bottom complication slot is used for step count, with the rotating hand
             indicating the number of steps x100, the bezel color indicating the number of
             steps x1,000 and the highlighted number indicating the number of steps x10,000.

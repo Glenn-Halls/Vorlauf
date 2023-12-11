@@ -1,1 +1,4 @@
 /build
+
+# Run configuration
+.idea/deploymentTargetDropDown.xml
