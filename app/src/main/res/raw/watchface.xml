@@ -214,12 +214,29 @@
                 />
             <BoundingBox x="0" y="0" width="120" height="50" outlinePadding="2" />
             <Complication type="SHORT_TEXT">
+                <Group name="right_complication_background"
+                    x="0" y="0" width="120" height="50">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <PartDraw x="0" y="0" width="120" height="50">
+                        <Rectangle x="0" y="0" width="120" height="50">
+                            <Fill color="#dddddd">
+                                <LinearGradient startX="0" startY="50" endX="10" endY="0"
+                                    colors="#dddddd #999999" positions="0 1" />
+                            </Fill>
+                        </Rectangle>
+                    </PartDraw>
+                    <PartDraw x="0" y="0" width="120" height="50">
+                        <Rectangle x="0" y="0" width="120" height="50">
+                            <Stroke color="#000000" thickness="3" />
+                        </Rectangle>
+                    </PartDraw>
+                </Group>
                 <Group name="test_long_text" x="0" y="0" width="120" height="50">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
                     <PartText x="-157" y="0" width="240" height="50" scaleX="2" scaleY="2.3">
                         <Text align="CENTER" ellipsis="TRUE">
                             <Font family="font" size="12"
-                                color="#ffffff"
+                                color="#000000"
                                 alpha="255"/>
                             <Template>
                                 %s
