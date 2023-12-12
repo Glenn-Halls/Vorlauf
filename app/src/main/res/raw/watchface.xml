@@ -199,6 +199,40 @@
 
 
         <!--
+            The right complication slot is for short text descriptors. The default provider is
+            date. It can optionally be left empty.
+        -->
+        <ComplicationSlot
+            x="280" y="200"
+            width="120" height="50"
+            slotId="3"
+            name="right_complication" displayName="Right"
+            supportedTypes="SHORT_TEXT EMPTY">
+            <DefaultProviderPolicy
+                defaultSystemProvider="DATE"
+                defaultSystemProviderType="SHORT_TEXT"
+                />
+            <BoundingBox x="0" y="0" width="120" height="50" outlinePadding="2" />
+            <Complication type="SHORT_TEXT">
+                <Group name="test_long_text" x="0" y="0" width="120" height="50">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <PartText x="-157" y="0" width="240" height="50" scaleX="2" scaleY="2.3">
+                        <Text align="CENTER" ellipsis="TRUE">
+                            <Font family="font" size="12"
+                                color="#ffffff"
+                                alpha="255"/>
+                            <Template>
+                                %s
+                                <Parameter expression="[COMPLICATION.TEXT]" />
+                            </Template>
+                        </Text>
+                    </PartText>
+                </Group>
+            </Complication>
+        </ComplicationSlot>
+
+
+        <!--
             The bottom complication analog component with single hand and bezel indicator, to
             be duplicated into left complication with bezel then becoming multiples of 10.
         -->

@@ -5,6 +5,8 @@
 
     <uses-permission android:name="com.samsung.android.sdk.permission.WRITE" />
     <uses-permission android:name="com.samsung.android.sdk.permission.READ" />
+    <uses-permission android:name="com.samsung.health.water_intake" />
+    <uses-permission android:name="com.samsung.WATCH_APP_TYPE.Companion" />
 
     <application
         android:allowBackup="true"
