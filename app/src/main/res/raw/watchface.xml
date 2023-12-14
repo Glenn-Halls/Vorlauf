@@ -233,9 +233,9 @@
                 </Group>
                 <Group name="test_long_text" x="0" y="0" width="120" height="50">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
-                    <PartText x="-157" y="0" width="240" height="50" scaleX="2" scaleY="2.3">
+                    <PartText x="-140" y="2" width="200" height="50" scaleX="1.6" scaleY="2.5">
                         <Text align="CENTER" ellipsis="TRUE">
-                            <Font family="font" size="12"
+                            <Font family="zen_dots" size="12"
                                 color="#000000"
                                 alpha="255"/>
                             <Template>
