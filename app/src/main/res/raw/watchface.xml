@@ -233,7 +233,7 @@
                 </Group>
                 <Group name="test_long_text" x="0" y="0" width="120" height="50">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
-                    <PartText x="-132" y="-3" width="200" height="50" scaleX="1.65" scaleY="3">
+                    <PartText x="-132" y="-1" width="200" height="50" scaleX="1.65" scaleY="3">
                         <Text align="CENTER" ellipsis="TRUE">
                             <Font family="orbitron" size="12"
                                 color="#000000"
