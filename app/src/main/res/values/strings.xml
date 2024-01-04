@@ -2,4 +2,14 @@
     <string name="app_name">Vorlauf</string>
     <string name="glenn_halls">Glenn Halls</string>
     <string name="percent">%</string>
+    <string name="digital_display">Digital Display</string>
+    <string name="display_12">12 hour display</string>
+    <string name="display_ampm">am/pm display</string>
+    <string name="display_mil">military time</string>
+    <string name="display_24">24 hour time</string>
+    <string name="display_step">step count</string>
+    <string name="display_heart">heart rate</string>
+    <string name="display_note">notification count</string>
+    <string name="display_date">day &amp; date</string>
+    <string name="display_none">no digital display</string>
 </resources>

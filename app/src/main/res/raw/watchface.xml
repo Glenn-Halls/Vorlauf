@@ -3,6 +3,23 @@
     <Metadata key="TICK_PER_SECOND" value="15" />
     <Metadata key="PREVIEW_TIME" value="2:42:27" />
 
+    <!--
+    User configuration for the top-most element of the watch face: the digital display.
+    -->
+    <UserConfigurations>
+        <ListConfiguration id="user_config" displayName="digital_display" defaultValue="none" >
+            <ListOption id="digital_none" displayName="display_none" />
+            <ListOption id="digital_12" displayName="display_12" />
+            <ListOption id="digital_ampm" displayName="display_ampm" />
+            <ListOption id="digital_mil" displayName="display_mil" />
+            <ListOption id="digital_24" displayName="display_24" />
+            <ListOption id="digital_step" displayName="display_step" />
+            <ListOption id="digital_heart" displayName="display_heart" />
+            <ListOption id="digital_note" displayName="display_note" />
+            <ListOption id="digital_date" displayName="display_date" />
+        </ListConfiguration>
+    </UserConfigurations>
+
 
     <!--
         The Scene element is required and must be the root element of the displayed elements.
@@ -108,6 +125,27 @@
                 <Variant mode="AMBIENT" target="alpha" value="0" />
             </PartImage>
         </Group>
+
+        <!--
+            The top digital display slot can be configured by the user to show:
+            1) Short Time
+            2) AM/PM Time
+            3) Military Time
+            4) Step Count
+            5) Heart Rate
+            6) Notification Count
+            7) Date
+            8) No Digital Display
+            9) Nothing
+
+            Launch actions are determined by the display:
+            - Time settings = alarm
+            - Heart rate = default heart rate monitoring app
+            - Date = calendar
+            - Step count / notification = none
+        -->
+
+
 
         <!--
             The left complication slot is for ranged values such as step count, battery level,
