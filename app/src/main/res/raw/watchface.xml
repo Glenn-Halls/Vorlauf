@@ -7,13 +7,13 @@
     User configuration for the top-most element of the watch face: the digital display.
     -->
     <UserConfigurations>
-        <ListConfiguration id="user_config" displayName="digital_display" defaultValue="none" >
+        <ListConfiguration id="user_config" displayName="digital_display" defaultValue="none" resource="preview">
             <ListOption id="digital_none" displayName="display_none" />
             <ListOption id="digital_12" displayName="display_12" />
             <ListOption id="digital_ampm" displayName="display_ampm" />
             <ListOption id="digital_mil" displayName="display_mil" />
             <ListOption id="digital_24" displayName="display_24" />
-            <ListOption id="digital_step" displayName="display_step" />
+            <ListOption id="digital_step" displayName="display_step" resource="display_steps"/>
             <ListOption id="digital_heart" displayName="display_heart" />
             <ListOption id="digital_note" displayName="display_note" />
             <ListOption id="digital_date" displayName="display_date" />
@@ -147,7 +147,7 @@
         <Group id="digital_display" name="top_complication"
             x="140" y="90"
             width="170" height="70">
-            <!-- OUTLINE -->
+            <!-- OUTLINE
             <PartDraw x="0" y="0" width="170" height="70">
                 <Rectangle x="0" y="0" width="170" height="70">
                     <Fill color="#dddddd" />
@@ -156,19 +156,28 @@
                     <Fill color="#777777" />
                 </Rectangle>
             </PartDraw>
+            -->
             <!-- END OUTLINE -->
+            <UserConfiguration>
+                <ListConfiguration id="user_config" />
+            </UserConfiguration>
+
+            <ListConfiguration id="user_config">
+                <ListOption id="digital_step">
             <PartText x="-952" y="0" width="1122" height="70">
                 <Text align="CENTER" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
-                        color="#000000"
+                        color="#d3d3d3"
                         alpha="255">
                         <Template>
                             %s
-                            <Parameter expression="88888" />
+                            <Parameter expression="[STEP_COUNT]" />
                         </Template>
                     </Font>
                 </Text>
             </PartText>
+                </ListOption>
+            </ListConfiguration>
         </Group>
 
 
