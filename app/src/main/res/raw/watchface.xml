@@ -7,13 +7,13 @@
     User configuration for the top-most element of the watch face: the digital display.
     -->
     <UserConfigurations>
-        <ListConfiguration id="user_config" displayName="digital_display" defaultValue="none" resource="preview">
+        <ListConfiguration id="user_config" displayName="digital_display" defaultValue="none">
             <ListOption id="digital_none" displayName="display_none" />
             <ListOption id="digital_12" displayName="display_12" />
             <ListOption id="digital_ampm" displayName="display_ampm" />
             <ListOption id="digital_mil" displayName="display_mil" />
             <ListOption id="digital_24" displayName="display_24" />
-            <ListOption id="digital_step" displayName="display_step" resource="display_steps"/>
+            <ListOption id="digital_step" displayName="display_step" resource="icon_display_steps"/>
             <ListOption id="digital_heart" displayName="display_heart" />
             <ListOption id="digital_note" displayName="display_note" />
             <ListOption id="digital_date" displayName="display_date" />
