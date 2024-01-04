@@ -144,6 +144,32 @@
             - Date = calendar
             - Step count / notification = none
         -->
+        <Group id="digital_display" name="top_complication"
+            x="140" y="90"
+            width="170" height="70">
+            <!-- OUTLINE -->
+            <PartDraw x="0" y="0" width="170" height="70">
+                <Rectangle x="0" y="0" width="170" height="70">
+                    <Fill color="#dddddd" />
+                </Rectangle>
+                <Rectangle x="80" y="0" width="10" height="70">
+                    <Fill color="#777777" />
+                </Rectangle>
+            </PartDraw>
+            <!-- END OUTLINE -->
+            <PartText x="-952" y="0" width="1150" height="70">
+                <Text align="LEFT" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#000000"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="88888" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+        </Group>
 
 
 

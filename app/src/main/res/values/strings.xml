@@ -2,6 +2,7 @@
     <string name="app_name">Vorlauf</string>
     <string name="glenn_halls">Glenn Halls</string>
     <string name="percent">%</string>
+    <string name="colon">:</string>
     <string name="digital_display">Digital Display</string>
     <string name="display_12">12 hour display</string>
     <string name="display_ampm">am/pm display</string>
