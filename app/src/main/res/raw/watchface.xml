@@ -157,8 +157,8 @@
                 </Rectangle>
             </PartDraw>
             <!-- END OUTLINE -->
-            <PartText x="-952" y="0" width="1150" height="70">
-                <Text align="LEFT" ellipsis="TRUE">
+            <PartText x="-952" y="0" width="1122" height="70">
+                <Text align="CENTER" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
                         color="#000000"
                         alpha="255">
