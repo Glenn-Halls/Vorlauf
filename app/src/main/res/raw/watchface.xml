@@ -163,8 +163,28 @@
             </UserConfiguration>
 
             <ListConfiguration id="user_config">
+                <ListOption id="digital_mil">
+            <PartText x="-952" y="0" width="1122" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s%s
+                            <Parameter expression="[HOUR_0_23_Z]" />
+                            <Parameter expression="[MINUTE_Z]" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+                </ListOption>
+            </ListConfiguration>
+
+            <ListConfiguration id="user_config">
                 <ListOption id="digital_step">
             <PartText x="-952" y="0" width="1122" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
                         color="#d3d3d3"
