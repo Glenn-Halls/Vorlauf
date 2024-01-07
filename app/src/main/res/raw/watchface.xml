@@ -7,16 +7,16 @@
     User configuration for the top-most element of the watch face: the digital display.
     -->
     <UserConfigurations>
-        <ListConfiguration id="user_config" displayName="digital_display" defaultValue="none">
-            <ListOption id="digital_none" displayName="display_none" />
-            <ListOption id="digital_12" displayName="display_12" />
-            <ListOption id="digital_ampm" displayName="display_ampm" />
-            <ListOption id="digital_mil" displayName="display_mil" />
-            <ListOption id="digital_24" displayName="display_24" />
-            <ListOption id="digital_step" displayName="display_step" resource="icon_display_steps"/>
-            <ListOption id="digital_heart" displayName="display_heart" />
-            <ListOption id="digital_note" displayName="display_note" />
-            <ListOption id="digital_date" displayName="display_date" />
+        <ListConfiguration id="user_config" displayName="digital_display" defaultValue="0">
+            <ListOption id="0" displayName="display_none" icon="image"/>
+            <ListOption id="1" displayName="display_12" icon="image"/>
+            <ListOption id="2" displayName="display_ampm" icon="image"/>
+            <ListOption id="3" displayName="display_mil" icon="image"/>
+            <ListOption id="4" displayName="display_24" icon="image"/>
+            <ListOption id="5" displayName="display_step" icon="image"/>
+            <ListOption id="6" displayName="display_heart" icon="image"/>
+            <ListOption id="7" displayName="display_note" icon="image"/>
+            <ListOption id="8" displayName="display_date" icon="image"/>
         </ListConfiguration>
     </UserConfigurations>
 
@@ -163,7 +163,7 @@
             </UserConfiguration>
 
             <ListConfiguration id="user_config">
-                <ListOption id="digital_mil">
+                <ListOption id="0">
             <PartText x="-952" y="0" width="1122" height="70">
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="TRUE">
@@ -182,7 +182,7 @@
             </ListConfiguration>
 
             <ListConfiguration id="user_config">
-                <ListOption id="digital_step">
+                <ListOption id="5">
             <PartText x="-952" y="0" width="1122" height="70">
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="TRUE">
