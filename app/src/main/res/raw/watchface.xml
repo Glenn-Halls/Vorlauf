@@ -128,15 +128,15 @@
 
         <!--
             The top digital display slot can be configured by the user to show:
+            0) Nothing
             1) Short Time
             2) AM/PM Time
             3) Military Time
-            4) Step Count
-            5) Heart Rate
-            6) Notification Count
-            7) Date
-            8) No Digital Display
-            9) Nothing
+            4) 24 Hr Time
+            5) Step Count
+            6) Heart Rate
+            7) Notification Count
+            8) Date
 
             Launch actions are determined by the display:
             - Time settings = alarm
@@ -161,9 +161,23 @@
             <UserConfiguration>
                 <ListConfiguration id="user_config" />
             </UserConfiguration>
+            <!--
+                Default / Option 0  = no digital display
+            -->
 
+            <!--
+                Option 1 = Short Time
+            -->
+
+            <!--
+                Option 2 = AM/PM Time
+            -->
+
+            <!--
+                Option 3 = Military Time
+            -->
             <ListConfiguration id="user_config">
-                <ListOption id="0">
+                <ListOption id="3">
             <PartText x="-952" y="0" width="1122" height="70">
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="TRUE">
@@ -181,6 +195,13 @@
                 </ListOption>
             </ListConfiguration>
 
+            <!--
+                Option 4 = 24hr Time
+            -->
+
+            <!--
+                Option 5 = step count
+            -->
             <ListConfiguration id="user_config">
                 <ListOption id="5">
             <PartText x="-952" y="0" width="1122" height="70">
@@ -198,6 +219,36 @@
             </PartText>
                 </ListOption>
             </ListConfiguration>
+
+            <!--
+                Option 6 = Heart Rate
+            -->
+            <ListConfiguration id="user_config">
+                <ListOption id="6">
+            <PartText x="-952" y="0" width="1122" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="[HEART_RATE]" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+                </ListOption>
+            </ListConfiguration>
+
+            <!--
+                Option 7 = Notification count
+            -->
+
+            <!--
+                Option 8 = Date
+            -->
+
         </Group>
 
 
