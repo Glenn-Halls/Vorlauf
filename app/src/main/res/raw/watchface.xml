@@ -241,6 +241,49 @@
             <!--
                 Option 4 = 24hr Time
             -->
+            <ListConfiguration id="user_config">
+                <ListOption id="4">
+            <PartText x="-952" y="3" width="1122" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#000000"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="colon" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText x="-943" y="0" width="1020" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="END" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#000000"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="[HOUR_1_12_Z]" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText x="-961" y="0" width="1122" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="END" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#000000"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="[MINUTE_Z]" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+                </ListOption>
+            </ListConfiguration>
 
             <!--
                 Option 5 = step count
