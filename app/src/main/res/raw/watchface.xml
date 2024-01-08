@@ -148,6 +148,7 @@
             x="140" y="90"
             width="170" height="70">
 
+            <!-- OUTLINE
             <PartDraw x="0" y="0" width="170" height="70">
                 <Rectangle x="0" y="0" width="170" height="70">
                     <Fill color="#dddddd" />
@@ -156,7 +157,7 @@
                     <Fill color="#777777" />
                 </Rectangle>
             </PartDraw>
-
+            -->
             <!-- END OUTLINE -->
             <UserConfiguration>
                 <ListConfiguration id="user_config" />
@@ -174,7 +175,7 @@
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
-                        color="#000000"
+                        color="#d3d3d3"
                         alpha="255">
                         <Template>
                             %s
@@ -187,7 +188,7 @@
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="END" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
-                        color="#000000"
+                        color="#d3d3d3"
                         alpha="255">
                         <Template>
                             %s
@@ -200,7 +201,7 @@
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="END" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
-                        color="#000000"
+                        color="#d3d3d3"
                         alpha="255">
                         <Template>
                             %s
@@ -247,7 +248,7 @@
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
-                        color="#000000"
+                        color="#d3d3d3"
                         alpha="255">
                         <Template>
                             %s
@@ -260,7 +261,7 @@
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="END" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
-                        color="#000000"
+                        color="#d3d3d3"
                         alpha="255">
                         <Template>
                             %s
@@ -273,7 +274,7 @@
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="END" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
-                        color="#000000"
+                        color="#d3d3d3"
                         alpha="255">
                         <Template>
                             %s
