@@ -1,3 +1,9 @@
+<!--
+    This branch is to be used for the purpose of taking screenshots.
+-->
+
+
+
 <WatchFace width="450" height="450" shape="CIRCLE">
     <Metadata key="CLOCK_TYPE" value="ANALOG" />
     <Metadata key="TICK_PER_SECOND" value="15" />
@@ -165,6 +171,24 @@
             <!--
                 Default / Option 0  = no digital display
             -->
+            <ListConfiguration id="user_config">
+                <ListOption id="0">
+            <PartText x="-952" y="0" width="1122" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="display_text" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+                </ListOption>
+            </ListConfiguration>
+
 
             <!--
                 Option 1 = Short Time
@@ -391,7 +415,7 @@
                             alpha="255">
                             <Template>
                                 %d%s
-                                <Parameter expression="[BATTERY_PERCENT]" />
+                                <Parameter expression="90" />
                                 <Parameter expression="percent" />
                             </Template>
                         </Font>
@@ -409,14 +433,7 @@
                             6) Add 18 to the result, due to 18 degree start angle
                         -->
                         <Transform target="endAngle"
-                            value="(round(
-                            ((clamp([COMPLICATION.RANGED_VALUE_VALUE], [COMPLICATION.RANGED_VALUE_MIN], [COMPLICATION.RANGED_VALUE_MAX])
-                            - [COMPLICATION.RANGED_VALUE_MIN])
-                            / ([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN]) )
-                            * 10)
-                            *36
-                            +18
-                            )" />
+                            value="270" />
                         <Stroke color="#77ffffff" cap="BUTT" thickness="12" />
                     </Arc>
                     </PartDraw>
@@ -744,7 +761,7 @@
                 x="38" y="-42" width="8" height="168"
                 pivotX=".5" pivotY=".5"
                 angle="0">
-                <Transform target="angle" value="[BATTERY_PERCENT]*36/10" />
+                <Transform target="angle" value="90*36/10" />
                 <Image resource="@drawable/hand_hour" />
             </PartImage>
             <Group name="complication_numeric_indices"
@@ -931,42 +948,65 @@
         <!--
             Code for the analog clock hands must be placed last in order to be drawn on top
             of the index group.
+
+            In screenshot mode, these resources are all blank PNGs
         -->
         <AnalogClock x="0" y="0" width="450" height="450">
             <HourHand name="hand_hour_active"
                 x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
                 tintColor="e9e9e9"
-                resource="@drawable/hand_hour">
+                resource="blank">
                 <Variant mode="AMBIENT" target="alpha" value="0"/>
             </HourHand>
             <HourHand name="hand_hour_ambient"
                 x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
-                resource="@drawable/hand_hour"
+                resource="blank"
                 tintColor="#999999"
                 alpha="0">
                 <Variant mode="AMBIENT" target="alpha" value="255"/>
             </HourHand>
             <MinuteHand name="hand_minute_active"
                 x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
-                resource="@drawable/hand_minute"
+                resource="blank"
                 tintColor="#e9e9e9"
                 alpha="255">
                 <Variant mode="AMBIENT" target="alpha" value="0"/>
             </MinuteHand>
             <MinuteHand name="hand_minute_ambient"
                 x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
-                resource="@drawable/hand_minute"
+                resource="blank"
                 tintColor="#999999"
                 alpha="0">
                 <Variant mode="AMBIENT" target="alpha" value="255"/>
             </MinuteHand>
             <SecondHand name="hand_second"
                 x="217" y="0" width="16" height="450" pivotX="0.5" pivotY="0.5"
-                resource="@drawable/hand_second"
+                resource="blank"
                 tintColor="#e9e9e9">
                 <Sweep frequency="15" />
                 <Variant mode="AMBIENT" target="alpha" value="0" />
             </SecondHand>
         </AnalogClock>
+
+        <Group x="0" y="0" width="450" height="450">
+            <PartImage name="preview_hand_hour_active"
+                x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
+                angle="307.5"
+                tintColor="#e9e9e9">
+                <Image resource="@drawable/hand_hour" />
+            </PartImage>
+            <PartImage name="preview_hand_minute_active"
+                x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
+                angle="90"
+                tintColor="#e9e9e9">
+                <Image resource="@drawable/hand_minute" />
+            </PartImage>
+            <PartImage name="preview_hand_second_active"
+                x="217" y="0" width="16" height="450" pivotX="0.5" pivotY="0.5"
+                angle="201"
+                tintColor="#e9e9e9">
+                <Image resource="@drawable/hand_second" />
+            </PartImage>
+        </Group>
     </Scene>
 </WatchFace>

@@ -13,4 +13,5 @@
     <string name="display_note">notification count</string>
     <string name="display_date">day &amp; date</string>
     <string name="display_none">no digital display</string>
+    <string name="display_text">AM/PM</string>
 </resources>
