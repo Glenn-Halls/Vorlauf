@@ -330,6 +330,32 @@
             <!--
                 Option 7 = Notification count
             -->
+            <ListConfiguration id="user_config">
+                <ListOption id="7">
+            <Condition>
+                <Expressions>
+                    <Expression name="not_count">
+                        [UNREAD_NOTIFICATION_COUNT] != 0
+                    </Expression>
+                </Expressions>
+            <Compare expression="not_count">
+            <PartText x="-952" y="0" width="1122" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="[UNREAD_NOTIFICATION_COUNT]" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            </Compare>
+            </Condition>
+                </ListOption>
+            </ListConfiguration>
 
             <!--
                 Option 8 = Date
