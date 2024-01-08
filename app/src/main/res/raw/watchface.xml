@@ -147,7 +147,7 @@
         <Group id="digital_display" name="top_complication"
             x="140" y="90"
             width="170" height="70">
-            <!-- OUTLINE
+
             <PartDraw x="0" y="0" width="170" height="70">
                 <Rectangle x="0" y="0" width="170" height="70">
                     <Fill color="#dddddd" />
@@ -156,7 +156,7 @@
                     <Fill color="#777777" />
                 </Rectangle>
             </PartDraw>
-            -->
+
             <!-- END OUTLINE -->
             <UserConfiguration>
                 <ListConfiguration id="user_config" />
@@ -168,6 +168,49 @@
             <!--
                 Option 1 = Short Time
             -->
+            <ListConfiguration id="user_config">
+                <ListOption id="1">
+            <PartText x="-952" y="3" width="1122" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#000000"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="colon" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText x="-943" y="0" width="1020" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="END" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#000000"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="[HOUR_1_12]" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText x="-961" y="0" width="1122" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="END" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#000000"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="[MINUTE_Z]" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+                </ListOption>
+            </ListConfiguration>
 
             <!--
                 Option 2 = AM/PM Time
