@@ -434,7 +434,7 @@
                         -->
                         <Transform target="endAngle"
                             value="270" />
-                        <Stroke color="#77ffffff" cap="BUTT" thickness="12" />
+                        <Stroke color="#77ffffff" cap="BUTT" thickness="10" />
                     </Arc>
                     </PartDraw>
                 </Group>
