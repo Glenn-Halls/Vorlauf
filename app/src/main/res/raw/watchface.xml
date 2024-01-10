@@ -216,6 +216,84 @@
             <!--
                 Option 2 = AM/PM Time
             -->
+            <ListConfiguration id="user_config">
+                <ListOption id="2">
+            <PartText x="-982" y="3" width="1122" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="colon" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText x="-970" y="0" width="1020" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="END" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="[HOUR_1_12]" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText x="-994" y="0" width="1122" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="END" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="[MINUTE_Z]" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <Condition>
+                <Expressions>
+                    <Expression name="is_pm">
+                        [AMPM_STATE] == 1
+                    </Expression>
+                </Expressions>
+                <Compare expression="is_pm">
+            <PartText x="-955" y="10" width="1122" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="END" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="25"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="PM" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+                </Compare>
+            <PartText x="-955" y="10" width="1122" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="END" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="25"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="AM" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            </Condition>
+                </ListOption>
+            </ListConfiguration>
 
             <!--
                 Option 3 = Military Time
