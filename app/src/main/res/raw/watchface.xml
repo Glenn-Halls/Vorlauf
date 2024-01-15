@@ -858,6 +858,16 @@
                 </Group>
                 </Group>
             </Group>
+            <!-- 10,000 step indicator marker-->
+            <PartDraw x="0" y="0" width="112" height="112"
+                pivotX="0.5" pivotY="0.5" angle="18">
+                <Transform target="angle" value="floor([STEP_COUNT]/10000)*36 - 18" />
+                <Arc centerX="56" centerY="56" width="112" height="112"
+                    startAngle="0" endAngle="0">
+                    <Transform target="endAngle" value="clamp(floor([STEP_COUNT]/10000), 0, 1)*36" />
+                    <Stroke color="#ffd3d3d3" cap="BUTT" thickness="14" />
+                </Arc>
+            </PartDraw>
         </Group>
 
         <Group name="step_index_marks"
