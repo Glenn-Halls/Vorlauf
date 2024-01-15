@@ -550,7 +550,8 @@
             <Complication type="RANGED_VALUE">
                 <Group name="complication_text" x="0" y="0" width="84" height="84" alpha="255">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
-                <PartText x="-150" y="0" width="240" height="112" scaleX="1.5" scaleY="1.5">
+                <PartText x="-148" y="-33" width="240" height="112" scaleX="1.5" scaleY="1.5">
+                    <Transform target="y" value="([BATTERY_PERCENT] >= 75) ? 0 : (([BATTERY_PERCENT] > 25) ? -33 : 0)" />
                     <Text align="CENTER" ellipsis="FALSE">
                         <Font family="font" size="12"
                             color="#ffffff"
