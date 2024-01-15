@@ -439,6 +439,36 @@
             <!--
                 Option 8 = Date
             -->
+            <ListConfiguration id="user_config">
+                <ListOption id="8">
+            <PartText x="-957" y="0" width="1122" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="START" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="subText([DAY_OF_WEEK_F], 0, 3)" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText x="-947" y="0" width="1122" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="END" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="[DAY_Z]" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+                </ListOption>
+            </ListConfiguration>
 
         </Group>
 
