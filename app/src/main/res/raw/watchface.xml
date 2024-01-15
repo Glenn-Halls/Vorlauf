@@ -682,7 +682,7 @@
             <PartDraw x="0" y="0" width="112" height="112">
                 <Arc centerX="56" centerY="56" width="112" height="112"
                     startAngle="18" endAngle="18">
-                    <Transform target="endAngle" value="floor([STEP_COUNT]/1000)*36 + 18" />
+                    <Transform target="endAngle" value="floor(([STEP_COUNT]%10000)/1000)*36 + 18" />
                     <Stroke color="#ff777777" cap="BUTT" thickness="14" />
                 </Arc>
             </PartDraw>
