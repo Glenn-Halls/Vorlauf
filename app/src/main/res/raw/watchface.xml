@@ -172,6 +172,7 @@
             <ListConfiguration id="user_config">
                 <ListOption id="1">
             <PartText x="-952" y="3" width="1122" height="70">
+                <Launch target="ALARM" />
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
@@ -219,6 +220,7 @@
             <ListConfiguration id="user_config">
                 <ListOption id="2">
             <PartText x="-982" y="3" width="1122" height="70">
+                <Launch target="ALARM" />
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
@@ -301,6 +303,7 @@
             <ListConfiguration id="user_config">
                 <ListOption id="3">
             <PartText x="-952" y="0" width="1122" height="70">
+                <Launch target="ALARM" />
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
@@ -323,6 +326,7 @@
             <ListConfiguration id="user_config">
                 <ListOption id="4">
             <PartText x="-952" y="3" width="1122" height="70">
+                <Launch target="ALARM" />
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
@@ -391,6 +395,7 @@
             <ListConfiguration id="user_config">
                 <ListOption id="6">
             <PartText x="-952" y="0" width="1122" height="70">
+                <Launch target="HEALTH_HEART_RATE" />
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
@@ -442,6 +447,7 @@
             <ListConfiguration id="user_config">
                 <ListOption id="8">
             <PartText x="-957" y="0" width="1122" height="70">
+                <Launch target="CALENDAR" />
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="START" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
