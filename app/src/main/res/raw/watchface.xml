@@ -841,6 +841,7 @@
                     pivotX=".5" pivotY="0.5"
                     angle="9">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Transform target="alpha" value="[STEP_COUNT] > 10000 ? 255 : 0" />
                     <Text align="CENTER" ellipsis="FALSE">
                         <Font family="font" weight="EXTRA_BOLD" size="12" color="#000000" alpha="255">
                             <Template>
