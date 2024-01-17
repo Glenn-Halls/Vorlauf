@@ -641,8 +641,8 @@
             date. It can optionally be left empty.
         -->
         <ComplicationSlot
-            x="280" y="200"
-            width="120" height="50"
+            x="280" y="204"
+            width="120" height="42"
             slotId="3"
             name="right_complication" displayName="Right"
             supportedTypes="SHORT_TEXT EMPTY">
@@ -650,28 +650,28 @@
                 defaultSystemProvider="DATE"
                 defaultSystemProviderType="SHORT_TEXT"
                 />
-            <BoundingBox x="0" y="0" width="120" height="50" outlinePadding="2" />
+            <BoundingBox x="0" y="0" width="120" height="42" outlinePadding="2" />
             <Complication type="SHORT_TEXT">
                 <Group name="right_complication_background"
-                    x="0" y="0" width="120" height="50">
+                    x="0" y="0" width="120" height="42">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
-                    <PartDraw x="0" y="0" width="120" height="50">
-                        <Rectangle x="0" y="0" width="120" height="50">
+                    <PartDraw x="0" y="0" width="120" height="42">
+                        <Rectangle x="0" y="0" width="120" height="42">
                             <Fill color="#dddddd">
-                                <LinearGradient startX="0" startY="50" endX="10" endY="0"
+                                <LinearGradient startX="0" startY="42" endX="10" endY="0"
                                     colors="#dddddd #aaaaaa" positions="0 1" />
                             </Fill>
                         </Rectangle>
                     </PartDraw>
-                    <PartDraw x="0" y="0" width="120" height="50">
-                        <Rectangle x="0" y="0" width="120" height="50">
+                    <PartDraw x="0" y="0" width="120" height="42">
+                        <Rectangle x="0" y="0" width="120" height="42">
                             <Stroke color="#000000" thickness="3" />
                         </Rectangle>
                     </PartDraw>
                 </Group>
-                <Group name="right_complication_text" x="0" y="0" width="120" height="50">
+                <Group name="right_complication_text" x="0" y="0" width="120" height="42">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
-                <PartText x="-418" y="0" width="559" height="50" scaleX=".92" scaleY="1.7">
+                <PartText x="-418" y="0" width="559" height="42" scaleX=".92" scaleY="1.7">
                     <Text align="CENTER" ellipsis="TRUE">
                         <Font family="ep_boxi_bold" size="21"
                             color="#000000"
