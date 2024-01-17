@@ -632,6 +632,265 @@
                         </Text>
                     </PartText>
                 </Group>
+                <!--
+            The bottom complication analog component with single hand and bezel indicator, to
+            be duplicated into left complication with bezel then becoming multiples of 10.
+        -->
+        <Group name="bottom_complication_analog" x="0" y="0"
+            width="112" height="112">
+            <Variant mode="AMBIENT" target="alpha" value="0" />
+            <PartDraw x="0" y="0" width="112" height="112">
+                <Arc centerX="56" centerY="56" width="112" height="112"
+                    startAngle="18" endAngle="18">
+                    <Transform target="endAngle" value="floor(([STEP_COUNT]%10000)/1000)*36 + 18" />
+                    <Stroke color="#ff777777" cap="BUTT" thickness="14" />
+                </Arc>
+            </PartDraw>
+            <PartImage name="step_hand"
+                x="50" y="-56" width="12" height="224"
+                pivotX=".5" pivotY=".5"
+                angle="0">
+                <Transform target="angle" value="[STEP_COUNT]*36/100" />
+                <Image resource="@drawable/hand_hour" />
+            </PartImage>
+            <Group name="step_numeric_indices"
+                x="0" y="0"
+                width="112" height="112"
+                tintColor="#eeeeee">
+                <Group name="step_index_no_rotation"
+                    x="0" y="0"
+                    width="112" height="112"
+                    pivotX=".5" pivotY="0.5"
+                    angle="0">
+            <PartText name="step_index_10"
+                x="-56" y="-57"
+                width="112" height="112"
+                scaleX="1.5" scaleY="1.5"
+                pivotX=".5" pivotY="0.5"
+                angle="0">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        10
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText name="step_index_5"
+                x="-44" y="55"
+                width="112" height="112"
+                scaleX="1.5" scaleY="1.5"
+                pivotX="0.5" pivotY="0.5"
+                angle="0">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="FALSE">
+                <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                    5
+                </Font>
+                </Text>
+            </PartText>
+                    <Group name="step_index_36_deg"
+                        x="0" y="0"
+                        width="112" height="112"
+                        pivotX=".5" pivotY="0.5"
+                        angle="36">
+                <PartText name="step_index_1"
+                    x="-54" y="-57"
+                    width="112" height="112"
+                    scaleX="1.5" scaleY="1.5"
+                    pivotX=".5" pivotY="0.5"
+                    angle="0">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        1
+                    </Font>
+                    </Text>
+                </PartText>
+                <PartText name="step_index_6"
+                    x="-54" y="55"
+                    width="112" height="112"
+                    scaleX="1.5" scaleY="1.5"
+                    pivotX=".5" pivotY="0.5"
+                    angle="0">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        6
+                    </Font>
+                    </Text>
+                </PartText>
+                    </Group>
+                    <Group name="step_index_72_deg"
+                        x="0" y="0"
+                        width="112" height="112"
+                        pivotX=".5" pivotY="0.5"
+                        angle="72">
+                <PartText name="step_index_2"
+                    x="-54" y="-57"
+                    width="112" height="112"
+                    scaleX="1.5" scaleY="1.5"
+                    pivotX=".5" pivotY="0.5"
+                    angle="0">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        2
+                    </Font>
+                    </Text>
+                </PartText>
+                <PartText name="step_index_7"
+                    x="-54" y="55"
+                    width="112" height="112"
+                    scaleX="1.5" scaleY="1.5"
+                    pivotX=".5" pivotY="0.5"
+                    angle="0">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        7
+                    </Font>
+                    </Text>
+                </PartText>
+                    </Group>
+                    <Group name="step_index_108_deg"
+                        x="0" y="0"
+                        width="112" height="112"
+                        pivotX=".5" pivotY="0.5"
+                        angle="-72">
+                <PartText name="step_index_8"
+                    x="-54" y="-57"
+                    width="112" height="112"
+                    scaleX="1.5" scaleY="1.5"
+                    pivotX=".5" pivotY="0.5"
+                    angle="0">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        8
+                    </Font>
+                    </Text>
+                </PartText>
+                <PartText name="step_index_3"
+                    x="-54" y="55"
+                    width="112" height="112"
+                    scaleX="1.5" scaleY="1.5"
+                    pivotX=".5" pivotY="0.5"
+                    angle="0">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        3
+                    </Font>
+                    </Text>
+                </PartText>
+                    </Group>
+                    <Group name="step_index_144_deg"
+                        x="0" y="0"
+                        width="112" height="112"
+                        pivotX=".5" pivotY="0.5"
+                        angle="-36">
+                <PartText name="step_index_9"
+                    x="-54" y="-57"
+                    width="112" height="112"
+                    scaleX="1.5" scaleY="1.5"
+                    pivotX=".5" pivotY="0.5"
+                    angle="0">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        9
+                    </Font>
+                    </Text>
+                </PartText>
+                <PartText name="step_index_4"
+                    x="-54" y="55"
+                    width="112" height="112"
+                    scaleX="1.5" scaleY="1.5"
+                    pivotX=".5" pivotY="0.5"
+                    angle="0">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        4
+                    </Font>
+                    </Text>
+                </PartText>
+                    </Group>
+                </Group>
+            </Group>
+            <!-- 10,000 step indicator marker-->
+            <PartDraw x="0" y="0" width="112" height="112"
+                pivotX="0.5" pivotY="0.5" angle="18">
+                <Transform target="angle" value="floor([STEP_COUNT]/10000)*36 - 18" />
+                <Arc centerX="56" centerY="56" width="112" height="112"
+                    startAngle="0" endAngle="0">
+                    <Transform target="endAngle" value="clamp(floor([STEP_COUNT]/10000), 0, 1)*36" />
+                    <Stroke color="#ffd3d3d3" cap="BUTT" thickness="14" />
+                </Arc>
+            </PartDraw>
+            <Group name="step_number_10k_no_rotation"
+                x="0" y="0"
+                width="112" height="112"
+                pivotX=".5" pivotY="0.5"
+                angle="0">
+                <Transform target="angle" value="floor([STEP_COUNT]/10000)*36 - 9" />
+                <PartText name="step_index_10k"
+                    x="-52" y="-66"
+                    width="112" height="112"
+                    scaleX="1.5" scaleY="1.5"
+                    pivotX=".5" pivotY="0.5"
+                    angle="9">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                        <Font family="font" weight="EXTRA_BOLD" size="12" color="#000000" alpha="255">
+                            <Template>
+                                %s
+                                <Parameter expression="floor([STEP_COUNT]/10000)" />
+                            </Template>
+                        </Font>
+                    </Text>
+                </PartText>
+            </Group>
+        </Group>
+        <Group name="step_index_marks"
+            x="-7" y="-7"
+            width="126" height="126"
+            pivotX=".5" pivotY=".5"
+            angle="18"
+            tintColor="#ff999999">
+            <Variant mode="AMBIENT" target="alpha" value="0" />
+            <PartImage name="step_mark_0_degrees"
+                x="0" y="0" width="126" height="126"
+                pivotX=".5" pivotY=".5"
+                angle="0">
+                <Image resource="@drawable/step_index_mark" />
+            </PartImage>
+            <PartImage name="step_mark_36_degrees"
+                x="0" y="0" width="126" height="126"
+                pivotX=".5" pivotY=".5"
+                angle="36">
+                <Image resource="@drawable/step_index_mark" />
+            </PartImage>
+            <PartImage name="step_mark_72_degrees"
+                x="0" y="0" width="126" height="126"
+                pivotX=".5" pivotY=".5"
+                angle="72">
+                <Image resource="@drawable/step_index_mark" />
+            </PartImage>
+            <PartImage name="step_mark_108_degrees"
+                x="0" y="0" width="126" height="126"
+                pivotX=".5" pivotY=".5"
+                angle="108">
+                <Image resource="@drawable/step_index_mark" />
+            </PartImage>
+            <PartImage name="step_mark_144_degrees"
+                x="0" y="0" width="126" height="126"
+                pivotX=".5" pivotY=".5"
+                angle="144">
+                <Image resource="@drawable/step_index_mark" />
+            </PartImage>
+            <Image resource="@drawable/step_index_mark" />
+        </Group>
             </Complication>
         </ComplicationSlot>
 
@@ -685,268 +944,6 @@
                 </Group>
             </Complication>
         </ComplicationSlot>
-
-
-        <!--
-            The bottom complication analog component with single hand and bezel indicator, to
-            be duplicated into left complication with bezel then becoming multiples of 10.
-        -->
-        <Group name="bottom_complication_analog" x="168" y="245"
-            width="112" height="112">
-            <Variant mode="AMBIENT" target="alpha" value="0" />
-            <PartDraw x="0" y="0" width="112" height="112">
-                <Arc centerX="56" centerY="56" width="112" height="112"
-                    startAngle="18" endAngle="18">
-                    <Transform target="endAngle" value="floor(([STEP_COUNT]%10000)/1000)*36 + 18" />
-                    <Stroke color="#ff777777" cap="BUTT" thickness="14" />
-                </Arc>
-            </PartDraw>
-            <PartImage name="step_hand"
-                x="50" y="-56" width="12" height="224"
-                pivotX=".5" pivotY=".5"
-                angle="0">
-                <Transform target="angle" value="[STEP_COUNT]*36/100" />
-                <Image resource="@drawable/hand_hour" />
-            </PartImage>
-            <Group name="step_numeric_indices"
-                x="0" y="0"
-                width="112" height="112"
-                tintColor="#eeeeee">
-                <Group name="step_index_no_rotation"
-                    x="0" y="0"
-                    width="112" height="112"
-                    pivotX=".5" pivotY="0.5"
-                    angle="0">
-            <PartText name="step_index_10"
-                x="-56" y="-57"
-                width="112" height="112"
-                scaleX="1.5" scaleY="1.5"
-                pivotX=".5" pivotY="0.5"
-                angle="0">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="FALSE">
-                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        10
-                    </Font>
-                </Text>
-            </PartText>
-            <PartText name="step_index_5"
-                x="-44" y="55"
-                width="112" height="112"
-                scaleX="1.5" scaleY="1.5"
-                pivotX="0.5" pivotY="0.5"
-                angle="0">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="FALSE">
-                <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                    5
-                </Font>
-                </Text>
-            </PartText>
-                <Group name="step_index_36_deg"
-                    x="0" y="0"
-                    width="112" height="112"
-                    pivotX=".5" pivotY="0.5"
-                    angle="36">
-            <PartText name="step_index_1"
-                x="-54" y="-57"
-                width="112" height="112"
-                scaleX="1.5" scaleY="1.5"
-                pivotX=".5" pivotY="0.5"
-                angle="0">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="FALSE">
-                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        1
-                    </Font>
-                </Text>
-            </PartText>
-            <PartText name="step_index_6"
-                x="-54" y="55"
-                width="112" height="112"
-                scaleX="1.5" scaleY="1.5"
-                pivotX=".5" pivotY="0.5"
-                angle="0">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="FALSE">
-                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        6
-                    </Font>
-                </Text>
-            </PartText>
-                </Group>
-                <Group name="step_index_72_deg"
-                    x="0" y="0"
-                    width="112" height="112"
-                    pivotX=".5" pivotY="0.5"
-                    angle="72">
-            <PartText name="step_index_2"
-                x="-54" y="-57"
-                width="112" height="112"
-                scaleX="1.5" scaleY="1.5"
-                pivotX=".5" pivotY="0.5"
-                angle="0">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="FALSE">
-                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        2
-                    </Font>
-                </Text>
-            </PartText>
-            <PartText name="step_index_7"
-                x="-54" y="55"
-                width="112" height="112"
-                scaleX="1.5" scaleY="1.5"
-                pivotX=".5" pivotY="0.5"
-                angle="0">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="FALSE">
-                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        7
-                    </Font>
-                </Text>
-            </PartText>
-                </Group>
-                <Group name="step_index_108_deg"
-                    x="0" y="0"
-                    width="112" height="112"
-                    pivotX=".5" pivotY="0.5"
-                    angle="-72">
-            <PartText name="step_index_8"
-                x="-54" y="-57"
-                width="112" height="112"
-                scaleX="1.5" scaleY="1.5"
-                pivotX=".5" pivotY="0.5"
-                angle="0">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="FALSE">
-                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        8
-                    </Font>
-                </Text>
-            </PartText>
-            <PartText name="step_index_3"
-                x="-54" y="55"
-                width="112" height="112"
-                scaleX="1.5" scaleY="1.5"
-                pivotX=".5" pivotY="0.5"
-                angle="0">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="FALSE">
-                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        3
-                    </Font>
-                </Text>
-            </PartText>
-                </Group>
-                <Group name="step_index_144_deg"
-                    x="0" y="0"
-                    width="112" height="112"
-                    pivotX=".5" pivotY="0.5"
-                    angle="-36">
-            <PartText name="step_index_9"
-                x="-54" y="-57"
-                width="112" height="112"
-                scaleX="1.5" scaleY="1.5"
-                pivotX=".5" pivotY="0.5"
-                angle="0">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="FALSE">
-                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        9
-                    </Font>
-                </Text>
-            </PartText>
-            <PartText name="step_index_4"
-                x="-54" y="55"
-                width="112" height="112"
-                scaleX="1.5" scaleY="1.5"
-                pivotX=".5" pivotY="0.5"
-                angle="0">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="FALSE">
-                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        4
-                    </Font>
-                </Text>
-            </PartText>
-                </Group>
-                </Group>
-            </Group>
-            <!-- 10,000 step indicator marker-->
-            <PartDraw x="0" y="0" width="112" height="112"
-                pivotX="0.5" pivotY="0.5" angle="18">
-                <Transform target="angle" value="floor([STEP_COUNT]/10000)*36 - 18" />
-                <Arc centerX="56" centerY="56" width="112" height="112"
-                    startAngle="0" endAngle="0">
-                    <Transform target="endAngle" value="clamp(floor([STEP_COUNT]/10000), 0, 1)*36" />
-                    <Stroke color="#ffd3d3d3" cap="BUTT" thickness="14" />
-                </Arc>
-            </PartDraw>
-            <Group name="step_number_10k_no_rotation"
-                x="0" y="0"
-                width="112" height="112"
-                pivotX=".5" pivotY="0.5"
-                angle="0">
-                <Transform target="angle" value="floor([STEP_COUNT]/10000)*36 - 9" />
-                <PartText name="step_index_10k"
-                    x="-52" y="-66"
-                    width="112" height="112"
-                    scaleX="1.5" scaleY="1.5"
-                    pivotX=".5" pivotY="0.5"
-                    angle="9">
-                    <Variant mode="AMBIENT" target="alpha" value="0" />
-                    <Text align="CENTER" ellipsis="FALSE">
-                        <Font family="font" weight="EXTRA_BOLD" size="12" color="#000000" alpha="255">
-                            <Template>
-                            %s
-                            <Parameter expression="floor([STEP_COUNT]/10000)" />
-                            </Template>
-                        </Font>
-                    </Text>
-                </PartText>
-            </Group>
-        </Group>
-
-        <Group name="step_index_marks"
-            x="161" y="238"
-            width="126" height="126"
-            pivotX=".5" pivotY=".5"
-            angle="18"
-            tintColor="#ff999999">
-            <Variant mode="AMBIENT" target="alpha" value="0" />
-            <PartImage name="step_mark_0_degrees"
-                x="0" y="0" width="126" height="126"
-                pivotX=".5" pivotY=".5"
-                angle="0">
-                <Image resource="@drawable/step_index_mark" />
-            </PartImage>
-            <PartImage name="step_mark_36_degrees"
-                x="0" y="0" width="126" height="126"
-                pivotX=".5" pivotY=".5"
-                angle="36">
-                <Image resource="@drawable/step_index_mark" />
-            </PartImage>
-            <PartImage name="step_mark_72_degrees"
-                x="0" y="0" width="126" height="126"
-                pivotX=".5" pivotY=".5"
-                angle="72">
-                <Image resource="@drawable/step_index_mark" />
-            </PartImage>
-            <PartImage name="step_mark_108_degrees"
-                x="0" y="0" width="126" height="126"
-                pivotX=".5" pivotY=".5"
-                angle="108">
-                <Image resource="@drawable/step_index_mark" />
-            </PartImage>
-            <PartImage name="step_mark_144_degrees"
-                x="0" y="0" width="126" height="126"
-                pivotX=".5" pivotY=".5"
-                angle="144">
-                <Image resource="@drawable/step_index_mark" />
-            </PartImage>
-            <Image resource="@drawable/step_index_mark" />
-        </Group>
 
         <!--
             The left complication analog component, representing watch battery percent
