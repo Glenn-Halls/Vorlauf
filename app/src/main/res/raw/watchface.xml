@@ -612,6 +612,20 @@
             <Complication type="LONG_TEXT">
                 <Group name="complication_shortcut" x="0" y="0" width="120" height="120">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <PartText x="-144" y="23" width="240" height="112" scaleX="1.5" scaleY="1.5">
+                        <Transform target="y" value="([STEP_PERCENT] >= 75) ? 23 : (([STEP_PERCENT] > 25) ? -23 : 23)" />
+                        <Text align="CENTER" ellipsis="FALSE">
+                            <Font family="font" size="12"
+                                color="#ffffff"
+                                alpha="255">
+                                <Template>
+                                    %d%s
+                                    <Parameter expression="[STEP_PERCENT]" />
+                                    <Parameter expression="percent" />
+                                </Template>
+                            </Font>
+                        </Text>
+                    </PartText>
                     <PartText x="-170" y="0" width="240" height="112" scaleX="2" scaleY="2">
                         <Text align="CENTER" ellipsis="FALSE">
                             <Font family="font" size="12" />
