@@ -844,8 +844,8 @@
                     <Text align="CENTER" ellipsis="FALSE">
                         <Font family="font" weight="EXTRA_BOLD" size="12" color="#000000" alpha="255">
                             <Template>
-                                %s
-                                <Parameter expression="floor([STEP_COUNT]/10000)" />
+                            %s
+                            <Parameter expression="floor([STEP_COUNT]/10000)" />
                             </Template>
                         </Font>
                     </Text>
