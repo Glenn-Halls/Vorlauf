@@ -38,14 +38,8 @@
 
         <!--
             The index group below contains the watch face index, including the numerals displaying
-            hour slots 2, 4, 6, 8, 10 and 12. Currently, slots 2, 4, 8 and 10 open apps as follows:
-            2 -> Alarm
-            4 -> Music Player
-            8 -> Health Heart Rate
-            10 -> Calendar
-
-            At a later date, these will be substituted for user-defined shortcuts via use of
-            complication slots.
+            hour slots 2, 4, 6, 8, 10 and 12. Slots 2, 4, 8 and 10 have a complication overlay that
+            allows the user to launch an app of their choice.
         -->
         <Group name="index"
             x="0" y="0" width="450" height="450">
@@ -178,6 +172,7 @@
             <BoundingOval x="0" y="0" width="90" height="90" outlinePadding="2" />
         </ComplicationSlot>
 
+
         <!--
             The top digital display slot can be configured by the user to show:
             0) Nothing
@@ -200,7 +195,7 @@
             x="140" y="90"
             width="170" height="70">
 
-            <!-- OUTLINE
+            <!-- OUTLINE (to be used for development only)
             <PartDraw x="0" y="0" width="170" height="70">
                 <Rectangle x="0" y="0" width="170" height="70">
                     <Fill color="#dddddd" />
@@ -421,7 +416,7 @@
             </ListConfiguration>
 
             <!--
-                Option 5 = step count
+                Option 5 = Step Count
             -->
             <ListConfiguration id="user_config">
                 <ListOption id="5">
@@ -533,8 +528,10 @@
 
 
         <!--
-            The left complication slot is for ranged values such as step count, battery level,
-            heart rate, etc. The default provider is step count. It can optionally be left empty.
+            The left complication slot has an analog hand to indicate the battery percent and a grey
+            arc to indicate a user-selected ranged value such as UV index, step-goal %, chance of
+            rain etc. If "empty" is selected, the complication including the battery indicator will
+            be hidden.
         -->
         <ComplicationSlot
             x="84" y="183"
@@ -591,12 +588,13 @@
             </Complication>
         </ComplicationSlot>
 
+
         <!--
             The bottom complication slot is used for step count, with the rotating hand
-            indicating the number of steps x100, the bezel color indicating the number of
-            steps x1,000 and the highlighted number indicating the number of steps x10,000.
-            The user can optionally use a complication in order to launch an app of their
-            choosing.
+            indicating the number of steps x100, the grey arc indicating the number of
+            steps x1,000 and the white highlighted number indicating the number of steps x10,000.
+            The user can choose an app to launch when the step indicator is clicked. If the user
+            selects "none" as their app of choice, the step indicator will be hidden
         -->
         <ComplicationSlot
             x="168" y="245"
@@ -632,9 +630,8 @@
                         </Text>
                     </PartText>
                 </Group>
-                <!--
-            The bottom complication analog component with single hand and bezel indicator, to
-            be duplicated into left complication with bezel then becoming multiples of 10.
+        <!--
+            The bottom complication analog component with single hand and bezel indicators.
         -->
         <Group name="bottom_complication_analog" x="0" y="0"
             width="112" height="112">
@@ -824,6 +821,7 @@
                 <Transform target="angle" value="floor([STEP_COUNT]/10000)*36 - 18" />
                 <Arc centerX="56" centerY="56" width="112" height="112"
                     startAngle="0" endAngle="0">
+                    <!-- Transform element ensures that marker is invisible at steps < 10,000 -->
                     <Transform target="endAngle" value="clamp(floor([STEP_COUNT]/10000), 0, 1)*36" />
                     <Stroke color="#ffd3d3d3" cap="BUTT" thickness="14" />
                 </Arc>
@@ -841,6 +839,7 @@
                     pivotX=".5" pivotY="0.5"
                     angle="9">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <!-- Transform element ensures alpha is 0 if steps < 10,000 -->
                     <Transform target="alpha" value="[STEP_COUNT] > 10000 ? 255 : 0" />
                     <Text align="CENTER" ellipsis="FALSE">
                         <Font family="font" weight="EXTRA_BOLD" size="12" color="#000000" alpha="255">
@@ -898,7 +897,10 @@
 
         <!--
             The right complication slot is for short text descriptors. The default provider is
-            date. It can optionally be left empty.
+            date. It can optionally be left empty. As per Wear OS documentation, string length is
+            expected to be 7 characters or less however to ensure this, a 7 character substring
+            will be taken from the SHORT_TEXT to prevent overflow. If "empty" is selected, both the
+            string and the background will be hidden.
         -->
         <ComplicationSlot
             x="280" y="204"
