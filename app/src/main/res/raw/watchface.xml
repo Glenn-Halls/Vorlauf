@@ -932,13 +932,13 @@
                 <Group name="right_complication_text" x="0" y="0" width="120" height="42">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
                 <PartText x="-418" y="0" width="559" height="42" scaleX=".92" scaleY="1.7">
-                    <Text align="CENTER" ellipsis="TRUE">
+                    <Text align="CENTER" ellipsis="FALSE">
                         <Font family="ep_boxi_bold" size="21"
                             color="#000000"
                             alpha="255"/>
                         <Template>
                         %s
-                        <Parameter expression="[COMPLICATION.TEXT]" />
+                        <Parameter expression="subText([COMPLICATION.TEXT], 0, 7)" />
                         </Template>
                     </Text>
                 </PartText>
