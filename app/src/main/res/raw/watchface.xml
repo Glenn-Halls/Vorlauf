@@ -540,7 +540,7 @@
             name="left_complication" displayName="Left"
             supportedTypes="RANGED_VALUE EMPTY">
             <DefaultProviderPolicy
-                defaultSystemProvider="STEP_COUNT"
+                defaultSystemProvider="WATCH_BATTERY"
                 defaultSystemProviderType="RANGED_VALUE"
                 />
             <BoundingOval x="-10" y="-10" width="104" height="104" outlinePadding="2" />
