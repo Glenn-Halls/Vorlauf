@@ -1,0 +1,88 @@
+<!--
+    In order to take screen shots of the current version of the watch face, the watchface.xml is
+    copied in its entirety and then the code from "<AnalogClock" to the end of the file is replaced
+    with the below.
+-->
+
+<!--
+    Do not copy Watchface or Scene, these are placeholders to prevent error linting.
+-->
+<WatchFace>
+    <Scene>
+
+
+
+
+
+
+<!--
+    Code for the analog clock hands must be placed last in order to be drawn on top
+    of the index group.
+
+    In screenshot mode, these resources are all blank PNGs
+-->
+        <AnalogClock x="0" y="0" width="450" height="450">
+            <HourHand name="hand_hour_active"
+                x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
+                tintColor="e9e9e9"
+                resource="blank">
+                <Variant mode="AMBIENT" target="alpha" value="0"/>
+            </HourHand>
+            <HourHand name="hand_hour_ambient"
+                x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
+                resource="blank"
+                tintColor="#999999"
+                alpha="0">
+                <Variant mode="AMBIENT" target="alpha" value="255"/>
+            </HourHand>
+            <MinuteHand name="hand_minute_active"
+                x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
+                resource="blank"
+                tintColor="#e9e9e9"
+                alpha="255">
+                <Variant mode="AMBIENT" target="alpha" value="0"/>
+            </MinuteHand>
+            <MinuteHand name="hand_minute_ambient"
+                x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
+                resource="blank"
+                tintColor="#999999"
+                alpha="0">
+                <Variant mode="AMBIENT" target="alpha" value="255"/>
+            </MinuteHand>
+            <SecondHand name="hand_second"
+                x="217" y="0" width="16" height="450" pivotX="0.5" pivotY="0.5"
+                resource="blank"
+                tintColor="#e9e9e9">
+                <Sweep frequency="15" />
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+            </SecondHand>
+        </AnalogClock>
+
+        <!--
+            Below are the "fake" watch hands to be drawn in for scale / aesthetic purposes.
+            Note that these will not correlate with the time and as such, no screenshot with a
+            representation of current time in either the display or right complications should
+            be taken.
+        -->
+        <Group x="0" y="0" width="450" height="450">
+            <PartImage name="preview_hand_hour_active"
+                x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
+                angle="307.5"
+                tintColor="#e9e9e9">
+                <Image resource="@drawable/hand_hour" />
+            </PartImage>
+            <PartImage name="preview_hand_minute_active"
+                x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
+                angle="60"
+                tintColor="#e9e9e9">
+                <Image resource="@drawable/hand_minute" />
+            </PartImage>
+            <PartImage name="preview_hand_second_active"
+                x="217" y="0" width="16" height="450" pivotX="0.5" pivotY="0.5"
+                angle="201"
+                tintColor="#e9e9e9">
+                <Image resource="@drawable/hand_second" />
+            </PartImage>
+        </Group>
+    </Scene>
+</WatchFace>
