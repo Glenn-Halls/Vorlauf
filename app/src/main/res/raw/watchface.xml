@@ -1,9 +1,3 @@
-<!--
-    This branch is to be used for the purpose of taking screenshots.
--->
-
-
-
 <WatchFace width="450" height="450" shape="CIRCLE">
     <Metadata key="CLOCK_TYPE" value="ANALOG" />
     <Metadata key="TICK_PER_SECOND" value="15" />
@@ -14,15 +8,15 @@
     -->
     <UserConfigurations>
         <ListConfiguration id="user_config" displayName="digital_display" defaultValue="0">
-            <ListOption id="0" displayName="display_none" icon="image"/>
-            <ListOption id="1" displayName="display_12" icon="image"/>
-            <ListOption id="2" displayName="display_ampm" icon="image"/>
-            <ListOption id="3" displayName="display_mil" icon="image"/>
-            <ListOption id="4" displayName="display_24" icon="image"/>
-            <ListOption id="5" displayName="display_step" icon="image"/>
-            <ListOption id="6" displayName="display_heart" icon="image"/>
-            <ListOption id="7" displayName="display_note" icon="image"/>
-            <ListOption id="8" displayName="display_date" icon="image"/>
+            <ListOption id="0" displayName="display_none" icon="icon_empty"/>
+            <ListOption id="1" displayName="display_12" icon="icon_12hr"/>
+            <ListOption id="2" displayName="display_ampm" icon="icon_ampm"/>
+            <ListOption id="3" displayName="display_mil" icon="icon_milit"/>
+            <ListOption id="4" displayName="display_24" icon="icon_24hr"/>
+            <ListOption id="5" displayName="display_step" icon="icon_steps"/>
+            <ListOption id="6" displayName="display_heart" icon="icon_heart"/>
+            <ListOption id="7" displayName="display_note" icon="icon_notif"/>
+            <ListOption id="8" displayName="display_date" icon="icon_date"/>
         </ListConfiguration>
     </UserConfigurations>
 
@@ -44,14 +38,8 @@
 
         <!--
             The index group below contains the watch face index, including the numerals displaying
-            hour slots 2, 4, 6, 8, 10 and 12. Currently, slots 2, 4, 8 and 10 open apps as follows:
-            2 -> Alarm
-            4 -> Music Player
-            8 -> Health Heart Rate
-            10 -> Calendar
-
-            At a later date, these will be substituted for user-defined shortcuts via use of
-            complication slots.
+            hour slots 2, 4, 6, 8, 10 and 12. Slots 2, 4, 8 and 10 have a complication overlay that
+            allows the user to launch an app of their choice.
         -->
         <Group name="index"
             x="0" y="0" width="450" height="450">
@@ -65,7 +53,6 @@
                     alpha="255">
                     <Image resource="numeral_02" />
                     <Variant mode="AMBIENT" target="alpha" value="120" />
-                    <Launch target="ALARM" />
                 </PartImage>
                 <PartImage name="numeral_4"
                     x="344" y="284" width="56" height="52"
@@ -75,7 +62,6 @@
                     alpha="255">
                     <Image resource="numeral_04" />
                     <Variant mode="AMBIENT" target="alpha" value="120" />
-                    <Launch target="MUSIC_PLAYER" />
                 </PartImage>
                 <PartImage name="numeral_6"
                     x="192" y="369" width="56" height="52"
@@ -92,7 +78,6 @@
                     alpha="255">
                     <Image resource="numeral_08" />
                     <Variant mode="AMBIENT" target="alpha" value="120" />
-                    <Launch target="HEALTH_HEART_RATE" />
                 </PartImage>
                 <PartImage name="numeral_10"
                     x="48" y="117" width="60" height="45"
@@ -102,7 +87,6 @@
                     alpha="255">
                     <Image resource="numeral_10" />
                     <Variant mode="AMBIENT" target="alpha" value="120" />
-                    <Launch target="CALENDAR" />
                 </PartImage>
                 <PartImage name="numeral_12"
                     x="175" y="30" width="95" height="50"
@@ -133,6 +117,63 @@
         </Group>
 
         <!--
+            Complication slot overlays for numeral indexes 2, 4, 8 and 10
+        -->
+        <!-- Index 2 -->
+        <ComplicationSlot
+            x="332" y="91"
+            width="90" height="90"
+            slotId="2"
+            name="shortcut_2" displayName="2"
+            supportedTypes="LONG_TEXT EMPTY">
+            <DefaultProviderPolicy
+                defaultSystemProvider="APP_SHORTCUT"
+                defaultSystemProviderType="LONG_TEXT"
+                />
+            <BoundingOval x="0" y="0" width="90" height="90" outlinePadding="2" />
+        </ComplicationSlot>
+        <!-- Index 4 -->
+        <ComplicationSlot
+            x="332" y="265"
+            width="90" height="90"
+            slotId="4"
+            name="shortcut_4" displayName="4"
+            supportedTypes="LONG_TEXT EMPTY">
+            <DefaultProviderPolicy
+                defaultSystemProvider="APP_SHORTCUT"
+                defaultSystemProviderType="LONG_TEXT"
+                />
+            <BoundingOval x="0" y="0" width="90" height="90" outlinePadding="2" />
+        </ComplicationSlot>
+        <!-- Index 8 -->
+        <ComplicationSlot
+            x="27" y="265"
+            width="90" height="90"
+            slotId="4"
+            name="shortcut_8" displayName="8"
+            supportedTypes="LONG_TEXT EMPTY">
+            <DefaultProviderPolicy
+                defaultSystemProvider="APP_SHORTCUT"
+                defaultSystemProviderType="LONG_TEXT"
+                />
+            <BoundingOval x="0" y="0" width="90" height="90" outlinePadding="2" />
+        </ComplicationSlot>
+        <!-- Index 10 -->
+        <ComplicationSlot
+            x="27" y="91"
+            width="90" height="90"
+            slotId="10"
+            name="shortcut_10" displayName="10"
+            supportedTypes="LONG_TEXT EMPTY">
+            <DefaultProviderPolicy
+                defaultSystemProvider="APP_SHORTCUT"
+                defaultSystemProviderType="LONG_TEXT"
+                />
+            <BoundingOval x="0" y="0" width="90" height="90" outlinePadding="2" />
+        </ComplicationSlot>
+
+
+        <!--
             The top digital display slot can be configured by the user to show:
             0) Nothing
             1) Short Time
@@ -154,7 +195,7 @@
             x="140" y="90"
             width="170" height="70">
 
-            <!-- OUTLINE
+            <!-- OUTLINE (to be used for development only)
             <PartDraw x="0" y="0" width="170" height="70">
                 <Rectangle x="0" y="0" width="170" height="70">
                     <Fill color="#dddddd" />
@@ -171,24 +212,6 @@
             <!--
                 Default / Option 0  = no digital display
             -->
-            <ListConfiguration id="user_config">
-                <ListOption id="0">
-            <PartText x="-952" y="0" width="1122" height="70">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="TRUE">
-                    <Font family="digital_numbers" size="43"
-                        color="#d3d3d3"
-                        alpha="255">
-                        <Template>
-                            %s
-                            <Parameter expression="display_text" />
-                        </Template>
-                    </Font>
-                </Text>
-            </PartText>
-                </ListOption>
-            </ListConfiguration>
-
 
             <!--
                 Option 1 = Short Time
@@ -196,6 +219,7 @@
             <ListConfiguration id="user_config">
                 <ListOption id="1">
             <PartText x="-952" y="3" width="1122" height="70">
+                <Launch target="ALARM" />
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
@@ -240,6 +264,85 @@
             <!--
                 Option 2 = AM/PM Time
             -->
+            <ListConfiguration id="user_config">
+                <ListOption id="2">
+            <PartText x="-982" y="3" width="1122" height="70">
+                <Launch target="ALARM" />
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="colon" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText x="-970" y="0" width="1020" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="END" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="10" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText x="-994" y="0" width="1122" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="END" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="20" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <Condition>
+                <Expressions>
+                    <Expression name="is_pm">
+                        [AMPM_STATE] == 1
+                    </Expression>
+                </Expressions>
+                <Compare expression="is_pm">
+            <PartText x="-955" y="10" width="1122" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="END" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="25"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="AM" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+                </Compare>
+            <PartText x="-955" y="10" width="1122" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="END" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="25"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="AM" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            </Condition>
+                </ListOption>
+            </ListConfiguration>
 
             <!--
                 Option 3 = Military Time
@@ -247,6 +350,7 @@
             <ListConfiguration id="user_config">
                 <ListOption id="3">
             <PartText x="-952" y="0" width="1122" height="70">
+                <Launch target="ALARM" />
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
@@ -269,6 +373,7 @@
             <ListConfiguration id="user_config">
                 <ListOption id="4">
             <PartText x="-952" y="3" width="1122" height="70">
+                <Launch target="ALARM" />
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
@@ -311,7 +416,7 @@
             </ListConfiguration>
 
             <!--
-                Option 5 = step count
+                Option 5 = Step Count
             -->
             <ListConfiguration id="user_config">
                 <ListOption id="5">
@@ -323,7 +428,7 @@
                         alpha="255">
                         <Template>
                             %s
-                            <Parameter expression="[STEP_COUNT]" />
+                            <Parameter expression="DISPL" />
                         </Template>
                     </Font>
                 </Text>
@@ -337,6 +442,7 @@
             <ListConfiguration id="user_config">
                 <ListOption id="6">
             <PartText x="-952" y="0" width="1122" height="70">
+                <Launch target="HEALTH_HEART_RATE" />
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
@@ -385,14 +491,47 @@
             <!--
                 Option 8 = Date
             -->
+            <ListConfiguration id="user_config">
+                <ListOption id="8">
+            <PartText x="-957" y="0" width="1122" height="70">
+                <Launch target="CALENDAR" />
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="START" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="subText([DAY_OF_WEEK_F], 0, 3)" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText x="-947" y="0" width="1122" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="END" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="[DAY_Z]" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+                </ListOption>
+            </ListConfiguration>
 
         </Group>
 
 
 
         <!--
-            The left complication slot is for ranged values such as step count, battery level,
-            heart rate, etc. The default provider is step count. It can optionally be left empty.
+            The left complication slot has an analog hand to indicate the battery percent and a grey
+            arc to indicate a user-selected ranged value such as UV index, step-goal %, chance of
+            rain etc. If "empty" is selected, the complication including the battery indicator will
+            be hidden.
         -->
         <ComplicationSlot
             x="84" y="183"
@@ -408,14 +547,15 @@
             <Complication type="RANGED_VALUE">
                 <Group name="complication_text" x="0" y="0" width="84" height="84" alpha="255">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
-                <PartText x="-150" y="0" width="240" height="112" scaleX="1.5" scaleY="1.5">
+                <PartText x="-148" y="-33" width="240" height="112" scaleX="1.5" scaleY="1.5">
+                    <Transform target="y" value="(79 >= 75) ? 0 : ((79 > 25) ? -33 : 0)" />
                     <Text align="CENTER" ellipsis="FALSE">
                         <Font family="font" size="12"
                             color="#ffffff"
                             alpha="255">
                             <Template>
                                 %d%s
-                                <Parameter expression="90" />
+                                <Parameter expression="79" />
                                 <Parameter expression="percent" />
                             </Template>
                         </Font>
@@ -433,349 +573,41 @@
                             6) Add 18 to the result, due to 18 degree start angle
                         -->
                         <Transform target="endAngle"
-                            value="270" />
+                            value="(4
+                            *36
+                            +18
+                            )" />
                         <Stroke color="#77ffffff" cap="BUTT" thickness="10" />
                     </Arc>
                     </PartDraw>
                 </Group>
-            </Complication>
-        </ComplicationSlot>
 
-        <!--
-            The bottom complication slot is used for step count, with the rotating hand
-            indicating the number of steps x100, the bezel color indicating the number of
-            steps x1,000 and the highlighted number indicating the number of steps x10,000.
-            The user can optionally use a complication in order to launch an app of their
-            choosing.
-        -->
-        <ComplicationSlot
-            x="168" y="245"
-            width="112" height="112"
-            slotId="6"
-            name="bottom_complication" displayName="Bottom"
-            supportedTypes="LONG_TEXT EMPTY">
-            <DefaultProviderPolicy
-                defaultSystemProvider="APP_SHORTCUT"
-                defaultSystemProviderType="LONG_TEXT"
-                />
-            <BoundingOval x="-6" y="-6" width="126" height="126" outlinePadding="2" />
-            <Complication type="LONG_TEXT">
-                <Group name="complication_shortcut" x="0" y="0" width="120" height="120">
-                    <Variant mode="AMBIENT" target="alpha" value="0" />
-                    <PartText x="-170" y="0" width="240" height="112" scaleX="2" scaleY="2">
-                        <Text align="CENTER" ellipsis="FALSE">
-                            <Font family="font" size="12" />
-                        </Text>
-                    </PartText>
-                </Group>
-            </Complication>
-        </ComplicationSlot>
-
-
-        <!--
-            The right complication slot is for short text descriptors. The default provider is
-            date. It can optionally be left empty.
-        -->
-        <ComplicationSlot
-            x="280" y="200"
-            width="120" height="50"
-            slotId="3"
-            name="right_complication" displayName="Right"
-            supportedTypes="SHORT_TEXT EMPTY">
-            <DefaultProviderPolicy
-                defaultSystemProvider="DATE"
-                defaultSystemProviderType="SHORT_TEXT"
-                />
-            <BoundingBox x="0" y="0" width="120" height="50" outlinePadding="2" />
-            <Complication type="SHORT_TEXT">
-                <Group name="right_complication_background"
-                    x="0" y="0" width="120" height="50">
-                    <Variant mode="AMBIENT" target="alpha" value="0" />
-                    <PartDraw x="0" y="0" width="120" height="50">
-                        <Rectangle x="0" y="0" width="120" height="50">
-                            <Fill color="#dddddd">
-                                <LinearGradient startX="0" startY="50" endX="10" endY="0"
-                                    colors="#dddddd #aaaaaa" positions="0 1" />
-                            </Fill>
-                        </Rectangle>
-                    </PartDraw>
-                    <PartDraw x="0" y="0" width="120" height="50">
-                        <Rectangle x="0" y="0" width="120" height="50">
-                            <Stroke color="#000000" thickness="3" />
-                        </Rectangle>
-                    </PartDraw>
-                </Group>
-                <Group name="test_long_text" x="0" y="0" width="120" height="50">
-                    <Variant mode="AMBIENT" target="alpha" value="0" />
-                    <PartText x="-132" y="-1" width="200" height="50" scaleX="1.65" scaleY="3">
-                        <Text align="CENTER" ellipsis="TRUE">
-                            <Font family="orbitron" size="12"
-                                color="#000000"
-                                alpha="255"/>
-                            <Template>
-                            %s
-                            <Parameter expression="[COMPLICATION.TEXT]" />
-                            </Template>
-                        </Text>
-                    </PartText>
-                </Group>
-            </Complication>
-        </ComplicationSlot>
-
-
-        <!--
-            The bottom complication analog component with single hand and bezel indicator, to
-            be duplicated into left complication with bezel then becoming multiples of 10.
-        -->
-        <Group name="bottom_complication_analog" x="168" y="245"
-            width="112" height="112">
-            <Variant mode="AMBIENT" target="alpha" value="0" />
-            <PartDraw x="0" y="0" width="112" height="112">
-                <Arc centerX="56" centerY="56" width="112" height="112"
-                    startAngle="18" endAngle="18">
-                    <Transform target="endAngle" value="floor([STEP_COUNT]/1000)*36 + 18" />
-                    <Stroke color="#ff777777" cap="BUTT" thickness="14" />
-                </Arc>
-            </PartDraw>
-            <PartImage name="step_hand"
-                x="50" y="-56" width="12" height="224"
-                pivotX=".5" pivotY=".5"
-                angle="0">
-                <Transform target="angle" value="[STEP_COUNT]*36/100" />
-                <Image resource="@drawable/hand_hour" />
-            </PartImage>
-            <Group name="step_numeric_indices"
-                x="0" y="0"
-                width="112" height="112"
-                tintColor="#eeeeee">
-                <Group name="step_index_no_rotation"
-                    x="0" y="0"
-                    width="112" height="112"
-                    pivotX=".5" pivotY="0.5"
-                    angle="0">
-            <PartText name="step_index_10"
-                x="-56" y="-57"
-                width="112" height="112"
-                scaleX="1.5" scaleY="1.5"
-                pivotX=".5" pivotY="0.5"
-                angle="0">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="FALSE">
-                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        10
-                    </Font>
-                </Text>
-            </PartText>
-            <PartText name="step_index_5"
-                x="-44" y="55"
-                width="112" height="112"
-                scaleX="1.5" scaleY="1.5"
-                pivotX="0.5" pivotY="0.5"
-                angle="0">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="FALSE">
-                <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                    5
-                </Font>
-                </Text>
-            </PartText>
-                <Group name="step_index_36_deg"
-                    x="0" y="0"
-                    width="112" height="112"
-                    pivotX=".5" pivotY="0.5"
-                    angle="36">
-            <PartText name="step_index_1"
-                x="-54" y="-57"
-                width="112" height="112"
-                scaleX="1.5" scaleY="1.5"
-                pivotX=".5" pivotY="0.5"
-                angle="0">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="FALSE">
-                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        1
-                    </Font>
-                </Text>
-            </PartText>
-            <PartText name="step_index_6"
-                x="-54" y="55"
-                width="112" height="112"
-                scaleX="1.5" scaleY="1.5"
-                pivotX=".5" pivotY="0.5"
-                angle="0">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="FALSE">
-                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        6
-                    </Font>
-                </Text>
-            </PartText>
-                </Group>
-                <Group name="step_index_72_deg"
-                    x="0" y="0"
-                    width="112" height="112"
-                    pivotX=".5" pivotY="0.5"
-                    angle="72">
-            <PartText name="step_index_2"
-                x="-54" y="-57"
-                width="112" height="112"
-                scaleX="1.5" scaleY="1.5"
-                pivotX=".5" pivotY="0.5"
-                angle="0">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="FALSE">
-                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        2
-                    </Font>
-                </Text>
-            </PartText>
-            <PartText name="step_index_7"
-                x="-54" y="55"
-                width="112" height="112"
-                scaleX="1.5" scaleY="1.5"
-                pivotX=".5" pivotY="0.5"
-                angle="0">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="FALSE">
-                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        7
-                    </Font>
-                </Text>
-            </PartText>
-                </Group>
-                <Group name="step_index_108_deg"
-                    x="0" y="0"
-                    width="112" height="112"
-                    pivotX=".5" pivotY="0.5"
-                    angle="-72">
-            <PartText name="step_index_8"
-                x="-54" y="-57"
-                width="112" height="112"
-                scaleX="1.5" scaleY="1.5"
-                pivotX=".5" pivotY="0.5"
-                angle="0">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="FALSE">
-                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        8
-                    </Font>
-                </Text>
-            </PartText>
-            <PartText name="step_index_3"
-                x="-54" y="55"
-                width="112" height="112"
-                scaleX="1.5" scaleY="1.5"
-                pivotX=".5" pivotY="0.5"
-                angle="0">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="FALSE">
-                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        3
-                    </Font>
-                </Text>
-            </PartText>
-                </Group>
-                <Group name="step_index_144_deg"
-                    x="0" y="0"
-                    width="112" height="112"
-                    pivotX=".5" pivotY="0.5"
-                    angle="-36">
-            <PartText name="step_index_9"
-                x="-54" y="-57"
-                width="112" height="112"
-                scaleX="1.5" scaleY="1.5"
-                pivotX=".5" pivotY="0.5"
-                angle="0">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="FALSE">
-                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        9
-                    </Font>
-                </Text>
-            </PartText>
-            <PartText name="step_index_4"
-                x="-54" y="55"
-                width="112" height="112"
-                scaleX="1.5" scaleY="1.5"
-                pivotX=".5" pivotY="0.5"
-                angle="0">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="CENTER" ellipsis="FALSE">
-                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        4
-                    </Font>
-                </Text>
-            </PartText>
-                </Group>
-                </Group>
-            </Group>
-        </Group>
-
-        <Group name="step_index_marks"
-            x="161" y="238"
-            width="126" height="126"
-            pivotX=".5" pivotY=".5"
-            angle="18"
-            tintColor="#ff999999">
-            <Variant mode="AMBIENT" target="alpha" value="0" />
-            <PartImage name="step_mark_0_degrees"
-                x="0" y="0" width="126" height="126"
-                pivotX=".5" pivotY=".5"
-                angle="0">
-                <Image resource="@drawable/step_index_mark" />
-            </PartImage>
-            <PartImage name="step_mark_36_degrees"
-                x="0" y="0" width="126" height="126"
-                pivotX=".5" pivotY=".5"
-                angle="36">
-                <Image resource="@drawable/step_index_mark" />
-            </PartImage>
-            <PartImage name="step_mark_72_degrees"
-                x="0" y="0" width="126" height="126"
-                pivotX=".5" pivotY=".5"
-                angle="72">
-                <Image resource="@drawable/step_index_mark" />
-            </PartImage>
-            <PartImage name="step_mark_108_degrees"
-                x="0" y="0" width="126" height="126"
-                pivotX=".5" pivotY=".5"
-                angle="108">
-                <Image resource="@drawable/step_index_mark" />
-            </PartImage>
-            <PartImage name="step_mark_144_degrees"
-                x="0" y="0" width="126" height="126"
-                pivotX=".5" pivotY=".5"
-                angle="144">
-                <Image resource="@drawable/step_index_mark" />
-            </PartImage>
-            <Image resource="@drawable/step_index_mark" />
-        </Group>
 
         <!--
             The left complication analog component, representing watch battery percent
         -->
-        <Group name="left_complication_analog" x="84" y="182"
+        <Group name="left_complication_analog" x="0" y="-1"
             width="84" height="84">
             <Variant mode="AMBIENT" target="alpha" value="0" />
             <PartImage name="battery_hand"
                 x="38" y="-42" width="8" height="168"
                 pivotX=".5" pivotY=".5"
                 angle="0">
-                <Transform target="angle" value="90*36/10" />
+                <Transform target="angle" value="79*36/10" />
                 <Image resource="@drawable/hand_hour" />
             </PartImage>
             <Group name="complication_numeric_indices"
                 x="0" y="0"
                 width="84" height="84"
                 tintColor="eeeeee">
-                <Group name="complication_index_no_rotation"
-                    x="0" y="0"
-                    width="84" height="84"
-                    pivotX=".5" pivotY=".5"
-                    angle="0">
+                    <Group name="complication_index_no_rotation"
+                        x="0" y="0"
+                        width="84" height="84"
+                        pivotX=".5" pivotY=".5"
+                        angle="0">
             <PartText name="complication_index_10"
                 x="-36" y="-42"
-                width="84" height="84">
+                width="85" height="84">
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="FALSE">
                     <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
@@ -831,7 +663,7 @@
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="FALSE">
                     <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        3
+                        2
                     </Font>
                 </Text>
             </PartText>
@@ -893,16 +725,15 @@
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="FALSE">
                     <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        2
+                        3
                     </Font>
                 </Text>
             </PartText>
                 </Group>
             </Group>
         </Group>
-
         <Group name="left_complication_index_marks"
-            x="79" y="178"
+            x="-5" y="-5"
             width="94" height="94"
             pivotX=".5" pivotY=".5"
             angle="18"
@@ -940,9 +771,368 @@
             </PartImage>
             <Image resource="@drawable/step_index_mark" />
         </Group>
+            </Complication>
+        </ComplicationSlot>
 
 
+        <!--
+            The bottom complication slot is used for step count, with the rotating hand
+            indicating the number of steps x100, the grey arc indicating the number of
+            steps x1,000 and the white highlighted number indicating the number of steps x10,000.
+            The user can choose an app to launch when the step indicator is clicked. If the user
+            selects "none" as their app of choice, the step indicator will be hidden
+        -->
+        <ComplicationSlot
+            x="168" y="245"
+            width="112" height="112"
+            slotId="6"
+            name="bottom_complication" displayName="Bottom"
+            supportedTypes="LONG_TEXT EMPTY">
+            <DefaultProviderPolicy
+                defaultSystemProvider="APP_SHORTCUT"
+                defaultSystemProviderType="LONG_TEXT"
+                />
+            <BoundingOval x="-6" y="-6" width="126" height="126" outlinePadding="2" />
+            <Complication type="LONG_TEXT">
+                <Group name="complication_shortcut" x="0" y="0" width="120" height="120">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <PartText x="-144" y="24" width="240" height="112" scaleX="1.5" scaleY="1.5">
+                        <Transform target="y" value="((23700 % 1000) >= 750) ? 24 : (((23700 % 1000) > 250) ? -24 : 24)" />
+                        <Text align="CENTER" ellipsis="FALSE">
+                            <Font family="font" size="12"
+                                color="#ffffff"
+                                alpha="255">
+                                <Template>
+                                    %d%s
+                                    <Parameter expression="100" />
+                                    <Parameter expression="percent" />
+                                </Template>
+                            </Font>
+                        </Text>
+                    </PartText>
+                    <PartText x="-170" y="0" width="240" height="112" scaleX="2" scaleY="2">
+                        <Text align="CENTER" ellipsis="FALSE">
+                            <Font family="font" size="12" />
+                        </Text>
+                    </PartText>
+                </Group>
+        <!--
+            The bottom complication analog component with single hand and bezel indicators.
+        -->
+        <Group name="bottom_complication_analog" x="0" y="0"
+            width="112" height="112">
+            <Variant mode="AMBIENT" target="alpha" value="0" />
+            <PartDraw x="0" y="0" width="112" height="112">
+                <Arc centerX="56" centerY="56" width="112" height="112"
+                    startAngle="18" endAngle="18">
+                    <Transform target="endAngle" value="floor((23700%10000)/1000)*36 + 18" />
+                    <Stroke color="#ff777777" cap="BUTT" thickness="14" />
+                </Arc>
+            </PartDraw>
+            <PartImage name="step_hand"
+                x="50" y="-56" width="12" height="224"
+                pivotX=".5" pivotY=".5"
+                angle="0">
+                <Transform target="angle" value="23700*36/100" />
+                <Image resource="@drawable/hand_hour" />
+            </PartImage>
+            <Group name="step_numeric_indices"
+                x="0" y="0"
+                width="112" height="112"
+                tintColor="#eeeeee">
+                <Group name="step_index_no_rotation"
+                    x="0" y="0"
+                    width="112" height="112"
+                    pivotX=".5" pivotY="0.5"
+                    angle="0">
+            <PartText name="step_index_10"
+                x="-56" y="-57"
+                width="112" height="112"
+                scaleX="1.5" scaleY="1.5"
+                pivotX=".5" pivotY="0.5"
+                angle="0">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        10
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText name="step_index_5"
+                x="-44" y="55"
+                width="112" height="112"
+                scaleX="1.5" scaleY="1.5"
+                pivotX="0.5" pivotY="0.5"
+                angle="0">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="FALSE">
+                <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                    5
+                </Font>
+                </Text>
+            </PartText>
+                    <Group name="step_index_36_deg"
+                        x="0" y="0"
+                        width="112" height="112"
+                        pivotX=".5" pivotY="0.5"
+                        angle="36">
+                <PartText name="step_index_1"
+                    x="-54" y="-57"
+                    width="112" height="112"
+                    scaleX="1.5" scaleY="1.5"
+                    pivotX=".5" pivotY="0.5"
+                    angle="0">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        1
+                    </Font>
+                    </Text>
+                </PartText>
+                <PartText name="step_index_6"
+                    x="-54" y="55"
+                    width="112" height="112"
+                    scaleX="1.5" scaleY="1.5"
+                    pivotX=".5" pivotY="0.5"
+                    angle="0">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        6
+                    </Font>
+                    </Text>
+                </PartText>
+                    </Group>
+                    <Group name="step_index_72_deg"
+                        x="0" y="0"
+                        width="112" height="112"
+                        pivotX=".5" pivotY="0.5"
+                        angle="72">
+                <PartText name="step_index_2"
+                    x="-54" y="-57"
+                    width="112" height="112"
+                    scaleX="1.5" scaleY="1.5"
+                    pivotX=".5" pivotY="0.5"
+                    angle="0">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        2
+                    </Font>
+                    </Text>
+                </PartText>
+                <PartText name="step_index_7"
+                    x="-54" y="55"
+                    width="112" height="112"
+                    scaleX="1.5" scaleY="1.5"
+                    pivotX=".5" pivotY="0.5"
+                    angle="0">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        7
+                    </Font>
+                    </Text>
+                </PartText>
+                    </Group>
+                    <Group name="step_index_108_deg"
+                        x="0" y="0"
+                        width="112" height="112"
+                        pivotX=".5" pivotY="0.5"
+                        angle="-72">
+                <PartText name="step_index_8"
+                    x="-54" y="-57"
+                    width="112" height="112"
+                    scaleX="1.5" scaleY="1.5"
+                    pivotX=".5" pivotY="0.5"
+                    angle="0">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        8
+                    </Font>
+                    </Text>
+                </PartText>
+                <PartText name="step_index_3"
+                    x="-54" y="55"
+                    width="112" height="112"
+                    scaleX="1.5" scaleY="1.5"
+                    pivotX=".5" pivotY="0.5"
+                    angle="0">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        3
+                    </Font>
+                    </Text>
+                </PartText>
+                    </Group>
+                    <Group name="step_index_144_deg"
+                        x="0" y="0"
+                        width="112" height="112"
+                        pivotX=".5" pivotY="0.5"
+                        angle="-36">
+                <PartText name="step_index_9"
+                    x="-54" y="-57"
+                    width="112" height="112"
+                    scaleX="1.5" scaleY="1.5"
+                    pivotX=".5" pivotY="0.5"
+                    angle="0">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        9
+                    </Font>
+                    </Text>
+                </PartText>
+                <PartText name="step_index_4"
+                    x="-54" y="55"
+                    width="112" height="112"
+                    scaleX="1.5" scaleY="1.5"
+                    pivotX=".5" pivotY="0.5"
+                    angle="0">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        4
+                    </Font>
+                    </Text>
+                </PartText>
+                    </Group>
+                </Group>
+            </Group>
+            <!-- 10,000 step indicator marker-->
+            <PartDraw x="0" y="0" width="112" height="112"
+                pivotX="0.5" pivotY="0.5" angle="18">
+                <Transform target="angle" value="floor(23700/10000)*36 - 18" />
+                <Arc centerX="56" centerY="56" width="112" height="112"
+                    startAngle="0" endAngle="0">
+                    <!-- Transform element ensures that marker is invisible at steps < 10,000 -->
+                    <Transform target="endAngle" value="clamp(floor(23700/10000), 0, 1)*36" />
+                    <Stroke color="#ffd3d3d3" cap="BUTT" thickness="14" />
+                </Arc>
+            </PartDraw>
+            <Group name="step_number_10k_no_rotation"
+                x="0" y="0"
+                width="112" height="112"
+                pivotX=".5" pivotY="0.5"
+                angle="0">
+                <Transform target="angle" value="floor(23700/10000)*36 - 9" />
+                <PartText name="step_index_10k"
+                    x="-52" y="-66"
+                    width="112" height="112"
+                    scaleX="1.5" scaleY="1.5"
+                    pivotX=".5" pivotY="0.5"
+                    angle="9">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <!-- Transform element ensures alpha is 0 if steps < 10,000 -->
+                    <Transform target="alpha" value="23700 > 10000 ? 255 : 0" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                        <Font family="font" weight="EXTRA_BOLD" size="12" color="#000000" alpha="255">
+                            <Template>
+                            %s
+                            <Parameter expression="floor(23700/10000)" />
+                            </Template>
+                        </Font>
+                    </Text>
+                </PartText>
+            </Group>
+        </Group>
+        <Group name="step_index_marks"
+            x="-7" y="-7"
+            width="126" height="126"
+            pivotX=".5" pivotY=".5"
+            angle="18"
+            tintColor="#ff999999">
+            <Variant mode="AMBIENT" target="alpha" value="0" />
+            <PartImage name="step_mark_0_degrees"
+                x="0" y="0" width="126" height="126"
+                pivotX=".5" pivotY=".5"
+                angle="0">
+                <Image resource="@drawable/step_index_mark" />
+            </PartImage>
+            <PartImage name="step_mark_36_degrees"
+                x="0" y="0" width="126" height="126"
+                pivotX=".5" pivotY=".5"
+                angle="36">
+                <Image resource="@drawable/step_index_mark" />
+            </PartImage>
+            <PartImage name="step_mark_72_degrees"
+                x="0" y="0" width="126" height="126"
+                pivotX=".5" pivotY=".5"
+                angle="72">
+                <Image resource="@drawable/step_index_mark" />
+            </PartImage>
+            <PartImage name="step_mark_108_degrees"
+                x="0" y="0" width="126" height="126"
+                pivotX=".5" pivotY=".5"
+                angle="108">
+                <Image resource="@drawable/step_index_mark" />
+            </PartImage>
+            <PartImage name="step_mark_144_degrees"
+                x="0" y="0" width="126" height="126"
+                pivotX=".5" pivotY=".5"
+                angle="144">
+                <Image resource="@drawable/step_index_mark" />
+            </PartImage>
+            <Image resource="@drawable/step_index_mark" />
+        </Group>
+            </Complication>
+        </ComplicationSlot>
 
+
+        <!--
+            The right complication slot is for short text descriptors. The default provider is
+            date. It can optionally be left empty. As per Wear OS documentation, string length is
+            expected to be 7 characters or less however to ensure this, a 7 character substring
+            will be taken from the SHORT_TEXT to prevent overflow. If "empty" is selected, both the
+            string and the background will be hidden.
+        -->
+        <ComplicationSlot
+            x="280" y="204"
+            width="120" height="42"
+            slotId="3"
+            name="right_complication" displayName="Right"
+            supportedTypes="SHORT_TEXT EMPTY">
+            <DefaultProviderPolicy
+                defaultSystemProvider="DATE"
+                defaultSystemProviderType="SHORT_TEXT"
+                />
+            <BoundingBox x="0" y="0" width="120" height="42" outlinePadding="2" />
+            <Complication type="SHORT_TEXT">
+                <Group name="right_complication_background"
+                    x="0" y="0" width="120" height="42">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <PartDraw x="0" y="0" width="120" height="42">
+                        <Rectangle x="0" y="0" width="120" height="42">
+                            <Fill color="#dddddd">
+                                <LinearGradient startX="0" startY="42" endX="10" endY="0"
+                                    colors="#dddddd #aaaaaa" positions="0 1" />
+                            </Fill>
+                        </Rectangle>
+                    </PartDraw>
+                    <PartDraw x="0" y="0" width="120" height="42">
+                        <Rectangle x="0" y="0" width="120" height="42">
+                            <Stroke color="#000000" thickness="3" />
+                        </Rectangle>
+                    </PartDraw>
+                </Group>
+                <Group name="right_complication_text" x="0" y="0" width="120" height="42">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                <PartText x="-418" y="0" width="559" height="42" scaleX=".92" scaleY="1.7">
+                    <Text align="CENTER" ellipsis="FALSE">
+                        <Font family="ep_boxi_bold" size="21"
+                            color="#000000"
+                            alpha="255"/>
+                        <Template>
+                        %s
+                        <Parameter expression="Sun 19" />
+                        </Template>
+                    </Text>
+                </PartText>
+                </Group>
+            </Complication>
+        </ComplicationSlot>
 
 
         <!--
@@ -988,16 +1178,22 @@
             </SecondHand>
         </AnalogClock>
 
+        <!--
+            Below are the "fake" watch hands to be drawn in for scale / aesthetic purposes.
+            Note that these will not correlate with the time and as such, no screenshot with a
+            representation of current time in either the display or right complications should
+            be taken.
+        -->
         <Group x="0" y="0" width="450" height="450">
             <PartImage name="preview_hand_hour_active"
                 x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
-                angle="307.5"
+                angle="310"
                 tintColor="#e9e9e9">
                 <Image resource="@drawable/hand_hour" />
             </PartImage>
             <PartImage name="preview_hand_minute_active"
                 x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
-                angle="60"
+                angle="120"
                 tintColor="#e9e9e9">
                 <Image resource="@drawable/hand_minute" />
             </PartImage>
