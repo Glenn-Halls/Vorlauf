@@ -667,7 +667,7 @@
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="FALSE">
                     <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        3
+                        2
                     </Font>
                 </Text>
             </PartText>
@@ -729,7 +729,7 @@
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="FALSE">
                     <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
-                        2
+                        3
                     </Font>
                 </Text>
             </PartText>
