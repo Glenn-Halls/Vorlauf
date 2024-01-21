@@ -5,7 +5,7 @@ My first app developed for Wear OS, this watch face can be installed on any larg
 <br>
 <br>
 
-
+![Screenshots of app in use](description.png?raw=true "Screenshots")
 
 
 <h2>About the watch face</h2>
