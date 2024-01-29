@@ -306,13 +306,6 @@
                     </Font>
                 </Text>
             </PartText>
-            <Condition>
-                <Expressions>
-                    <Expression name="is_pm">
-                        [AMPM_STATE] == 1
-                    </Expression>
-                </Expressions>
-                <Compare expression="is_pm">
             <PartText x="-955" y="10" width="1122" height="70">
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="END" ellipsis="TRUE">
@@ -321,26 +314,11 @@
                         alpha="255">
                         <Template>
                             %s
-                            <Parameter expression="PM" />
+                            <Parameter expression="[AMPM_STRING]" />
                         </Template>
                     </Font>
                 </Text>
             </PartText>
-                </Compare>
-            <PartText x="-955" y="10" width="1122" height="70">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Text align="END" ellipsis="TRUE">
-                    <Font family="digital_numbers" size="25"
-                        color="#d3d3d3"
-                        alpha="255">
-                        <Template>
-                            %s
-                            <Parameter expression="AM" />
-                        </Template>
-                    </Font>
-                </Text>
-            </PartText>
-            </Condition>
                 </ListOption>
             </ListConfiguration>
 
