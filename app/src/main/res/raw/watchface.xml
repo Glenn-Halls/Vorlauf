@@ -39,7 +39,9 @@
         <!--
             The index group below contains the watch face index, including the numerals displaying
             hour slots 2, 4, 6, 8, 10 and 12. Slots 2, 4, 8 and 10 have a complication overlay that
-            allows the user to launch an app of their choice.
+            allows the user to launch an app of their choice. Note that this overlay is placed AFTER
+            the digital display in order to be drawn ABOVE the display for the purpose of clicking
+            on shortcut.
         -->
         <Group name="index"
             x="0" y="0" width="450" height="450">
@@ -115,62 +117,6 @@
                 <Variant mode="AMBIENT" target="alpha" value="0" />
             </PartImage>
         </Group>
-
-        <!--
-            Complication slot overlays for numeral indexes 2, 4, 8 and 10
-        -->
-        <!-- Index 2 -->
-        <ComplicationSlot
-            x="332" y="91"
-            width="90" height="90"
-            slotId="2"
-            name="shortcut_2" displayName="2"
-            supportedTypes="LONG_TEXT EMPTY">
-            <DefaultProviderPolicy
-                defaultSystemProvider="APP_SHORTCUT"
-                defaultSystemProviderType="LONG_TEXT"
-                />
-            <BoundingOval x="0" y="0" width="90" height="90" outlinePadding="2" />
-        </ComplicationSlot>
-        <!-- Index 4 -->
-        <ComplicationSlot
-            x="332" y="265"
-            width="90" height="90"
-            slotId="4"
-            name="shortcut_4" displayName="4"
-            supportedTypes="LONG_TEXT EMPTY">
-            <DefaultProviderPolicy
-                defaultSystemProvider="APP_SHORTCUT"
-                defaultSystemProviderType="LONG_TEXT"
-                />
-            <BoundingOval x="0" y="0" width="90" height="90" outlinePadding="2" />
-        </ComplicationSlot>
-        <!-- Index 8 -->
-        <ComplicationSlot
-            x="27" y="265"
-            width="90" height="90"
-            slotId="4"
-            name="shortcut_8" displayName="8"
-            supportedTypes="LONG_TEXT EMPTY">
-            <DefaultProviderPolicy
-                defaultSystemProvider="APP_SHORTCUT"
-                defaultSystemProviderType="LONG_TEXT"
-                />
-            <BoundingOval x="0" y="0" width="90" height="90" outlinePadding="2" />
-        </ComplicationSlot>
-        <!-- Index 10 -->
-        <ComplicationSlot
-            x="27" y="91"
-            width="90" height="90"
-            slotId="10"
-            name="shortcut_10" displayName="10"
-            supportedTypes="LONG_TEXT EMPTY">
-            <DefaultProviderPolicy
-                defaultSystemProvider="APP_SHORTCUT"
-                defaultSystemProviderType="LONG_TEXT"
-                />
-            <BoundingOval x="0" y="0" width="90" height="90" outlinePadding="2" />
-        </ComplicationSlot>
 
 
         <!--
@@ -503,6 +449,62 @@
 
         </Group>
 
+
+    <!--
+        Complication slot overlays for numeral indexes 2, 4, 8 and 10
+    -->
+        <!-- Index 2 -->
+        <ComplicationSlot
+            x="332" y="91"
+            width="90" height="90"
+            slotId="2"
+            name="shortcut_2" displayName="2"
+            supportedTypes="LONG_TEXT EMPTY">
+            <DefaultProviderPolicy
+                defaultSystemProvider="APP_SHORTCUT"
+                defaultSystemProviderType="LONG_TEXT"
+                />
+            <BoundingOval x="0" y="0" width="90" height="90" outlinePadding="2" />
+        </ComplicationSlot>
+        <!-- Index 4 -->
+        <ComplicationSlot
+            x="332" y="265"
+            width="90" height="90"
+            slotId="4"
+            name="shortcut_4" displayName="4"
+            supportedTypes="LONG_TEXT EMPTY">
+            <DefaultProviderPolicy
+                defaultSystemProvider="APP_SHORTCUT"
+                defaultSystemProviderType="LONG_TEXT"
+                />
+            <BoundingOval x="0" y="0" width="90" height="90" outlinePadding="2" />
+        </ComplicationSlot>
+        <!-- Index 8 -->
+        <ComplicationSlot
+            x="27" y="265"
+            width="90" height="90"
+            slotId="8"
+            name="shortcut_8" displayName="8"
+            supportedTypes="LONG_TEXT EMPTY">
+            <DefaultProviderPolicy
+                defaultSystemProvider="APP_SHORTCUT"
+                defaultSystemProviderType="LONG_TEXT"
+                />
+            <BoundingOval x="0" y="0" width="90" height="90" outlinePadding="2" />
+        </ComplicationSlot>
+        <!-- Index 10 -->
+        <ComplicationSlot
+            x="27" y="91"
+            width="90" height="90"
+            slotId="10"
+            name="shortcut_10" displayName="10"
+            supportedTypes="LONG_TEXT EMPTY">
+            <DefaultProviderPolicy
+                defaultSystemProvider="APP_SHORTCUT"
+                defaultSystemProviderType="LONG_TEXT"
+                />
+            <BoundingOval x="0" y="0" width="90" height="90" outlinePadding="2" />
+        </ComplicationSlot>
 
 
         <!--
