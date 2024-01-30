@@ -1,6 +1,8 @@
+<h1>Numeral Legacy</h1>
 
+<br>
 
-<h1>Introduction</h1>
+<h2>Introduction</h2>
 My first app developed for Wear OS, this watch face can be installed on any large round device running Wear OS 4, such as the Samsung Galaxy Watch 6 Classic (pictured). Developed using Samsung and Google’s Watch Face Format – a declarative XML format containing no executable code thus requiring less maintenance and benefitting from future improvements to performance and battery optimisation.
 <br>
 <br>
