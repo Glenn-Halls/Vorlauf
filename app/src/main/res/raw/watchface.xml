@@ -352,7 +352,7 @@
                         alpha="255">
                         <Template>
                             %s
-                            <Parameter expression="[STEP_COUNT]" />
+                            <Parameter expression="clamp([STEP_COUNT], 0, 99999)" />
                         </Template>
                     </Font>
                 </Text>
