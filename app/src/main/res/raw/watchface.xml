@@ -318,7 +318,7 @@
                         alpha="255">
                         <Template>
                             %s
-                            <Parameter expression="[HOUR_1_12_Z]" />
+                            <Parameter expression="[HOUR_0_23_Z]" />
                         </Template>
                     </Font>
                 </Text>
