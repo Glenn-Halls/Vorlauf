@@ -804,6 +804,20 @@
             NEW ADDITION - Water overlay - in progress
         -->
                 <PartDraw x="-84" y="-62" width="84" height="84">
+                    <Transform target="alpha"
+                        value="(
+                            (round([COMPLICATION.TEXT]) == 250 ? 250 : 0) +
+                            (round([COMPLICATION.TEXT]) == 500 ? 250 : 0) +
+                            (round([COMPLICATION.TEXT]) == 750 ? 250 : 0) +
+                            (round([COMPLICATION.TEXT]) == 1000 ? 250 : 0) +
+                            (round([COMPLICATION.TEXT]) == 1250 ? 250 : 0) +
+                            (round([COMPLICATION.TEXT]) == 1500 ? 250 : 0) +
+                            (round([COMPLICATION.TEXT]) == 1750 ? 250 : 0) +
+                            (round([COMPLICATION.TEXT]) == 2000 ? 250 : 0) +
+                            (round([COMPLICATION.TEXT]) == 2250 ? 250 : 0) +
+                            (round([COMPLICATION.TEXT]) == 2500 ? 250 : 0)
+                            )"
+                        />
                     <Arc direction="CLOCKWISE" startAngle="18" endAngle="18" centerX="42" centerY="42" width="84" height="84">
                         <Transform target="startAngle"
                             value="((
