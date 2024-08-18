@@ -801,6 +801,84 @@
                     </PartText>
                 </Group>
         <!--
+            NEW ADDITION - Water overlay - in progress
+        -->
+                <PartDraw x="-84" y="-62" width="84" height="84">
+                    <Arc direction="CLOCKWISE" startAngle="18" endAngle="18" centerX="42" centerY="42" width="84" height="84">
+                        <Transform target="startAngle"
+                            value="((
+                            (round([COMPLICATION.TEXT]) == 250 ? 1 : 0) +
+                            (round([COMPLICATION.TEXT]) == 500 ? 2 : 0) +
+                            (round([COMPLICATION.TEXT]) == 750 ? 3 : 0) +
+                            (round([COMPLICATION.TEXT]) == 1000 ? 4 : 0) +
+                            (round([COMPLICATION.TEXT]) == 1250 ? 5 : 0) +
+                            (round([COMPLICATION.TEXT]) == 1500 ? 6 : 0) +
+                            (round([COMPLICATION.TEXT]) == 1750 ? 7 : 0) +
+                            (round([COMPLICATION.TEXT]) == 2000 ? 8 : 0) +
+                            (round([COMPLICATION.TEXT]) == 2250 ? 9 : 0) +
+                            (round([COMPLICATION.TEXT]) == 2500 ? 10 : 0)
+                            - 1)
+                            * 36
+                            + 18
+                            )"/>
+                        <Transform target="endAngle"
+                            value="((
+                            (round([COMPLICATION.TEXT]) == 250 ? 1 : 0) +
+                            (round([COMPLICATION.TEXT]) == 500 ? 2 : 0) +
+                            (round([COMPLICATION.TEXT]) == 750 ? 3 : 0) +
+                            (round([COMPLICATION.TEXT]) == 1000 ? 4 : 0) +
+                            (round([COMPLICATION.TEXT]) == 1250 ? 5 : 0) +
+                            (round([COMPLICATION.TEXT]) == 1500 ? 6 : 0) +
+                            (round([COMPLICATION.TEXT]) == 1750 ? 7 : 0) +
+                            (round([COMPLICATION.TEXT]) == 2000 ? 8 : 0) +
+                            (round([COMPLICATION.TEXT]) == 2250 ? 9 : 0) +
+                            (round([COMPLICATION.TEXT]) == 2500 ? 10 : 0)
+                            ) * 36
+                            + 18
+                            )"/>
+                        <Stroke color="#ffd3d3d3" cap="BUTT" thickness="10" />
+                    </Arc>
+                </PartDraw>
+                <Group name="left_complication_index_marks"
+                    x="-89" y="-67"
+                    width="94" height="94"
+                    pivotX=".5" pivotY=".5"
+                    angle="18"
+                    tintColor="#ff999999">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <PartImage name="complication_mark_0_degrees"
+                        x="0" y="0" width="94" height="94"
+                        pivotX=".5" pivotY=".5"
+                        angle="0">
+                        <Image resource="@drawable/step_index_mark" />
+                    </PartImage>
+                    <PartImage name="complication_mark_36_degrees"
+                        x="0" y="0" width="94" height="94"
+                        pivotX=".5" pivotY=".5"
+                        angle="36">
+                        <Image resource="@drawable/step_index_mark" />
+                    </PartImage>
+                    <PartImage name="complication_mark_72_degrees"
+                        x="0" y="0" width="94" height="94"
+                        pivotX=".5" pivotY=".5"
+                        angle="72">
+                        <Image resource="@drawable/step_index_mark" />
+                    </PartImage>
+                    <PartImage name="complication_mark_108_degrees"
+                        x="0" y="0" width="94" height="94"
+                        pivotX=".5" pivotY=".5"
+                        angle="108">
+                        <Image resource="@drawable/step_index_mark" />
+                    </PartImage>
+                    <PartImage name="complication_mark_144_degrees"
+                        x="0" y="0" width="94" height="94"
+                        pivotX=".5" pivotY=".5"
+                        angle="144">
+                        <Image resource="@drawable/step_index_mark" />
+                    </PartImage>
+                    <Image resource="@drawable/step_index_mark" />
+                </Group>
+        <!--
             The bottom complication analog component with single hand and bezel indicators.
         -->
         <Group name="bottom_complication_analog" x="0" y="0"
