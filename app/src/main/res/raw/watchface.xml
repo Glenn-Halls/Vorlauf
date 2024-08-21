@@ -801,21 +801,26 @@
                     </PartText>
                 </Group>
         <!--
-            NEW ADDITION - Water overlay - in progress
+            Water Overlay: This complication is an Easter Egg for those using Samsung Health or any
+            other water intake complication that displays intake in increments of 250ml. This will
+            activate only when the BOTTOM complication is set to water intake, and will display the
+            number of glasses / 250ml increments consumed in the LEFT complication slot, in an
+            identical manner to the 10,000 step indicator for the bottom complication.
         -->
-                <PartDraw x="-84" y="-62" width="84" height="84">
+                <PartDraw x="-84" y="-62" width="84" height="84" alpha="0">
                     <Transform target="alpha"
-                        value="(
-                            (round([COMPLICATION.TEXT]) == 250 ? 250 : 0) +
-                            (round([COMPLICATION.TEXT]) == 500 ? 250 : 0) +
-                            (round([COMPLICATION.TEXT]) == 750 ? 250 : 0) +
-                            (round([COMPLICATION.TEXT]) == 1000 ? 250 : 0) +
-                            (round([COMPLICATION.TEXT]) == 1250 ? 250 : 0) +
-                            (round([COMPLICATION.TEXT]) == 1500 ? 250 : 0) +
-                            (round([COMPLICATION.TEXT]) == 1750 ? 250 : 0) +
-                            (round([COMPLICATION.TEXT]) == 2000 ? 250 : 0) +
-                            (round([COMPLICATION.TEXT]) == 2250 ? 250 : 0) +
-                            (round([COMPLICATION.TEXT]) == 2500 ? 250 : 0)
+                        value="((
+                            round([COMPLICATION.TEXT]) == 250 ||
+                            round([COMPLICATION.TEXT]) == 500 ||
+                            round([COMPLICATION.TEXT]) == 750 ||
+                            round([COMPLICATION.TEXT]) == 1000 ||
+                            round([COMPLICATION.TEXT]) == 1250 ||
+                            round([COMPLICATION.TEXT]) == 1500 ||
+                            round([COMPLICATION.TEXT]) == 1750 ||
+                            round([COMPLICATION.TEXT]) == 2000 ||
+                            round([COMPLICATION.TEXT]) == 2250 ||
+                            round([COMPLICATION.TEXT]) == 2500
+                            ) ? 250 : 0
                             )"
                         />
                     <Variant mode="AMBIENT" target="alpha" value="0" />
@@ -899,18 +904,19 @@
                     pivotX="0.5" pivotY="0.5"
                     angle="0"
                     alpha="0">
-                    <Transform target="alpha" value="(
-                        (round([COMPLICATION.TEXT]) == 250 ? 255 : 0) +
-                        (round([COMPLICATION.TEXT]) == 500 ? 255 : 0) +
-                        (round([COMPLICATION.TEXT]) == 750 ? 255 : 0) +
-                        (round([COMPLICATION.TEXT]) == 1000 ? 255 : 0) +
-                        (round([COMPLICATION.TEXT]) == 1250 ? 255 : 0) +
-                        (round([COMPLICATION.TEXT]) == 1500 ? 255 : 0) +
-                        (round([COMPLICATION.TEXT]) == 1750 ? 255 : 0) +
-                        (round([COMPLICATION.TEXT]) == 2000 ? 255 : 0) +
-                        (round([COMPLICATION.TEXT]) == 2250 ? 255 : 0) +
-                        (round([COMPLICATION.TEXT]) == 2500 ? 255 : 0)
-                    )" />
+                    <Transform target="alpha" value="((
+                        round([COMPLICATION.TEXT]) == 250 ||
+                        round([COMPLICATION.TEXT]) == 500 ||
+                        round([COMPLICATION.TEXT]) == 750 ||
+                        round([COMPLICATION.TEXT]) == 1000 ||
+                        round([COMPLICATION.TEXT]) == 1250 ||
+                        round([COMPLICATION.TEXT]) == 1500 ||
+                        round([COMPLICATION.TEXT]) == 1750 ||
+                        round([COMPLICATION.TEXT]) == 2000 ||
+                        round([COMPLICATION.TEXT]) == 2250 ||
+                        round([COMPLICATION.TEXT]) == 2500
+                        ) ? 255 : 0
+                        )" />
                     <Transform target="angle" value="(
                         round([COMPLICATION.TEXT]) / 250 * 36
                     )" />
@@ -921,25 +927,21 @@
                         scaleX="1.3" scaleY="1.3"
                         angle="0">
                         <Transform target="scaleX" value="((
-                            1 +
-                            2 * (
-                                (round([COMPLICATION.TEXT]) == 750 ? -1 : 0) +
-                                (round([COMPLICATION.TEXT]) == 1000 ? -1 : 0) +
-                                (round([COMPLICATION.TEXT]) == 1250 ? -1 : 0) +
-                                (round([COMPLICATION.TEXT]) == 1500 ? -1 : 0) +
-                                (round([COMPLICATION.TEXT]) == 1750 ? -1 : 0)
-                            )
-                        ) * 1.3)" />
+                            round([COMPLICATION.TEXT]) == 750 ||
+                            round([COMPLICATION.TEXT]) == 1000 ||
+                            round([COMPLICATION.TEXT]) == 1250 ||
+                            round([COMPLICATION.TEXT]) == 1500 ||
+                            round([COMPLICATION.TEXT]) == 1750
+                            ) ? -1.3 : 1.3
+                            )" />
                         <Transform target="scaleY" value="((
-                            1 +
-                            2 * (
-                                (round([COMPLICATION.TEXT]) == 750 ? -1 : 0) +
-                                (round([COMPLICATION.TEXT]) == 1000 ? -1 : 0) +
-                                (round([COMPLICATION.TEXT]) == 1250 ? -1 : 0) +
-                                (round([COMPLICATION.TEXT]) == 1500 ? -1 : 0) +
-                                (round([COMPLICATION.TEXT]) == 1750 ? -1 : 0)
-                            )
-                        ) * 1.3)" />
+                            round([COMPLICATION.TEXT]) == 750 ||
+                            round([COMPLICATION.TEXT]) == 1000 ||
+                            round([COMPLICATION.TEXT]) == 1250 ||
+                            round([COMPLICATION.TEXT]) == 1500 ||
+                            round([COMPLICATION.TEXT]) == 1750
+                            ) ? -1.3 : 1.3
+                            )" />
                         <Text align="CENTER" ellipsis="FALSE">
                             <Font family="font" weight="EXTRA_BOLD" size="10" color="#000000">
                                 <Template>%s
