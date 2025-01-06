@@ -1193,7 +1193,7 @@
             </PartImage>
             <PartImage name="preview_hand_minute_active"
                 x="211" y="0" width="28" height="450" pivotX="0.5" pivotY="0.5"
-                angle="120"
+                angle="90"
                 tintColor="#e9e9e9">
                 <Image resource="@drawable/hand_minute" />
             </PartImage>
