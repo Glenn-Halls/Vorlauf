@@ -2,6 +2,12 @@
 
 <br>
 
+<h2>XML Version 1 ONLY</h2>
+Please note that this branch of the project is for legacy / Watch Face XML Version 1 only. This has been superceded by Watch Face XML Version 2 which is available on all Wear OS from Version 5 onwards. XML version 1 is now used as a fall-back for watches running Wear OS 4 / Android 13 / API level 33. Moving forward, both versions will be added to the android app bundle to provide support for legacy users. For more information, see the documentation on Android Developers: https://developer.android.com/training/wearables/wff/setup
+<br>
+<br>
+
+
 <h2>Introduction</h2>
 My first app developed for Wear OS, this watch face can be installed on any large round device running Wear OS 4, such as the Samsung Galaxy Watch 6 Classic (pictured). Developed using Samsung and Google’s Watch Face Format – a declarative XML format containing no executable code thus requiring less maintenance and benefitting from future improvements to performance and battery optimisation.
 <br>
