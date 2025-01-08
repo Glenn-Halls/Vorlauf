@@ -7,13 +7,9 @@
 
     <uses-feature android:name="android.hardware.type.watch" />
 
-    <uses-sdk android:minSdkVersion="33"
+    <uses-sdk android:minSdkVersion="34"
+        android:targetSdkVersion="34"
         tools:ignore="GradleOverrides" />
-
-    <uses-permission android:name="com.samsung.android.sdk.permission.WRITE" />
-    <uses-permission android:name="com.samsung.android.sdk.permission.READ" />
-    <uses-permission android:name="com.samsung.health.water_intake" />
-    <uses-permission android:name="com.samsung.WATCH_APP_TYPE.Companion" />
 
     <application
         android:allowBackup="true"
@@ -25,17 +21,13 @@
         tools:ignore="DataExtractionRules">
         <property
             android:name="com.google.wear.watchface.format.version"
-            android:value="1" />
+            android:value="2" />
         <property
             android:name="com.google.wear.watchface.format.publisher"
             android:value="@string/glenn_halls" />
         <meta-data
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
-        <meta-data android:name="com.samsung.android.health.permission.read"
-            android:value="com.samsung.health.water_intake"/>
-        <meta-data android:name="com.samsung.android.health.permission.write"
-            android:value="com.samsung.health.water_intake"/>
     </application>
 
 </manifest>
