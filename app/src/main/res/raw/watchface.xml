@@ -17,7 +17,14 @@
             <ListOption id="6" displayName="display_heart" icon="icon_heart"/>
             <ListOption id="7" displayName="display_note" icon="icon_notif"/>
             <ListOption id="8" displayName="display_date" icon="icon_date"/>
+            <ListOption id="9" displayName="display_weather" icon="" />
         </ListConfiguration>
+        <BooleanConfiguration id="show_uv_precip" displayName="show_uv_precip" icon=""
+            screenReaderText="show_uv_precip" defaultValue="TRUE">
+        </BooleanConfiguration>
+        <BooleanConfiguration id="show_sun_moon" displayName="show_sun_moon" icon=""
+            screenReaderText="show_sun_moon" devaultValue="TRUE">
+        </BooleanConfiguration>
     </UserConfigurations>
 
 
@@ -130,12 +137,14 @@
             6) Heart Rate
             7) Notification Count
             8) Date
+            9) Weather
 
             Launch actions are determined by the display:
             - Time settings = alarm
             - Heart rate = default heart rate monitoring app
             - Date = calendar
             - Step count / notification = none
+            - Weather = weather provider
         -->
         <Group id="digital_display" name="top_complication"
             x="140" y="90"
@@ -156,7 +165,7 @@
                 <ListConfiguration id="user_config" />
             </UserConfiguration>
             <!--
-                Default / Option 0  = no digital display
+                Option 0  = no digital display
             -->
 
             <!--
@@ -440,6 +449,54 @@
                         <Template>
                             %s
                             <Parameter expression="[DAY_Z]" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+                </ListOption>
+            </ListConfiguration>
+
+            <!--
+                Default / Option 9 = Weather
+            -->
+            <ListConfiguration id="user_config">
+                <ListOption id="9">
+            <PartText x="-952" y="3" width="1122" height="70">
+                <Launch target="ALARM" />
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="pipe" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText x="-943" y="0" width="1020" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="END" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="[WEATHER.TEMPERATURE]" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText x="-961" y="0" width="1122" height="70">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="END" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="[WEATHER.CHANCE_OF_PRECIPITATION]" />
                         </Template>
                     </Font>
                 </Text>
