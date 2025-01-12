@@ -584,11 +584,33 @@
             <Complication type="RANGED_VALUE">
                 <Group name="complication_text" x="0" y="0" width="84" height="84" alpha="255">
                     <Variant mode="AMBIENT" target="alpha" value="0" />
-                <PartText x="-148" y="-33" width="240" height="112" scaleX="1.5" scaleY="1.5">
+                <!--
+                    Show chance of precipitation, if selected, unless battery charge is less than
+                    20% in which case show battery percent in red text alongside low charge icon.
+                -->
+                    <BooleanConfiguration id="show_uv_precip">
+                        <BooleanOption id="TRUE">
+                <PartText x="-148" y="-33" width="240" height="112" scaleX="1.5" scaleY="1.5" alpha="255">
                     <Transform target="y" value="([BATTERY_PERCENT] >= 75) ? 0 : (([BATTERY_PERCENT] > 25) ? -33 : 0)" />
+                    <Transform target="alpha" value="([BATTERY_PERCENT] >= 20) ? 255 : 0" />
                     <Text align="CENTER" ellipsis="FALSE">
                         <Font family="font" size="12"
                             color="#ffffff"
+                            alpha="255">
+                            <Template>
+                                %d%s
+                                <Parameter expression="[WEATHER.CHANCE_OF_PRECIPITATION]" />
+                                <Parameter expression="percent" />
+                            </Template>
+                        </Font>
+                    </Text>
+                </PartText>
+                <PartText x="-148" y="-33" width="240" height="112" scaleX="1.5" scaleY="1.5" alpha="255">
+                    <Transform target="y" value="([BATTERY_PERCENT] >= 75) ? 0 : (([BATTERY_PERCENT] > 25) ? -33 : 0)" />
+                    <Transform target="alpha" value="([BATTERY_PERCENT] >= 20) ? 0 : 255" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                        <Font family="font" size="12"
+                            color="#FF0000"
                             alpha="255">
                             <Template>
                                 %d%s
@@ -598,6 +620,8 @@
                         </Font>
                     </Text>
                 </PartText>
+                        </BooleanOption>
+                    </BooleanConfiguration>
                     <PartDraw x="0" y="0" width="84" height="84">
                     <Arc direction="CLOCKWISE" startAngle="18" endAngle="360" centerX="42" centerY="42" width="84" height="84">
                         <!--
@@ -1363,13 +1387,25 @@
                 alpha="0">
                 <Variant mode="AMBIENT" target="alpha" value="255"/>
             </MinuteHand>
+            <BooleanConfiguration id="show_uv_precip">
+                <BooleanOption id="TRUE">
             <SecondHand name="hand_second"
                 x="217" y="0" width="16" height="450" pivotX="0.5" pivotY="0.5"
                 resource="@drawable/hand_second"
                 tintColor="#e9e9e9">
-                <Sweep frequency="15" />
+                <Sweep frequency="SYNC_TO_DEVICE" />
                 <Variant mode="AMBIENT" target="alpha" value="0" />
             </SecondHand>
+                </BooleanOption>
+                <BooleanOption id="FALSE">
+            <SecondHand name="hand_second"
+                x="217" y="0" width="16" height="450" pivotX="0.5" pivotY="0.5"
+                resource="@drawable/hand_second"
+                tintColor="#e9e9e9">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+            </SecondHand>
+                </BooleanOption>
+            </BooleanConfiguration>
         </AnalogClock>
     </Scene>
 </WatchFace>
