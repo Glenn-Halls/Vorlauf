@@ -605,12 +605,14 @@
                         </Font>
                     </Text>
                 </PartText>
+                        </BooleanOption>
+                        <BooleanOption id="FALSE">
                 <PartText x="-148" y="-33" width="240" height="112" scaleX="1.5" scaleY="1.5" alpha="255">
                     <Transform target="y" value="([BATTERY_PERCENT] >= 75) ? 0 : (([BATTERY_PERCENT] > 25) ? -33 : 0)" />
-                    <Transform target="alpha" value="([BATTERY_PERCENT] >= 20) ? 0 : 255" />
+                    <Transform target="alpha" value="([BATTERY_PERCENT] >= 20) ? 255 : 0" />
                     <Text align="CENTER" ellipsis="FALSE">
                         <Font family="font" size="12"
-                            color="#FF0000"
+                            color="#ffffff"
                             alpha="255">
                             <Template>
                                 %d%s
@@ -622,6 +624,21 @@
                 </PartText>
                         </BooleanOption>
                     </BooleanConfiguration>
+                <PartText x="-148" y="-33" width="240" height="112" scaleX="1.5" scaleY="1.5" alpha="255">
+                    <Transform target="y" value="([BATTERY_PERCENT] >= 75) ? 0 : (([BATTERY_PERCENT] > 25) ? -33 : 0)" />
+                    <Transform target="alpha" value="([BATTERY_PERCENT] >= 20) ? 0 : 255" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                        <Font family="font" size="12"
+                            color="#FF3939"
+                            alpha="255">
+                            <Template>
+                                %d%s
+                                <Parameter expression="[BATTERY_PERCENT]" />
+                                <Parameter expression="percent" />
+                            </Template>
+                        </Font>
+                    </Text>
+                </PartText>
                     <PartDraw x="0" y="0" width="84" height="84">
                     <Arc direction="CLOCKWISE" startAngle="18" endAngle="360" centerX="42" centerY="42" width="84" height="84">
                         <!--
