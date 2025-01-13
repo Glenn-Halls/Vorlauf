@@ -496,7 +496,12 @@
                         alpha="255">
                         <Template>
                             %s
-                            <Parameter expression="[WEATHER.CHANCE_OF_PRECIPITATION]" />
+                            <Parameter expression="(
+                            round(
+                            clamp((
+                            ([UTC_TIMESTAMP] - [WEATHER.LAST_UPDATED])
+                            / 60000), 0, 99)
+                            ))" />
                         </Template>
                     </Font>
                 </Text>
@@ -575,7 +580,7 @@
             width="84" height="84"
             slotId="9"
             name="left_complication" displayName="Left"
-            supportedTypes="RANGED_VALUE EMPTY">
+            supportedTypes="RANGED_VALUE SHORT_TEXT EMPTY">
             <DefaultProviderPolicy
                 defaultSystemProvider="WATCH_BATTERY"
                 defaultSystemProviderType="RANGED_VALUE"
@@ -605,6 +610,7 @@
                         </Font>
                     </Text>
                 </PartText>
+
                         </BooleanOption>
                         <BooleanOption id="FALSE">
                 <PartText x="-148" y="-33" width="240" height="112" scaleX="1.5" scaleY="1.5" alpha="255">
@@ -613,23 +619,6 @@
                     <Text align="CENTER" ellipsis="FALSE">
                         <Font family="font" size="12"
                             color="#ffffff"
-                            alpha="255">
-                            <Template>
-                                %d%s
-                                <Parameter expression="[BATTERY_PERCENT]" />
-                                <Parameter expression="percent" />
-                            </Template>
-                        </Font>
-                    </Text>
-                </PartText>
-                        </BooleanOption>
-                    </BooleanConfiguration>
-                <PartText x="-148" y="-33" width="240" height="112" scaleX="1.5" scaleY="1.5" alpha="255">
-                    <Transform target="y" value="([BATTERY_PERCENT] >= 75) ? 0 : (([BATTERY_PERCENT] > 25) ? -33 : 0)" />
-                    <Transform target="alpha" value="([BATTERY_PERCENT] >= 20) ? 0 : 255" />
-                    <Text align="CENTER" ellipsis="FALSE">
-                        <Font family="font" size="12"
-                            color="#FF3939"
                             alpha="255">
                             <Template>
                                 %d%s
@@ -662,6 +651,23 @@
                         <Stroke color="#77ffffff" cap="BUTT" thickness="10" />
                     </Arc>
                     </PartDraw>
+                        </BooleanOption>
+                    </BooleanConfiguration>
+                <PartText x="-148" y="-33" width="240" height="112" scaleX="1.5" scaleY="1.5" alpha="255">
+                    <Transform target="y" value="([BATTERY_PERCENT] >= 75) ? 0 : (([BATTERY_PERCENT] > 25) ? -33 : 0)" />
+                    <Transform target="alpha" value="([BATTERY_PERCENT] >= 20) ? 0 : 255" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                        <Font family="font" size="12"
+                            color="#FF3939"
+                            alpha="255">
+                            <Template>
+                                %d%s
+                                <Parameter expression="[BATTERY_PERCENT]" />
+                                <Parameter expression="percent" />
+                            </Template>
+                        </Font>
+                    </Text>
+                </PartText>
                 </Group>
 
 
@@ -814,6 +820,374 @@
                 </Group>
             </Group>
         </Group>
+
+        <Group name="left_complication_index_marks"
+            x="-5" y="-5"
+            width="94" height="94"
+            pivotX=".5" pivotY=".5"
+            angle="18"
+            tintColor="#ff999999">
+            <Variant mode="AMBIENT" target="alpha" value="0" />
+            <PartImage name="complication_mark_0_degrees"
+                x="0" y="0" width="94" height="94"
+                pivotX=".5" pivotY=".5"
+                angle="0">
+                <Image resource="@drawable/step_index_mark" />
+            </PartImage>
+            <PartImage name="complication_mark_36_degrees"
+                x="0" y="0" width="94" height="94"
+                pivotX=".5" pivotY=".5"
+                angle="36">
+                <Image resource="@drawable/step_index_mark" />
+            </PartImage>
+            <PartImage name="complication_mark_72_degrees"
+                x="0" y="0" width="94" height="94"
+                pivotX=".5" pivotY=".5"
+                angle="72">
+                <Image resource="@drawable/step_index_mark" />
+            </PartImage>
+            <PartImage name="complication_mark_108_degrees"
+                x="0" y="0" width="94" height="94"
+                pivotX=".5" pivotY=".5"
+                angle="108">
+                <Image resource="@drawable/step_index_mark" />
+            </PartImage>
+            <PartImage name="complication_mark_144_degrees"
+                x="0" y="0" width="94" height="94"
+                pivotX=".5" pivotY=".5"
+                angle="144">
+                <Image resource="@drawable/step_index_mark" />
+            </PartImage>
+            <Image resource="@drawable/step_index_mark" />
+        </Group>
+            </Complication>
+            <Complication type="SHORT_TEXT">
+                <Group name="complication_text" x="0" y="0" width="84" height="84" alpha="255">
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                <!--
+                    Show chance of precipitation, if selected, unless battery charge is less than
+                    20% in which case show battery percent in red text alongside low charge icon.
+                -->
+                    <BooleanConfiguration id="show_uv_precip">
+                        <BooleanOption id="TRUE">
+                <PartText x="-148" y="-33" width="240" height="112" scaleX="1.5" scaleY="1.5" alpha="255">
+                    <Transform target="y" value="([BATTERY_PERCENT] >= 75) ? 0 : (([BATTERY_PERCENT] > 25) ? -33 : 0)" />
+                    <Transform target="alpha" value="([BATTERY_PERCENT] >= 20) ? 255 : 0" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                        <Font family="font" size="12"
+                            color="#ffffff"
+                            alpha="255">
+                            <Template>
+                                %d%s
+                                <Parameter expression="[WEATHER.CHANCE_OF_PRECIPITATION]" />
+                                <Parameter expression="percent" />
+                            </Template>
+                        </Font>
+                    </Text>
+                </PartText>
+        <!--
+            Water Overlay: This complication is an Easter Egg for those using Samsung Health or any
+            other water intake complication that displays intake in increments of 250ml. This will
+            activate only when the BOTTOM complication is set to water intake, and will display the
+            number of glasses / 250ml increments consumed in the LEFT complication slot, in an
+            identical manner to the 10,000 step indicator for the bottom complication.
+        -->
+                <PartDraw x="0" y="0" width="84" height="84" alpha="0">
+                    <Transform target="alpha"
+                        value="((
+                            round([COMPLICATION.TEXT]) == 250 ||
+                            round([COMPLICATION.TEXT]) == 500 ||
+                            round([COMPLICATION.TEXT]) == 750 ||
+                            round([COMPLICATION.TEXT]) == 1000 ||
+                            round([COMPLICATION.TEXT]) == 1250 ||
+                            round([COMPLICATION.TEXT]) == 1500 ||
+                            round([COMPLICATION.TEXT]) == 1750 ||
+                            round([COMPLICATION.TEXT]) == 2000 ||
+                            round([COMPLICATION.TEXT]) == 2250 ||
+                            round([COMPLICATION.TEXT]) == 2500
+                            ) ? 250 : 0
+                            )"
+                        />
+                    <Variant mode="AMBIENT" target="alpha" value="0" />
+                    <Arc direction="CLOCKWISE" startAngle="18" endAngle="18" centerX="42" centerY="42" width="84" height="84">
+                        <Transform target="startAngle"
+                            value="((
+                            (round([COMPLICATION.TEXT]) == 250 ? 1 : 0) +
+                            (round([COMPLICATION.TEXT]) == 500 ? 2 : 0) +
+                            (round([COMPLICATION.TEXT]) == 750 ? 3 : 0) +
+                            (round([COMPLICATION.TEXT]) == 1000 ? 4 : 0) +
+                            (round([COMPLICATION.TEXT]) == 1250 ? 5 : 0) +
+                            (round([COMPLICATION.TEXT]) == 1500 ? 6 : 0) +
+                            (round([COMPLICATION.TEXT]) == 1750 ? 7 : 0) +
+                            (round([COMPLICATION.TEXT]) == 2000 ? 8 : 0) +
+                            (round([COMPLICATION.TEXT]) == 2250 ? 9 : 0) +
+                            (round([COMPLICATION.TEXT]) == 2500 ? 10 : 0)
+                            - 1)
+                            * 36
+                            + 18
+                            )"
+                            />
+                        <Transform target="endAngle"
+                            value="((
+                            (round([COMPLICATION.TEXT]) == 250 ? 1 : 0) +
+                            (round([COMPLICATION.TEXT]) == 500 ? 2 : 0) +
+                            (round([COMPLICATION.TEXT]) == 750 ? 3 : 0) +
+                            (round([COMPLICATION.TEXT]) == 1000 ? 4 : 0) +
+                            (round([COMPLICATION.TEXT]) == 1250 ? 5 : 0) +
+                            (round([COMPLICATION.TEXT]) == 1500 ? 6 : 0) +
+                            (round([COMPLICATION.TEXT]) == 1750 ? 7 : 0) +
+                            (round([COMPLICATION.TEXT]) == 2000 ? 8 : 0) +
+                            (round([COMPLICATION.TEXT]) == 2250 ? 9 : 0) +
+                            (round([COMPLICATION.TEXT]) == 2500 ? 10 : 0)
+                            ) * 36
+                            + 18
+                            )"
+                            />
+                        <Stroke color="#ffffffff" cap="BUTT" thickness="10" />
+                    </Arc>
+                </PartDraw>
+
+                        </BooleanOption>
+                        <BooleanOption id="FALSE">
+                <PartText x="-148" y="-33" width="240" height="112" scaleX="1.5" scaleY="1.5" alpha="255">
+                    <Transform target="y" value="([BATTERY_PERCENT] >= 75) ? 0 : (([BATTERY_PERCENT] > 25) ? -33 : 0)" />
+                    <Transform target="alpha" value="([BATTERY_PERCENT] >= 20) ? 255 : 0" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                        <Font family="font" size="12"
+                            color="#ffffff"
+                            alpha="255">
+                            <Template>
+                                %d%s
+                                <Parameter expression="[BATTERY_PERCENT]" />
+                                <Parameter expression="percent" />
+                            </Template>
+                        </Font>
+                    </Text>
+                </PartText>
+                        </BooleanOption>
+                    </BooleanConfiguration>
+                <PartText x="-148" y="-33" width="240" height="112" scaleX="1.5" scaleY="1.5" alpha="255">
+                    <Transform target="y" value="([BATTERY_PERCENT] >= 75) ? 0 : (([BATTERY_PERCENT] > 25) ? -33 : 0)" />
+                    <Transform target="alpha" value="([BATTERY_PERCENT] >= 20) ? 0 : 255" />
+                    <Text align="CENTER" ellipsis="FALSE">
+                        <Font family="font" size="12"
+                            color="#FF3939"
+                            alpha="255">
+                            <Template>
+                                %d%s
+                                <Parameter expression="[BATTERY_PERCENT]" />
+                                <Parameter expression="percent" />
+                            </Template>
+                        </Font>
+                    </Text>
+                </PartText>
+                </Group>
+
+
+        <!--
+            The left complication analog component, representing watch battery percent
+        -->
+        <Group name="left_complication_analog" x="0" y="-1"
+            width="84" height="84">
+            <Variant mode="AMBIENT" target="alpha" value="0" />
+            <PartImage name="battery_hand"
+                x="38" y="-42" width="8" height="168"
+                pivotX=".5" pivotY=".5"
+                angle="0">
+                <Transform target="angle" value="[BATTERY_PERCENT]*36/10" />
+                <Image resource="@drawable/hand_hour" />
+            </PartImage>
+            <Group name="complication_numeric_indices"
+                x="0" y="0"
+                width="84" height="84"
+                tintColor="eeeeee">
+                    <Group name="complication_index_no_rotation"
+                        x="0" y="0"
+                        width="84" height="84"
+                        pivotX=".5" pivotY=".5"
+                        angle="0">
+            <PartText name="complication_index_10"
+                x="-36" y="-42"
+                width="85" height="84">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        10
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText name="complication_index_5"
+                x="-36" y="42"
+                width="84" height="84">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        5
+                    </Font>
+                </Text>
+            </PartText>
+                </Group>
+                <Group name="complication_index_36_deg"
+                    x="0" y="0"
+                    width="84" height="84"
+                    pivotX=".5" pivotY=".5"
+                    angle="36">
+            <PartText name="complication_index_1"
+                x="-36" y="-42"
+                width="84" height="84">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        1
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText name="complication_index_6"
+                x="-36" y="42"
+                width="84" height="84">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        6
+                    </Font>
+                </Text>
+            </PartText>
+                </Group>
+                <Group name="complication_index_72_deg"
+                    x="0" y="0"
+                    width="84" height="84"
+                    pivotX=".5" pivotY=".5"
+                    angle="72">
+            <PartText name="complication_index_3"
+                x="-36" y="-42"
+                width="84" height="84">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        2
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText name="complication_index_7"
+                x="-36" y="42"
+                width="84" height="84">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        7
+                    </Font>
+                </Text>
+            </PartText>
+                </Group>
+                <Group name="complication_index_108_deg"
+                    x="0" y="0"
+                    width="84" height="84"
+                    pivotX=".5" pivotY=".5"
+                    angle="-36">
+            <PartText name="complication_index_9"
+                x="-36" y="-42"
+                width="84" height="84">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        9
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText name="complication_index_4"
+                x="-36" y="42"
+                width="84" height="84">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        4
+                    </Font>
+                </Text>
+            </PartText>
+                </Group>
+                <Group name="complication_index_144_deg"
+                    x="0" y="0"
+                    width="84" height="84"
+                    pivotX=".5" pivotY=".5"
+                    angle="-72">
+            <PartText name="complication_index_8"
+                x="-36" y="-42"
+                width="84" height="84">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        8
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText name="complication_index_2"
+                x="-36" y="42"
+                width="84" height="84">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+                        3
+                    </Font>
+                </Text>
+            </PartText>
+                </Group>
+            </Group>
+        </Group>
+                <Group name="water_intake_number"
+                    x="0" y="0"
+                    width="84" height="84"
+                    pivotX="0.5" pivotY="0.5"
+                    angle="0"
+                    alpha="0">
+                    <Transform target="alpha" value="((
+                        round([COMPLICATION.TEXT]) == 250 ||
+                        round([COMPLICATION.TEXT]) == 500 ||
+                        round([COMPLICATION.TEXT]) == 750 ||
+                        round([COMPLICATION.TEXT]) == 1000 ||
+                        round([COMPLICATION.TEXT]) == 1250 ||
+                        round([COMPLICATION.TEXT]) == 1500 ||
+                        round([COMPLICATION.TEXT]) == 1750 ||
+                        round([COMPLICATION.TEXT]) == 2000 ||
+                        round([COMPLICATION.TEXT]) == 2250 ||
+                        round([COMPLICATION.TEXT]) == 2500
+                        ) ? 255 : 0
+                        )" />
+                    <Transform target="angle" value="(
+                        round([COMPLICATION.TEXT]) / 250 * 36
+                    )" />
+                    <PartText name="water_intake_text"
+                        x="0" y="-42"
+                        width="84" height="84"
+                        pivotX="0.5" pivotY="0.5"
+                        scaleX="1.3" scaleY="1.3"
+                        angle="0">
+                        <Transform target="scaleX" value="((
+                            round([COMPLICATION.TEXT]) == 750 ||
+                            round([COMPLICATION.TEXT]) == 1000 ||
+                            round([COMPLICATION.TEXT]) == 1250 ||
+                            round([COMPLICATION.TEXT]) == 1500 ||
+                            round([COMPLICATION.TEXT]) == 1750
+                            ) ? -1.3 : 1.3
+                            )" />
+                        <Transform target="scaleY" value="((
+                            round([COMPLICATION.TEXT]) == 750 ||
+                            round([COMPLICATION.TEXT]) == 1000 ||
+                            round([COMPLICATION.TEXT]) == 1250 ||
+                            round([COMPLICATION.TEXT]) == 1500 ||
+                            round([COMPLICATION.TEXT]) == 1750
+                            ) ? -1.3 : 1.3
+                            )" />
+                        <Text align="CENTER" ellipsis="FALSE">
+                            <Font family="font" weight="EXTRA_BOLD" size="10" color="#000000">
+                                <Template>%s
+                                    <Parameter expression="(
+                                        round([COMPLICATION.TEXT]) / 250
+                                    )" />
+                                </Template>
+                            </Font>
+                        </Text>
+                    </PartText>
+                </Group>
         <Group name="left_complication_index_marks"
             x="-5" y="-5"
             width="94" height="94"
