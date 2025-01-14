@@ -610,9 +610,24 @@
                         </Font>
                     </Text>
                 </PartText>
-
+                            <!-- UV indicator -->
+                    <PartDraw x="0" y="0" width="84" height="84">
+                    <Arc direction="CLOCKWISE" startAngle="18" endAngle="360" centerX="42" centerY="42" width="84" height="84">
+                        <Transform target="endAngle"
+                            value="(clamp(([WEATHER.UV_INDEX]), 0, 10) * 36 + 18)" />
+                        <Stroke color="#77ffffff" cap="BUTT" thickness="10" />
+                    </Arc>
+                    <Arc direction="CLOCKWISE" startAngle="18" endAngle="360" centerX="42" centerY="42" width="84" height="84">
+                        <Transform target="endAngle"
+                            value="(([WEATHER.UV_INDEX]) == 11) ? 54 : 18)" />
+                        <Stroke color="#ffff3939" cap="BUTT" thickness="10" />
+                    </Arc>
+                    </PartDraw>
                         </BooleanOption>
                         <BooleanOption id="FALSE">
+                <!--
+                    Ranged value to show if Show UV / Precipitation is FALSE
+                -->
                 <PartText x="-148" y="-33" width="240" height="112" scaleX="1.5" scaleY="1.5" alpha="255">
                     <Transform target="y" value="([BATTERY_PERCENT] >= 75) ? 0 : (([BATTERY_PERCENT] > 25) ? -33 : 0)" />
                     <Transform target="alpha" value="([BATTERY_PERCENT] >= 20) ? 255 : 0" />
@@ -885,6 +900,20 @@
                         </Font>
                     </Text>
                 </PartText>
+                            <!-- UV indicator -->
+                    <PartDraw x="0" y="0" width="84" height="84">
+                    <Arc direction="CLOCKWISE" startAngle="18" endAngle="360" centerX="42" centerY="42" width="84" height="84">
+                        <Transform target="endAngle"
+                            value="(clamp(([WEATHER.UV_INDEX]), 0, 10) * 36 + 18)" />
+                        <Stroke color="#77ffffff" cap="BUTT" thickness="10" />
+                    </Arc>
+                    <Arc direction="CLOCKWISE" startAngle="18" endAngle="360" centerX="42" centerY="42" width="84" height="84">
+                        <Transform target="endAngle"
+                            value="(([WEATHER.UV_INDEX]) == 11) ? 54 : 18)" />
+                        <Stroke color="#ffff3939" cap="BUTT" thickness="10" />
+                    </Arc>
+                    </PartDraw>
+
         <!--
             Water Overlay: This complication is an Easter Egg for those using Samsung Health or any
             other water intake complication that displays intake in increments of 250ml. This will
