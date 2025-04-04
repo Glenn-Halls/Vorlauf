@@ -461,17 +461,13 @@
             -->
             <ListConfiguration id="user_config">
                 <ListOption id="9">
-            <PartText x="-952" y="3" width="1122" height="70">
-                <Launch target="ALARM" />
+            <PartText x="55" y="-27" width="50" height="70">
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="TRUE">
-                    <Font family="digital_numbers" size="43"
+                    <Font family="ep_boxi_bold" size="20"
                         color="#d3d3d3"
                         alpha="255">
-                        <Template>
-                            %s
-                            <Parameter expression="pipe" />
-                        </Template>
+                        <Template>%s<Parameter expression="degrees" /></Template>
                     </Font>
                 </Text>
             </PartText>
@@ -488,6 +484,12 @@
                     </Font>
                 </Text>
             </PartText>
+            <PartImage name="weather_test"
+                x="99" y="0" width="80" height="80"
+                alpha="255" tintColor="#dddddd">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Image resource="weather_icon_test" />
+            </PartImage>
             <PartText x="-961" y="0" width="1122" height="70">
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="END" ellipsis="TRUE">
