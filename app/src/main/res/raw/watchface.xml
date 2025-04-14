@@ -27,6 +27,13 @@
         </BooleanConfiguration>
     </UserConfigurations>
 
+    <BitmapFonts>
+        <BitmapFont name="weather_icon_test" >
+            <Character name="0" resource="weather_icon_test" width="80" height="80" />
+            <Character name="1" resource="weather_icon_test_2" width="80" height="80" />
+        </BitmapFont>
+    </BitmapFonts>
+
 
     <!--
         The Scene element is required and must be the root element of the displayed elements.
@@ -484,12 +491,25 @@
                     </Font>
                 </Text>
             </PartText>
-            <PartImage name="weather_test"
-                x="99" y="0" width="80" height="80"
-                alpha="255" tintColor="#dddddd">
-                <Variant mode="AMBIENT" target="alpha" value="0" />
-                <Image resource="weather_icon_test" />
-            </PartImage>
+            <PartText x="99" y="-3" width="80" height="80">
+                <Text>
+                    <BitmapFont family="weather_icon_test" size="80">
+                        <Template>%s
+                            <Parameter expression="0" />
+                        </Template>
+                    </BitmapFont>
+                </Text>
+            </PartText>
+            <PartText x="99" y="-3" width="80" height="80">
+                <Text>
+                    <BitmapFont family="weather_icon_test" size="80">
+                        <Template>%s
+                            <Parameter expression="1" />
+                        </Template>
+                    </BitmapFont>
+                </Text>
+            </PartText>
+                    <!--
             <PartText x="-961" y="0" width="1122" height="70">
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="END" ellipsis="TRUE">
@@ -502,12 +522,13 @@
                             round(
                             clamp((
                             ([UTC_TIMESTAMP] - [WEATHER.LAST_UPDATED])
-                            / 60000), 0, 99)
+                            / 60000), 0, 88)
                             ))" />
                         </Template>
                     </Font>
                 </Text>
             </PartText>
+                    -->
                 </ListOption>
             </ListConfiguration>
 

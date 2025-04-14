@@ -18,4 +18,5 @@
     <string name="display_weather">weather</string>
     <string name="show_uv_precip">UV &amp; Precipitation</string>
     <string name="show_sun_moon">Sun &amp; Moon Events</string>
+    <string name="weather_icon_test">0</string>
 </resources>
