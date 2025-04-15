@@ -27,10 +27,46 @@
         </BooleanConfiguration>
     </UserConfigurations>
 
+    <!--
+        Bitmap font is used to render weather icons where each value of weather condition
+        is represented by a number from 1 to 15
+    -->
     <BitmapFonts>
-        <BitmapFont name="weather_icon_test" >
-            <Character name="0" resource="weather_icon_test" width="80" height="80" />
-            <Character name="1" resource="weather_icon_test_2" width="80" height="80" />
+        <BitmapFont name="weather_icon_day" >
+            <Character name="0" resource="weather_icon_00" width="80" height="80" />
+            <Character name="1" resource="weather_icon_01" width="80" height="80" />
+            <Character name="2" resource="weather_icon_02" width="80" height="80" />
+            <Character name="3" resource="weather_icon_03" width="80" height="80" />
+            <Character name="4" resource="weather_icon_04" width="80" height="80" />
+            <Character name="5" resource="weather_icon_05" width="80" height="80" />
+            <Character name="6" resource="weather_icon_06" width="80" height="80" />
+            <Character name="7" resource="weather_icon_07" width="80" height="80" />
+            <Character name="8" resource="weather_icon_08" width="80" height="80" />
+            <Character name="9" resource="weather_icon_09" width="80" height="80" />
+            <Word name="10" resource="weather_icon_10" width="80" height="80" />
+            <Word name="11" resource="weather_icon_11_day" width="80" height="80" />
+            <Word name="12" resource="weather_icon_12_day" width="80" height="80" />
+            <Word name="13" resource="weather_icon_13_day" width="80" height="80" />
+            <Word name="14" resource="weather_icon_14_day" width="80" height="80" />
+            <Word name="15" resource="weather_icon_15" width="80" height="80" />
+        </BitmapFont>
+        <BitmapFont name="weather_icon_night" >
+            <Character name="0" resource="weather_icon_00" width="80" height="80" />
+            <Character name="1" resource="weather_icon_01" width="80" height="80" />
+            <Character name="2" resource="weather_icon_02" width="80" height="80" />
+            <Character name="3" resource="weather_icon_03" width="80" height="80" />
+            <Character name="4" resource="weather_icon_04" width="80" height="80" />
+            <Character name="5" resource="weather_icon_05" width="80" height="80" />
+            <Character name="6" resource="weather_icon_06" width="80" height="80" />
+            <Character name="7" resource="weather_icon_07" width="80" height="80" />
+            <Character name="8" resource="weather_icon_08" width="80" height="80" />
+            <Character name="9" resource="weather_icon_09" width="80" height="80" />
+            <Word name="10" resource="weather_icon_10" width="80" height="80" />
+            <Word name="11" resource="weather_icon_11_night" width="80" height="80" />
+            <Word name="12" resource="weather_icon_12_night" width="80" height="80" />
+            <Word name="13" resource="weather_icon_13_night" width="80" height="80" />
+            <Word name="14" resource="weather_icon_14_night" width="80" height="80" />
+            <Word name="15" resource="weather_icon_15" width="80" height="80" />
         </BitmapFont>
     </BitmapFonts>
 
@@ -468,8 +504,11 @@
             -->
             <ListConfiguration id="user_config">
                 <ListOption id="9">
-            <PartText x="55" y="-27" width="50" height="70">
+            <PartText x="55" y="-27" width="50" height="70" alpha="0">
                 <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Transform target="alpha" value="
+                ([WEATHER.IS_ERROR]) ? 0 : (((WEATHER.LAST_UPDATED) > 99) ? 0 : 255)
+                    " />
                 <Text align="CENTER" ellipsis="TRUE">
                     <Font family="ep_boxi_bold" size="20"
                         color="#d3d3d3"
@@ -480,6 +519,9 @@
             </PartText>
             <PartText x="-943" y="0" width="1020" height="70">
                 <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Transform target="alpha" value="
+                ([WEATHER.IS_ERROR]) ? 0 : (((WEATHER.LAST_UPDATED) > 99) ? 0 : 255)
+                    " />
                 <Text align="END" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
                         color="#d3d3d3"
@@ -491,24 +533,51 @@
                     </Font>
                 </Text>
             </PartText>
+                <Condition>
+                    <Expressions>
+                        <Expression name="no_data">[WEATHER.IS_ERROR]</Expression>
+                    </Expressions>
+                    <Compare expression="no_data">
+                        <PartImage name="weather_test"
+                            x="0" y="-3" width="80" height="80"
+                            alpha="255" tintColor="#ffbbbbbb">
+                            <Variant mode="AMBIENT" target="alpha" value="0" />
+                            <Image resource="weather_icon_dc" />
+                        </PartImage>
+                    </Compare>
+                </Condition>
+
+
+                <Condition>
+                    <Expressions>
+                        <Expression name="is_day">[WEATHER.IS_DAY]</Expression>
+                    </Expressions>
+                    <Compare expression="is_day">
             <PartText x="99" y="-3" width="80" height="80">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text>
-                    <BitmapFont family="weather_icon_test" size="80">
+                    <BitmapFont family="weather_icon_day" size="80"
+                        color="#ff999999">
                         <Template>%s
-                            <Parameter expression="0" />
+                            <Parameter expression="([WEATHER.IS_ERROR]) ? 0 : [WEATHER.CONDITION]"/>
                         </Template>
                     </BitmapFont>
                 </Text>
             </PartText>
+                    </Compare>
+                    <Default>
             <PartText x="99" y="-3" width="80" height="80">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text>
-                    <BitmapFont family="weather_icon_test" size="80">
+                    <BitmapFont family="weather_icon_night" size="80"
+                        color="#ff999999">
                         <Template>%s
-                            <Parameter expression="1" />
+                            <Parameter expression="([WEATHER.IS_ERROR]) ? 0 : [WEATHER.CONDITION]"/>
                         </Template>
                     </BitmapFont>
                 </Text>
             </PartText>
+                    </Default>
                     <!--
             <PartText x="-961" y="0" width="1122" height="70">
                 <Variant mode="AMBIENT" target="alpha" value="0" />
@@ -529,9 +598,9 @@
                 </Text>
             </PartText>
                     -->
+                </Condition>
                 </ListOption>
             </ListConfiguration>
-
         </Group>
 
 
