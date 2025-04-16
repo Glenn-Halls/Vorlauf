@@ -68,6 +68,17 @@
             <Word name="14" resource="weather_icon_14_night" width="80" height="80" />
             <Word name="15" resource="weather_icon_15" width="80" height="80" />
         </BitmapFont>
+        <BitmapFont name="weather_icon_moon">
+            <Character name="0" resource="moon_phase_0" width="40" height="40" />
+            <Character name="1" resource="moon_phase_1" width="40" height="40" />
+            <Character name="2" resource="moon_phase_2" width="40" height="40" />
+            <Character name="3" resource="moon_phase_3" width="40" height="40" />
+            <Character name="4" resource="moon_phase_4" width="40" height="40" />
+            <Character name="5" resource="moon_phase_5" width="40" height="40" />
+            <Character name="6" resource="moon_phase_6" width="40" height="40" />
+            <Character name="7" resource="moon_phase_7" width="40" height="40" />
+            <Character name="8" resource="weather_icon_00" width="40" height="40" />
+        </BitmapFont>
     </BitmapFonts>
 
 
@@ -1865,6 +1876,34 @@
                 </Group>
             </Complication>
         </ComplicationSlot>
+
+        <!--
+            Moon icon sits below the right complication slot and is visible when user option
+            "show_sun_moon" is TRUE
+        -->
+        <BooleanConfiguration id="show_sun_moon">
+            <BooleanOption id="TRUE">
+                <Group name="moon_phase"
+                    x="299" y="259"
+                    width="40" height="40">
+                    <PartText x="0" y="0" width="40" height="40">
+                        <Variant mode="AMBIENT" target="alpha" value="0" />
+                        <Text>
+                            <BitmapFont family="weather_icon_moon" size="40"
+                                color="#ffd3d3d3">
+                                <Template>%s
+                                    <Parameter expression="([WEATHER.IS_ERROR]) ? 8 : [MOON_PHASE_TYPE]"/>
+                                </Template>
+                            </BitmapFont>
+                        </Text>
+                    </PartText>
+                </Group>
+            </BooleanOption>
+            <BooleanOption id="False">
+            </BooleanOption>
+        </BooleanConfiguration>
+
+
 
 
         <!--
