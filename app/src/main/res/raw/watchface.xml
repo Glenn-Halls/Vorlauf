@@ -1869,7 +1869,14 @@
                             alpha="255"/>
                         <Template>
                         %s
-                        <Parameter expression="subText([COMPLICATION.TEXT], 0, 7)" />
+                        <Parameter expression='
+                                textLength([COMPLICATION.TEXT]) > 7 ?
+                                    (subText([COMPLICATION.TEXT], 6, 7) == " " ?
+                                        subText([COMPLICATION.TEXT], 0, 6) : subText([COMPLICATION.TEXT], 0, 7)
+                                    ) :
+                                    subText([COMPLICATION.TEXT], 0, 7)
+                                '
+                            />
                         </Template>
                     </Text>
                 </PartText>
