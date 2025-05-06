@@ -1910,8 +1910,29 @@
             </BooleanOption>
         </BooleanConfiguration>
 
-
-
+        <!-- Sunrise / Sunset Arc -->
+        <ComplicationSlot
+            x="140" y="90"
+            width="170" height="70"
+            slotId="12"
+            name="sunrise_sunset" displayName="Sunrise / Sunset"
+            supportedTypes="SHORT_TEXT" isCustomizable="FALSE">
+            <DefaultProviderPolicy
+                defaultSystemProvider="SUNRISE_SUNSET"
+                defaultSystemProviderType="SHORT_TEXT"
+                />
+            <BoundingOval x="-140" y="-90" width="455" height="455" outlinePadding="0" />
+            <Complication type="SHORT_TEXT">
+                <Group name="sunrise_sunset_arc" x="-140" y="-90" width="450" height="450">
+                    <PartDraw x="0" y="0" width="45" height="45">
+                        <Arc centerX="225" centerY="225" width="445" height="445"
+                            startAngle="0" endAngle="0" direction="CLOCKWISE">
+                            <Stroke color="#99ffff00" thickness="9" />
+                        </Arc>
+                    </PartDraw>
+                </Group>
+            </Complication>
+        </ComplicationSlot>
 
         <!--
             Code for the analog clock hands must be placed last in order to be drawn on top
