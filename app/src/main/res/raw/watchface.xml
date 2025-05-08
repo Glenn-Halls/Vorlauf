@@ -1838,7 +1838,7 @@
             name="right_complication" displayName="Right"
             supportedTypes="SHORT_TEXT EMPTY">
             <DefaultProviderPolicy
-                defaultSystemProvider="DATE"
+                defaultSystemProvider="SUNRISE_SUNSET"
                 defaultSystemProviderType="SHORT_TEXT"
                 />
             <BoundingBox x="0" y="0" width="120" height="42" outlinePadding="2" />
@@ -1930,6 +1930,56 @@
                             <Stroke color="#99ffff00" thickness="9" />
                         </Arc>
                     </PartDraw>
+
+                    <PartText x="-416" y="153" width="1000" height="70" scaleX="1" scaleY="1">
+                        <Variant mode="AMBIENT" target="alpha" value="0" />
+                        <Text align="CENTER" ellipsis="FALSE">
+                            <Font family="digital_numbers" size="20"
+                                color="#ffffff"
+                                alpha="255"/>
+                            <Transform target="alpha" value='
+                                (subtext([COMPLICATION.TEXT], 2, 3) == ":" ? 0 : 0)
+                            ' />
+                            <Template>
+                                %s
+                                <Parameter expression='subText([COMPLICATION.TEXT], 0, 7)'
+                                    />
+                            </Template>
+                        </Text>
+                    </PartText>
+
+                    <PartText x="-533" y="53" width="1000" height="70" scaleX="1" scaleY="1">
+                        <Variant mode="AMBIENT" target="alpha" value="0" />
+                        <Text align="CENTER" ellipsis="FALSE">
+                            <Font family="digital_numbers" size="20"
+                                color="#ffffff"
+                                alpha="255"/>
+                            <Template>
+                                %s
+                                <!--
+                                    Expression first checks if input is one or two digits before ':'
+                                    If one digit will compare with 12-hour time
+                                    If two digits will compare with 24-hour time
+                                    In each case will check if:
+                                        same hour Vs one hour earlier Vs not in bounds
+                                -->
+                                <Parameter expression='
+                                    subText([COMPLICATION.TEXT], 1, 2) == ":" ?
+                                        subText([COMPLICATION.TEXT], 0, 1) == [HOUR_1_12] ?
+                                            SUNRISE HOUR :
+                                            subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12] - 1) ?
+                                                ONE HOUR EARLIER 1 :
+                                                ""
+                                            :
+                                        subText([COMPLICATION.TEXT], 0, 2) == [HOUR_0_23_Z] ?
+                                            SUNRISE HOUR :
+                                            subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_0_23_Z] - 1) ?
+                                                ONE HOUR EARLIER 2 :
+                                                ""
+                                    '/>
+                            </Template>
+                        </Text>
+                    </PartText>
                 </Group>
             </Complication>
         </ComplicationSlot>
