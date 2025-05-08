@@ -1964,17 +1964,17 @@
                                         same hour Vs one hour earlier Vs not in bounds
                                 -->
                                 <Parameter expression='
-                                    subText([COMPLICATION.TEXT], 1, 2) == ":" ?
+                                    subText([COMPLICATION.TEXT], 1, 2) != ":" ?
                                         subText([COMPLICATION.TEXT], 0, 1) == [HOUR_1_12] ?
-                                            SUNRISE HOUR :
+                                            (subText([COMPLICATION.TEXT], 4, 6) == [AM_PM_STRING] ? SUNRISE HOUR : "") :
                                             subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12] - 1) ?
-                                                ONE HOUR EARLIER 1 :
+                                                (subText([COMPLICATION.TEXT], 4, 6) == [AM_PM_STRING] ? ONE HOUR EARLY : "") :
                                                 ""
                                             :
-                                        subText([COMPLICATION.TEXT], 0, 2) == [HOUR_0_23_Z] ?
-                                            SUNRISE HOUR :
-                                            subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_0_23_Z] - 1) ?
-                                                ONE HOUR EARLIER 2 :
+                                        subText([COMPLICATION.TEXT], 0, 2) == [HOUR_0_23] ?
+                                            SUNRISE HOUR 2 :
+                                            subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_0_23] - 1) ?
+                                                ONE HOUR EARLY 2 :
                                                 ""
                                     '/>
                             </Template>
