@@ -1884,32 +1884,6 @@
             </Complication>
         </ComplicationSlot>
 
-        <!--
-            Moon icon sits below the right complication slot and is visible when user option
-            "show_sun_moon" is TRUE
-        -->
-        <BooleanConfiguration id="show_sun_moon">
-            <BooleanOption id="TRUE">
-                <Group name="moon_phase"
-                    x="299" y="259"
-                    width="40" height="40">
-                    <PartText x="0" y="0" width="40" height="40">
-                        <Variant mode="AMBIENT" target="alpha" value="0" />
-                        <Text>
-                            <BitmapFont family="weather_icon_moon" size="40"
-                                color="#ffd3d3d3">
-                                <Template>%s
-                                    <Parameter expression="([WEATHER.IS_ERROR]) ? 8 : [MOON_PHASE_TYPE]"/>
-                                </Template>
-                            </BitmapFont>
-                        </Text>
-                    </PartText>
-                </Group>
-            </BooleanOption>
-            <BooleanOption id="False">
-            </BooleanOption>
-        </BooleanConfiguration>
-
         <!-- Sunrise / Sunset Arc -->
         <ComplicationSlot
             x="140" y="90"
@@ -1923,53 +1897,83 @@
                 />
             <BoundingOval x="-140" y="-90" width="455" height="455" outlinePadding="0" />
             <Complication type="SHORT_TEXT">
-                <Group name="sunrise_sunset_arc" x="-140" y="-90" width="450" height="450">
-                    <Condition>
-                        <Expressions>
-                            <Expression name="display_sunrise_sunset" >
-                                <!-- Determine to show if time is in AM / PM format -->
-                                ( (subText([COMPLICATION.TEXT], (textLength([COMPLICATION.TEXT]) - 2), textLength([COMPLICATION.TEXT])) == [AM_PM_STRING]) &amp;&amp;
-                                    <!-- IF time is in AM/PM make sure that hour is sunrise or one hour before (1-digit) -->
-                                    (  <!-- One digit before [:] -->
-                                    (subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12]) - 0))
-                                    || <!-- Two digits before [:] -->
-                                    (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12]) - 0))
-                                    )
-                                || <!-- OR -->
-                                <!-- If 24-hour time, make sure that hour is sunrise or one hour before -->
-                                ( (textLength([COMPLICATION.TEXT]) != 6) &amp;&amp;
-                                    (  <!-- One digit before [:] -->
-                                    (subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12]) - 0))
-                                    || <!-- Two digits before [:] -->
-                                    (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12]) - 0))
-                                    )
-                                )
-                            </Expression>
-                        </Expressions>
-                        <Compare expression="display_sunrise_sunset">
-                            <PartText x="280" y="157" width="120" height="50" scaleX="1.2" scaleY="1.2">
-                                <Variant mode="AMBIENT" target="alpha" value="0" />
-                                <Text align="CENTER" ellipsis="FALSE">
-                                    <Font family="digital_numbers" size="20"
-                                        color="#d3d3d3"
-                                        alpha="255"/>
-                                    <Template>%s
-                                        <Parameter expression='subText([COMPLICATION.TEXT], 0, 7)'
-                                            />
-                                    </Template>
-                                </Text>
-                            </PartText>
-                        </Compare>
-                        <Default>
-                        </Default>
-                    </Condition>
-                    <PartDraw x="0" y="0" width="45" height="45">
-                        <Arc centerX="225" centerY="225" width="445" height="445"
-                            startAngle="0" endAngle="0" direction="CLOCKWISE">
-                            <Stroke color="#99ffff00" thickness="9" />
-                        </Arc>
-                    </PartDraw>
-                </Group>
+                <BooleanConfiguration id="show_sun_moon">
+                    <BooleanOption id="TRUE">
+                        <Group name="sunrise_sunset_arc" x="-140" y="-90" width="450" height="450">
+                            <Condition>
+                                <Expressions>
+                                    <Expression name="display_sunrise_sunset" >
+                                        <!-- Determine to show if time is in AM / PM format -->
+                                        ( (subText([COMPLICATION.TEXT], (textLength([COMPLICATION.TEXT]) - 2), textLength([COMPLICATION.TEXT])) == [AM_PM_STRING]) &amp;&amp;
+                                            <!-- IF time is in AM/PM make sure that hour is sunrise or one hour before (1-digit) -->
+                                            (  <!-- One digit before [:] -->
+                                            (subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12]) - 0))
+                                            || <!-- Two digits before [:] -->
+                                            (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12]) - 0))
+                                            )
+                                        || <!-- OR -->
+                                        <!-- If 24-hour time, make sure that hour is sunrise or one hour before -->
+                                        ( (textLength([COMPLICATION.TEXT]) != 6) &amp;&amp;
+                                            (  <!-- One digit before [:] -->
+                                            (subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12]) - 0))
+                                            || <!-- Two digits before [:] -->
+                                            (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12]) - 0))
+                                            )
+                                        )
+                                    </Expression>
+                                </Expressions>
+                                <Compare expression="display_sunrise_sunset">
+                                    <Group name="show_sunrise_event" x="0" y="0" width="450" height="450">
+                                        <PartText x="280" y="157" width="120" height="50" scaleX="1.2" scaleY="1.2">
+                                            <Variant mode="AMBIENT" target="alpha" value="0" />
+                                            <Text align="CENTER" ellipsis="FALSE">
+                                                <Font family="digital_numbers" size="20"
+                                                    color="#d3d3d3"
+                                                    alpha="255"/>
+                                                <Template>%s
+                                                    <Parameter expression='subText([COMPLICATION.TEXT], 0, 7)'
+                                                        />
+                                                </Template>
+                                            </Text>
+                                        </PartText>
+                                        <PartText x="300" y="260" width="40" height="40">
+                                            <Variant mode="AMBIENT" target="alpha" value="0" />
+                                            <Text>
+                                                <BitmapFont family="weather_icon_moon" size="40"
+                                                    color="#ffd3d3d3">
+                                                    <Template>%s
+                                                        <Parameter expression="([WEATHER.IS_ERROR]) ? 8 : [MOON_PHASE_TYPE]"/>
+                                                    </Template>
+                                                </BitmapFont>
+                                            </Text>
+                                        </PartText>
+                                    </Group>
+                                </Compare>
+                                <Default>
+                                    <PartText x="300" y="260" width="40" height="40">
+                                        <Variant mode="AMBIENT" target="alpha" value="0" />
+                                        <Text>
+                                            <BitmapFont family="weather_icon_moon" size="40"
+                                                color="#ffd3d3d3">
+                                                <Template>%s
+                                                    <Parameter expression="([WEATHER.IS_ERROR]) ? 8 : [MOON_PHASE_TYPE]"/>
+                                                </Template>
+                                            </BitmapFont>
+                                        </Text>
+                                    </PartText>
+                                </Default>
+                            </Condition>
+                            <PartDraw x="0" y="0" width="45" height="45">
+                                <Arc centerX="225" centerY="225" width="445" height="445"
+                                    startAngle="0" endAngle="0" direction="CLOCKWISE">
+                                    <Stroke color="#99ffff00" thickness="9" />
+                                </Arc>
+                            </PartDraw>
+                        </Group>
+                    </BooleanOption>
+                    <BooleanOption id="False">
+                    </BooleanOption>
+                </BooleanConfiguration>
             </Complication>
         </ComplicationSlot>
 
