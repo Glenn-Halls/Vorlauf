@@ -1924,62 +1924,51 @@
             <BoundingOval x="-140" y="-90" width="455" height="455" outlinePadding="0" />
             <Complication type="SHORT_TEXT">
                 <Group name="sunrise_sunset_arc" x="-140" y="-90" width="450" height="450">
+                    <Condition>
+                        <Expressions>
+                            <Expression name="display_sunrise_sunset" >
+                                <!-- Determine to show if time is in AM / PM format -->
+                                ( (subText([COMPLICATION.TEXT], (textLength([COMPLICATION.TEXT]) - 2), textLength([COMPLICATION.TEXT])) == [AM_PM_STRING]) &amp;&amp;
+                                    <!-- IF time is in AM/PM make sure that hour is sunrise or one hour before (1-digit) -->
+                                    (  <!-- One digit before [:] -->
+                                    (subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12]) - 0))
+                                    || <!-- Two digits before [:] -->
+                                    (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12]) - 0))
+                                    )
+                                || <!-- OR -->
+                                <!-- If 24-hour time, make sure that hour is sunrise or one hour before -->
+                                ( (textLength([COMPLICATION.TEXT]) != 6) &amp;&amp;
+                                    (  <!-- One digit before [:] -->
+                                    (subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12]) - 0))
+                                    || <!-- Two digits before [:] -->
+                                    (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12]) - 0))
+                                    )
+                                )
+                            </Expression>
+                        </Expressions>
+                        <Compare expression="display_sunrise_sunset">
+                            <PartText x="280" y="157" width="120" height="50" scaleX="1.2" scaleY="1.2">
+                                <Variant mode="AMBIENT" target="alpha" value="0" />
+                                <Text align="CENTER" ellipsis="FALSE">
+                                    <Font family="digital_numbers" size="20"
+                                        color="#d3d3d3"
+                                        alpha="255"/>
+                                    <Template>%s
+                                        <Parameter expression='subText([COMPLICATION.TEXT], 0, 7)'
+                                            />
+                                    </Template>
+                                </Text>
+                            </PartText>
+                        </Compare>
+                        <Default>
+                        </Default>
+                    </Condition>
                     <PartDraw x="0" y="0" width="45" height="45">
                         <Arc centerX="225" centerY="225" width="445" height="445"
                             startAngle="0" endAngle="0" direction="CLOCKWISE">
                             <Stroke color="#99ffff00" thickness="9" />
                         </Arc>
                     </PartDraw>
-
-                    <PartText x="-416" y="153" width="1000" height="70" scaleX="1" scaleY="1">
-                        <Variant mode="AMBIENT" target="alpha" value="0" />
-                        <Text align="CENTER" ellipsis="FALSE">
-                            <Font family="digital_numbers" size="20"
-                                color="#ffffff"
-                                alpha="255"/>
-                            <Transform target="alpha" value='
-                                (subtext([COMPLICATION.TEXT], 2, 3) == ":" ? 0 : 0)
-                            ' />
-                            <Template>
-                                %s
-                                <Parameter expression='subText([COMPLICATION.TEXT], 0, 7)'
-                                    />
-                            </Template>
-                        </Text>
-                    </PartText>
-
-                    <PartText x="-533" y="53" width="1000" height="70" scaleX="1" scaleY="1">
-                        <Variant mode="AMBIENT" target="alpha" value="0" />
-                        <Text align="CENTER" ellipsis="FALSE">
-                            <Font family="digital_numbers" size="20"
-                                color="#ffffff"
-                                alpha="255"/>
-                            <Template>
-                                %s
-                                <!--
-                                    Expression first checks if input is one or two digits before ':'
-                                    If one digit will compare with 12-hour time
-                                    If two digits will compare with 24-hour time
-                                    In each case will check if:
-                                        same hour Vs one hour earlier Vs not in bounds
-                                -->
-                                <Parameter expression='
-                                    subText([COMPLICATION.TEXT], 1, 2) != ":" ?
-                                        subText([COMPLICATION.TEXT], 0, 1) == [HOUR_1_12] ?
-                                            (subText([COMPLICATION.TEXT], 4, 6) == [AM_PM_STRING] ? SUNRISE HOUR : "") :
-                                            subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12] - 1) ?
-                                                (subText([COMPLICATION.TEXT], 4, 6) == [AM_PM_STRING] ? ONE HOUR EARLY : "") :
-                                                ""
-                                            :
-                                        subText([COMPLICATION.TEXT], 0, 2) == [HOUR_0_23] ?
-                                            SUNRISE HOUR 2 :
-                                            subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_0_23] - 1) ?
-                                                ONE HOUR EARLY 2 :
-                                                ""
-                                    '/>
-                            </Template>
-                        </Text>
-                    </PartText>
                 </Group>
             </Complication>
         </ComplicationSlot>
