@@ -78,6 +78,7 @@
             <Character name="6" resource="moon_phase_6" width="40" height="40" />
             <Character name="7" resource="moon_phase_7" width="40" height="40" />
             <Character name="8" resource="weather_icon_00" width="40" height="40" />
+            <Character name="9" resource="sunrise_sunset" width="40" height="40" />
         </BitmapFont>
     </BitmapFonts>
 
@@ -1899,25 +1900,27 @@
             <Complication type="SHORT_TEXT">
                 <BooleanConfiguration id="show_sun_moon">
                     <BooleanOption id="TRUE">
-                        <Group name="sunrise_sunset_arc" x="-140" y="-90" width="450" height="450">
+                        <Group name="sunrise_sunset_arc" x="-140" y="-89" width="450" height="450">
                             <Condition>
                                 <Expressions>
                                     <Expression name="display_sunrise_sunset" >
+                                        (
                                         <!-- Determine to show if time is in AM / PM format -->
-                                        ( (subText([COMPLICATION.TEXT], (textLength([COMPLICATION.TEXT]) - 2), textLength([COMPLICATION.TEXT])) == [AM_PM_STRING]) &amp;&amp;
+                                        (subText([COMPLICATION.TEXT], (textLength([COMPLICATION.TEXT]) - 2), textLength([COMPLICATION.TEXT])) == [AM_PM_STRING]) &amp;&amp;
                                             <!-- IF time is in AM/PM make sure that hour is sunrise or one hour before (1-digit) -->
                                             (  <!-- One digit before [:] -->
                                             (subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12]) - 0))
                                             || <!-- Two digits before [:] -->
                                             (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12]) - 0))
                                             )
-                                        || <!-- OR -->
+                                        <!-- OR -->
+                                        ||
                                         <!-- If 24-hour time, make sure that hour is sunrise or one hour before -->
                                         ( (textLength([COMPLICATION.TEXT]) != 6) &amp;&amp;
-                                            (  <!-- One digit before [:] -->
-                                            (subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12]) - 0))
-                                            || <!-- Two digits before [:] -->
-                                            (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12]) - 0))
+                                            (  <!-- sunrise HH is < 10 and is equal to HH or +1 -->
+                                            (subText([COMPLICATION.TEXT], 1, 2) == ([HOUR_1_24] +1) || subText([COMPLICATION.TEXT], 1, 2) == ([HOUR_1_24] - 0) )
+                                            || <!-- sunrise HH is 10+ and is equal to HH or +1 -->
+                                            (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_24] +1) || subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_24] - 0) )
                                             )
                                         )
                                     </Expression>
@@ -1942,7 +1945,7 @@
                                                 <BitmapFont family="weather_icon_moon" size="40"
                                                     color="#ffd3d3d3">
                                                     <Template>%s
-                                                        <Parameter expression="([WEATHER.IS_ERROR]) ? 8 : [MOON_PHASE_TYPE]"/>
+                                                        <Parameter expression="([WEATHER.IS_ERROR]) ? 8 : 9"/>
                                                     </Template>
                                                 </BitmapFont>
                                             </Text>
