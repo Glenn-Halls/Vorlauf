@@ -7,7 +7,7 @@
     User configuration for the top-most element of the watch face: the digital display.
     -->
     <UserConfigurations>
-        <ListConfiguration id="user_config" displayName="digital_display" defaultValue="0">
+        <ListConfiguration id="user_config" displayName="digital_display" defaultValue="9">
             <ListOption id="0" displayName="display_none" icon="icon_empty"/>
             <ListOption id="1" displayName="display_12" icon="icon_12hr"/>
             <ListOption id="2" displayName="display_ampm" icon="icon_ampm"/>
@@ -20,11 +20,11 @@
             <ListOption id="9" displayName="display_weather" icon="" />
         </ListConfiguration>
         <BooleanConfiguration id="show_uv_precip" displayName="show_uv_precip" icon=""
-            screenReaderText="show_uv_precip" defaultValue="TRUE">
-        </BooleanConfiguration>
+            screenReaderText="show_uv_precip" defaultValue="TRUE" />
         <BooleanConfiguration id="show_sun_moon" displayName="show_sun_moon" icon=""
-            screenReaderText="show_sun_moon" devaultValue="TRUE">
-        </BooleanConfiguration>
+            screenReaderText="show_sun_moon" devaultValue="TRUE" />
+        <BooleanConfiguration id="second_hand_sweep" displayName="second_hand_sweep" icon=""
+            screenReaderText="second_hand_sweep" defaultValue="TRUE" />
     </UserConfigurations>
 
     <!--
@@ -1900,7 +1900,7 @@
             <Complication type="SHORT_TEXT">
                 <BooleanConfiguration id="show_sun_moon">
                     <BooleanOption id="TRUE">
-                        <Group name="sunrise_sunset_arc" x="-140" y="-89" width="450" height="450">
+                        <Group name="sunrise_sunset_moon" x="-140" y="-89" width="450" height="450">
                             <Condition>
                                 <Expressions>
                                     <Expression name="display_sunrise_sunset" >
@@ -2012,7 +2012,7 @@
                 alpha="0">
                 <Variant mode="AMBIENT" target="alpha" value="255"/>
             </MinuteHand>
-            <BooleanConfiguration id="show_uv_precip">
+            <BooleanConfiguration id="second_hand_sweep">
                 <BooleanOption id="TRUE">
             <SecondHand name="hand_second"
                 x="217" y="0" width="16" height="450" pivotX="0.5" pivotY="0.5"
