@@ -1906,21 +1906,21 @@
                                     <Expression name="display_sunrise_sunset" >
                                         (
                                         <!-- Determine to show if time is in AM / PM format -->
-                                        (subText([COMPLICATION.TEXT], (textLength([COMPLICATION.TEXT]) - 2), textLength([COMPLICATION.TEXT])) == [AM_PM_STRING]) &amp;&amp;
+                                        (subText([COMPLICATION.TEXT], (textLength([COMPLICATION.TEXT]) - 2), textLength([COMPLICATION.TEXT])) == [AMPM_STRING]) &amp;&amp;
                                             <!-- IF time is in AM/PM make sure that hour is sunrise or one hour before (1-digit) -->
                                             (  <!-- One digit before [:] -->
-                                            (subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12]) - 0))
+                                            (subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 1) == [HOUR_1_12])
                                             || <!-- Two digits before [:] -->
-                                            (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12]) - 0))
+                                            (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 2) == [HOUR_1_12])
                                             )
                                         <!-- OR -->
                                         ||
                                         <!-- If 24-hour time, make sure that hour is sunrise or one hour before -->
                                         ( (textLength([COMPLICATION.TEXT]) != 6) &amp;&amp;
                                             (  <!-- sunrise HH is < 10 and is equal to HH or +1 -->
-                                            (subText([COMPLICATION.TEXT], 1, 2) == ([HOUR_1_24] +1) || subText([COMPLICATION.TEXT], 1, 2) == ([HOUR_1_24] - 0) )
+                                            (subText([COMPLICATION.TEXT], 1, 2) == ([HOUR_1_24] +1) || subText([COMPLICATION.TEXT], 1, 2) == [HOUR_1_24])
                                             || <!-- sunrise HH is 10+ and is equal to HH or +1 -->
-                                            (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_24] +1) || subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_24] - 0) )
+                                            (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_24] +1) || subText([COMPLICATION.TEXT], 0, 2) == [HOUR_1_24])
                                             )
                                         )
                                     </Expression>
