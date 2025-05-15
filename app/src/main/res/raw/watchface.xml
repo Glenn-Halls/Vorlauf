@@ -22,7 +22,7 @@
         <BooleanConfiguration id="show_uv_precip" displayName="show_uv_precip" icon=""
             screenReaderText="show_uv_precip" defaultValue="TRUE" />
         <BooleanConfiguration id="show_sun_moon" displayName="show_sun_moon" icon=""
-            screenReaderText="show_sun_moon" devaultValue="TRUE" />
+            screenReaderText="show_sun_moon" defaultValue="TRUE" />
         <BooleanConfiguration id="second_hand_sweep" displayName="second_hand_sweep" icon=""
             screenReaderText="second_hand_sweep" defaultValue="TRUE" />
     </UserConfigurations>
@@ -1839,7 +1839,7 @@
             name="right_complication" displayName="Right"
             supportedTypes="SHORT_TEXT EMPTY">
             <DefaultProviderPolicy
-                defaultSystemProvider="SUNRISE_SUNSET"
+                defaultSystemProvider="DAY_AND_DATE"
                 defaultSystemProviderType="SHORT_TEXT"
                 />
             <BoundingBox x="0" y="0" width="120" height="42" outlinePadding="2" />
@@ -1905,23 +1905,23 @@
                                 <Expressions>
                                     <Expression name="display_sunrise_sunset" >
                                         (
-                                        <!-- Determine to show if time is in AM / PM format -->
-                                        (subText([COMPLICATION.TEXT], (textLength([COMPLICATION.TEXT]) - 2), textLength([COMPLICATION.TEXT])) == [AMPM_STRING]) &amp;&amp;
-                                            <!-- IF time is in AM/PM make sure that hour is sunrise or one hour before (1-digit) -->
-                                            (  <!-- One digit before [:] -->
-                                            (subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 1) == [HOUR_1_12])
-                                            || <!-- Two digits before [:] -->
-                                            (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 2) == [HOUR_1_12])
-                                            )
-                                        <!-- OR -->
+                                            (subText([COMPLICATION.TEXT], (textLength([COMPLICATION.TEXT]) - 2), textLength([COMPLICATION.TEXT])) == [AMPM_STRING])
+                                            &amp;&amp;
+                                                (
+                                                    (subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 1) == [HOUR_1_12])
+                                                    ||
+                                                    (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 2) == [HOUR_1_12])
+                                                )
+                                        )
                                         ||
-                                        <!-- If 24-hour time, make sure that hour is sunrise or one hour before -->
-                                        ( (textLength([COMPLICATION.TEXT]) != 6) &amp;&amp;
-                                            (  <!-- sunrise HH is < 10 and is equal to HH or +1 -->
-                                            (subText([COMPLICATION.TEXT], 1, 2) == ([HOUR_1_24] +1) || subText([COMPLICATION.TEXT], 1, 2) == [HOUR_1_24])
-                                            || <!-- sunrise HH is 10+ and is equal to HH or +1 -->
-                                            (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_24] +1) || subText([COMPLICATION.TEXT], 0, 2) == [HOUR_1_24])
-                                            )
+                                        (
+                                            (textLength([COMPLICATION.TEXT]) != 6)
+                                            &amp;&amp;
+                                                (
+                                                    (subText([COMPLICATION.TEXT], 1, 2) == ([HOUR_1_24] +1) || subText([COMPLICATION.TEXT], 1, 2) == [HOUR_1_24])
+                                                    ||
+                                                    (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_24] +1) || subText([COMPLICATION.TEXT], 0, 2) == [HOUR_1_24])
+                                                )
                                         )
                                     </Expression>
                                 </Expressions>
