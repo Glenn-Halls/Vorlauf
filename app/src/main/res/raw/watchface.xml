@@ -1923,7 +1923,6 @@
                                                     (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_24] +1) || subText([COMPLICATION.TEXT], 0, 2) == [HOUR_1_24])
                                                 )
                                         )
-                                        || 1 == 1
                                     </Expression>
                                 </Expressions>
                                 <Compare expression="display_sunrise_sunset">
