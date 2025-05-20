@@ -181,6 +181,115 @@
         </Group>
 
 
+        <!-- Sunrise / Sunset
+
+            This user configuration shows sun and moon events. Specifically, a moon icon displaying
+            current moon phase is drawn underneath the right complication. Additionally, during the
+            hour OF and the hour BEFORE sunrise / sunset, the moon icon will become a sunrise /
+            sunset icon and the sunrise / sunset time will be shown as a digital display above the
+            right complication slot.
+
+            Users can enable or disable this option under settings.
+
+            This is drawn first in order to be drawn UNDERNEATH the top digital display. The result
+            of this is that digital display shortcuts will be drawn OVER this complication and thus
+            take precedence.
+
+        -->
+        <ComplicationSlot
+            x="140" y="90"
+            width="170" height="70"
+            slotId="12"
+            name="sunrise_sunset" displayName="Sunrise / Sunset"
+            supportedTypes="SHORT_TEXT" isCustomizable="FALSE">
+            <DefaultProviderPolicy
+                defaultSystemProvider="SUNRISE_SUNSET"
+                defaultSystemProviderType="SHORT_TEXT"
+                />
+            <BoundingOval x="-140" y="-90" width="455" height="455" outlinePadding="0" />
+            <Complication type="SHORT_TEXT">
+                <BooleanConfiguration id="show_sun_moon">
+                    <BooleanOption id="TRUE">
+                        <Group name="sunrise_sunset_moon" x="-140" y="-89" width="450" height="450">
+                            <Condition>
+                                <Expressions>
+                                    <Expression name="display_sunrise_sunset" >
+                                        (
+                                            (subText([COMPLICATION.TEXT], (textLength([COMPLICATION.TEXT]) - 2), textLength([COMPLICATION.TEXT])) == [AMPM_STRING])
+                                            &amp;&amp;
+                                                (
+                                                    (subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 1) == [HOUR_1_12])
+                                                    ||
+                                                    (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 2) == [HOUR_1_12])
+                                                )
+                                        )
+                                        ||
+                                        (
+                                            (textLength([COMPLICATION.TEXT]) != 6)
+                                            &amp;&amp;
+                                                (
+                                                    (subText([COMPLICATION.TEXT], 1, 2) == ([HOUR_1_24] +1) || subText([COMPLICATION.TEXT], 1, 2) == [HOUR_1_24])
+                                                    ||
+                                                    (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_24] +1) || subText([COMPLICATION.TEXT], 0, 2) == [HOUR_1_24])
+                                                )
+                                        )
+                                    </Expression>
+                                </Expressions>
+                                <Compare expression="display_sunrise_sunset">
+                                    <Group name="show_sunrise_event" x="0" y="0" width="450" height="450">
+                                        <PartText x="280" y="159" width="120" height="50" scaleX="1" scaleY="1">
+                                            <Variant mode="AMBIENT" target="alpha" value="0" />
+                                            <Text align="CENTER" ellipsis="FALSE">
+                                                <Font family="digital_numbers" size="20"
+                                                    color="#d3d3d3"
+                                                    alpha="255"/>
+                                                <Template>%s
+                                                    <Parameter expression='subText([COMPLICATION.TEXT], 0, 7)'
+                                                        />
+                                                </Template>
+                                            </Text>
+                                        </PartText>
+                                        <PartText x="300" y="260" width="40" height="40">
+                                            <Variant mode="AMBIENT" target="alpha" value="0" />
+                                            <Text>
+                                                <BitmapFont family="weather_icon_moon" size="40"
+                                                    color="#ffd3d3d3">
+                                                    <Template>%s
+                                                        <Parameter expression="([WEATHER.IS_ERROR]) ? 8 : 9"/>
+                                                    </Template>
+                                                </BitmapFont>
+                                            </Text>
+                                        </PartText>
+                                    </Group>
+                                </Compare>
+                                <Default>
+                                    <PartText x="300" y="260" width="40" height="40">
+                                        <Variant mode="AMBIENT" target="alpha" value="0" />
+                                        <Text>
+                                            <BitmapFont family="weather_icon_moon" size="40"
+                                                color="#ffd3d3d3">
+                                                <Template>%s
+                                                    <Parameter expression="([WEATHER.IS_ERROR]) ? 8 : [MOON_PHASE_TYPE]"/>
+                                                </Template>
+                                            </BitmapFont>
+                                        </Text>
+                                    </PartText>
+                                </Default>
+                            </Condition>
+                            <PartDraw x="0" y="0" width="45" height="45">
+                                <Arc centerX="225" centerY="225" width="445" height="445"
+                                    startAngle="0" endAngle="0" direction="CLOCKWISE">
+                                    <Stroke color="#99ffff00" thickness="9" />
+                                </Arc>
+                            </PartDraw>
+                        </Group>
+                    </BooleanOption>
+                    <BooleanOption id="False">
+                    </BooleanOption>
+                </BooleanConfiguration>
+            </Complication>
+        </ComplicationSlot>
+
         <!--
             The top digital display slot can be configured by the user to show:
             0) Nothing
@@ -198,8 +307,8 @@
             - Time settings = alarm
             - Heart rate = default heart rate monitoring app
             - Date = calendar
-            - Step count / notification = none
-            - Weather = weather provider
+            - Step count / Notification = default music player
+            - Weather / Nothing = weather provider
         -->
         <Group id="digital_display" name="top_complication"
             x="140" y="90"
@@ -409,6 +518,7 @@
             <ListConfiguration id="user_config">
                 <ListOption id="5">
             <PartText x="-952" y="0" width="1122" height="70">
+                <Launch target="MUSIC_PLAYER" />
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
@@ -459,6 +569,7 @@
                 </Expressions>
             <Compare expression="not_count">
             <PartText x="-952" y="0" width="1122" height="70">
+                <Launch target="MUSIC_PLAYER" />
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="TRUE">
                     <Font family="digital_numbers" size="43"
@@ -472,6 +583,22 @@
                 </Text>
             </PartText>
             </Compare>
+            <Default>
+            <PartText x="-952" y="0" width="1122" height="70">
+                <Launch target="MUSIC_PLAYER" />
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="TRUE">
+                    <Font family="digital_numbers" size="43"
+                        color="#d3d3d3"
+                        alpha="255">
+                        <Template>
+                            %s
+                            <Parameter expression="whitespace" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            </Default>
             </Condition>
                 </ListOption>
             </ListConfiguration>
@@ -1882,101 +2009,6 @@
                     </Text>
                 </PartText>
                 </Group>
-            </Complication>
-        </ComplicationSlot>
-
-        <!-- Sunrise / Sunset Arc -->
-        <ComplicationSlot
-            x="140" y="90"
-            width="170" height="70"
-            slotId="12"
-            name="sunrise_sunset" displayName="Sunrise / Sunset"
-            supportedTypes="SHORT_TEXT" isCustomizable="FALSE">
-            <DefaultProviderPolicy
-                defaultSystemProvider="SUNRISE_SUNSET"
-                defaultSystemProviderType="SHORT_TEXT"
-                />
-            <BoundingOval x="-140" y="-90" width="455" height="455" outlinePadding="0" />
-            <Complication type="SHORT_TEXT">
-                <BooleanConfiguration id="show_sun_moon">
-                    <BooleanOption id="TRUE">
-                        <Group name="sunrise_sunset_moon" x="-140" y="-89" width="450" height="450">
-                            <Condition>
-                                <Expressions>
-                                    <Expression name="display_sunrise_sunset" >
-                                        (
-                                            (subText([COMPLICATION.TEXT], (textLength([COMPLICATION.TEXT]) - 2), textLength([COMPLICATION.TEXT])) == [AMPM_STRING])
-                                            &amp;&amp;
-                                                (
-                                                    (subText([COMPLICATION.TEXT], 0, 1) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 1) == [HOUR_1_12])
-                                                    ||
-                                                    (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_12] +1) || subText([COMPLICATION.TEXT], 0, 2) == [HOUR_1_12])
-                                                )
-                                        )
-                                        ||
-                                        (
-                                            (textLength([COMPLICATION.TEXT]) != 6)
-                                            &amp;&amp;
-                                                (
-                                                    (subText([COMPLICATION.TEXT], 1, 2) == ([HOUR_1_24] +1) || subText([COMPLICATION.TEXT], 1, 2) == [HOUR_1_24])
-                                                    ||
-                                                    (subText([COMPLICATION.TEXT], 0, 2) == ([HOUR_1_24] +1) || subText([COMPLICATION.TEXT], 0, 2) == [HOUR_1_24])
-                                                )
-                                        )
-                                    </Expression>
-                                </Expressions>
-                                <Compare expression="display_sunrise_sunset">
-                                    <Group name="show_sunrise_event" x="0" y="0" width="450" height="450">
-                                        <PartText x="280" y="159" width="120" height="50" scaleX="1" scaleY="1">
-                                            <Variant mode="AMBIENT" target="alpha" value="0" />
-                                            <Text align="CENTER" ellipsis="FALSE">
-                                                <Font family="digital_numbers" size="20"
-                                                    color="#d3d3d3"
-                                                    alpha="255"/>
-                                                <Template>%s
-                                                    <Parameter expression='subText([COMPLICATION.TEXT], 0, 7)'
-                                                        />
-                                                </Template>
-                                            </Text>
-                                        </PartText>
-                                        <PartText x="300" y="260" width="40" height="40">
-                                            <Variant mode="AMBIENT" target="alpha" value="0" />
-                                            <Text>
-                                                <BitmapFont family="weather_icon_moon" size="40"
-                                                    color="#ffd3d3d3">
-                                                    <Template>%s
-                                                        <Parameter expression="([WEATHER.IS_ERROR]) ? 8 : 9"/>
-                                                    </Template>
-                                                </BitmapFont>
-                                            </Text>
-                                        </PartText>
-                                    </Group>
-                                </Compare>
-                                <Default>
-                                    <PartText x="300" y="260" width="40" height="40">
-                                        <Variant mode="AMBIENT" target="alpha" value="0" />
-                                        <Text>
-                                            <BitmapFont family="weather_icon_moon" size="40"
-                                                color="#ffd3d3d3">
-                                                <Template>%s
-                                                    <Parameter expression="([WEATHER.IS_ERROR]) ? 8 : [MOON_PHASE_TYPE]"/>
-                                                </Template>
-                                            </BitmapFont>
-                                        </Text>
-                                    </PartText>
-                                </Default>
-                            </Condition>
-                            <PartDraw x="0" y="0" width="45" height="45">
-                                <Arc centerX="225" centerY="225" width="445" height="445"
-                                    startAngle="0" endAngle="0" direction="CLOCKWISE">
-                                    <Stroke color="#99ffff00" thickness="9" />
-                                </Arc>
-                            </PartDraw>
-                        </Group>
-                    </BooleanOption>
-                    <BooleanOption id="False">
-                    </BooleanOption>
-                </BooleanConfiguration>
             </Complication>
         </ComplicationSlot>
 
