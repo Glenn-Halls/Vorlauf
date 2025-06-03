@@ -694,9 +694,12 @@
                     <Compare expression="is_day">
             <PartText x="99" y="-3" width="80" height="80">
                 <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Transform target="alpha" value="
+                    clamp((255 - 2*(round((([UTC_TIMESTAMP]) - [WEATHER.LAST_UPDATED]) / 60000))), 180, 255)
+                " />
                 <Text>
                     <BitmapFont family="weather_icon_day" size="80"
-                        color="#ff999999">
+                        color="#d3d3d3">
                         <Template>%s
                             <Parameter expression="([WEATHER.IS_ERROR]) ? 0 : [WEATHER.CONDITION]"/>
                         </Template>
