@@ -194,8 +194,8 @@
             This is drawn first in order to be drawn UNDERNEATH the top digital display. The result
             of this is that digital display shortcuts will be drawn OVER this complication and thus
             take precedence.
-
         -->
+
         <ComplicationSlot
             x="140" y="90"
             width="170" height="70"
@@ -263,17 +263,48 @@
                                     </Group>
                                 </Compare>
                                 <Default>
-                                    <PartText x="300" y="260" width="40" height="40">
-                                        <Variant mode="AMBIENT" target="alpha" value="0" />
-                                        <Text>
-                                            <BitmapFont family="weather_icon_moon" size="40"
-                                                color="#ffd3d3d3">
-                                                <Template>%s
-                                                    <Parameter expression="([WEATHER.IS_ERROR]) ? 8 : [MOON_PHASE_TYPE]"/>
+                                    <Group name="hide_sunrise_event" x="0" y="0" width="450" height="450">
+                                        <PartText x="225" y="159" width="120" height="50" scaleX="1" scaleY="1">
+                                            <Transform target="alpha" value="(([WEATHER.LAST_UPDATED]) == 0) ? 0 :
+                                                                             ((round((clamp((([UTC_TIMESTAMP] - [WEATHER.LAST_UPDATED]) / 60000), 29, 100))) == 29) ? 0 : 255)" />
+                                            <Variant mode="AMBIENT" target="alpha" value="0" />
+                                            <Text align="END" ellipsis="FALSE">
+                                                <Font family="digital_numbers" size="20"
+                                                    color="#d3d3d3"
+                                                    alpha="255"/>
+                                                <Template>%s%s
+                                                    <Parameter expression='((round((clamp((([UTC_TIMESTAMP] - [WEATHER.LAST_UPDATED]) / 60000), 29, 100))) == 100) ? "+" : "")'
+                                                        />
+                                                    <Parameter expression='round(clamp((([UTC_TIMESTAMP] - [WEATHER.LAST_UPDATED]) / 60000), 1, 99))'
+                                                        />
                                                 </Template>
-                                            </BitmapFont>
-                                        </Text>
-                                    </PartText>
+                                            </Text>
+                                        </PartText>
+                                        <PartText x="280" y="162" width="120" height="50" scaleX=".7" scaleY=".7">
+                                            <Transform target="alpha" value="(([WEATHER.LAST_UPDATED]) == 0) ? 0 :
+                                                                             ((round((clamp((([UTC_TIMESTAMP] - [WEATHER.LAST_UPDATED]) / 60000), 29, 100))) == 29) ? 0 : 255)" />
+                                            <Variant mode="AMBIENT" target="alpha" value="0" />
+                                            <Text align="END" ellipsis="FALSE">
+                                                <Font family="digital_numbers" size="20"
+                                                    color="#d3d3d3"
+                                                    alpha="255"/>
+                                                <Template>%s
+                                                    <Parameter expression='MIN' />
+                                                </Template>
+                                            </Text>
+                                        </PartText>
+                                        <PartText x="300" y="260" width="40" height="40">
+                                            <Variant mode="AMBIENT" target="alpha" value="0" />
+                                            <Text>
+                                                <BitmapFont family="weather_icon_moon" size="40"
+                                                    color="#ffd3d3d3">
+                                                    <Template>%s
+                                                        <Parameter expression="([WEATHER.IS_ERROR]) ? 8 : [MOON_PHASE_TYPE]"/>
+                                                    </Template>
+                                                </BitmapFont>
+                                            </Text>
+                                        </PartText>
+                                    </Group>
                                 </Default>
                             </Condition>
                             <PartDraw x="0" y="0" width="45" height="45">
@@ -695,7 +726,7 @@
             <PartText x="99" y="-3" width="80" height="80">
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Transform target="alpha" value="
-                    clamp((255 - 2*(round((([UTC_TIMESTAMP]) - [WEATHER.LAST_UPDATED]) / 60000))), 180, 255)
+                    clamp((255 - 2*(round((([UTC_TIMESTAMP]) - [WEATHER.LAST_UPDATED]) / 60000))), 190, 255)
                 " />
                 <Text>
                     <BitmapFont family="weather_icon_day" size="80"
