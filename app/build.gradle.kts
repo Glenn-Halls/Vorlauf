@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.vorlauf"
+    namespace = "ghalls.dev.vorlauf"
     compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.vorlauf"
-        minSdk = 30
+        minSdk = 33
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"

@@ -3,6 +3,9 @@
     <string name="glenn_halls">Glenn Halls</string>
     <string name="percent">%</string>
     <string name="colon">:</string>
+    <string name="pipe">|</string>
+    <string name="degrees">°</string>
+    <string name="whitespace"> </string>
     <string name="digital_display">Digital Display</string>
     <string name="display_12">12 hour display</string>
     <string name="display_ampm">am/pm display</string>
@@ -13,5 +16,8 @@
     <string name="display_note">notification count</string>
     <string name="display_date">day &amp; date</string>
     <string name="display_none">no digital display</string>
-    <string name="display_text">DISPL</string>
+    <string name="display_weather">weather</string>
+    <string name="show_uv_precip">UV &amp; Precipitation</string>
+    <string name="show_sun_moon">Sun &amp; Moon Events</string>
+    <string name="second_hand_sweep">Second Hand Sweep</string>
 </resources>
