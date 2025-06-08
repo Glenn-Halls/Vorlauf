@@ -390,7 +390,7 @@
                         alpha="255">
                         <Template>
                             %s
-                            <Parameter expression="[HOUR_1_12]" />
+                            <Parameter expression="10" />
                         </Template>
                     </Font>
                 </Text>
@@ -403,7 +403,7 @@
                         alpha="255">
                         <Template>
                             %s
-                            <Parameter expression="[MINUTE_Z]" />
+                            <Parameter expression="O9" />
                         </Template>
                     </Font>
                 </Text>
@@ -420,12 +420,12 @@
                 <Launch target="ALARM" />
                 <Variant mode="AMBIENT" target="alpha" value="0" />
                 <Text align="CENTER" ellipsis="TRUE">
-                    <Font family="digital_numbers" size="43"
+                    <Font family="ep_boxi_bold" size="43"
                         color="#d3d3d3"
                         alpha="255">
                         <Template>
                             %s
-                            <Parameter expression="colon" />
+                            <Parameter expression="0" />
                         </Template>
                     </Font>
                 </Text>
@@ -438,7 +438,7 @@
                         alpha="255">
                         <Template>
                             %s
-                            <Parameter expression="[HOUR_1_12]" />
+                            <Parameter expression="10" />
                         </Template>
                     </Font>
                 </Text>
@@ -451,7 +451,7 @@
                         alpha="255">
                         <Template>
                             %s
-                            <Parameter expression="[MINUTE_Z]" />
+                            <Parameter expression="O9" />
                         </Template>
                     </Font>
                 </Text>
@@ -464,7 +464,7 @@
                         alpha="255">
                         <Template>
                             %s
-                            <Parameter expression="[AMPM_STRING]" />
+                            <Parameter expression="PM" />
                         </Template>
                     </Font>
                 </Text>
@@ -486,8 +486,8 @@
                         alpha="255">
                         <Template>
                             %s%s
-                            <Parameter expression="[HOUR_0_23_Z]" />
-                            <Parameter expression="[MINUTE_Z]" />
+                            <Parameter expression="22" />
+                            <Parameter expression="O9" />
                         </Template>
                     </Font>
                 </Text>
@@ -509,7 +509,7 @@
                         alpha="255">
                         <Template>
                             %s
-                            <Parameter expression="colon" />
+                            <Parameter expression="slash" />
                         </Template>
                     </Font>
                 </Text>
@@ -557,7 +557,7 @@
                         alpha="255">
                         <Template>
                             %s
-                            <Parameter expression="clamp((14700), 0, 99999)" />
+                            <Parameter expression="STEPS" />
                         </Template>
                     </Font>
                 </Text>
@@ -712,7 +712,7 @@
                             x="0" y="-3" width="80" height="80"
                             alpha="0" tintColor="#ffbbbbbb">
                             <Variant mode="AMBIENT" target="alpha" value="0" />
-                            <Image resource="weather_icon_dc" />
+                            <Image resource="weather_icon_02" />
                         </PartImage>
                     </Compare>
                 </Condition>
@@ -1162,7 +1162,7 @@
                             alpha="255">
                             <Template>
                                 %d%s
-                                <Parameter expression="[WEATHER.CHANCE_OF_PRECIPITATION]" />
+                                <Parameter expression="19" />
                                 <Parameter expression="percent" />
                             </Template>
                         </Font>
@@ -1508,7 +1508,7 @@
                                 alpha="255">
                                 <Template>
                                     %d%s
-                                    <Parameter expression="[STEP_PERCENT]" />
+                                    <Parameter expression="100" />
                                     <Parameter expression="percent" />
                                 </Template>
                             </Font>

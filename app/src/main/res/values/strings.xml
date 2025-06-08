@@ -5,6 +5,7 @@
     <string name="colon">:</string>
     <string name="pipe">|</string>
     <string name="degrees">°</string>
+    <string name="slash">/</string>
     <string name="whitespace"> </string>
     <string name="digital_display">Digital Display</string>
     <string name="display_12">12 hour display</string>
