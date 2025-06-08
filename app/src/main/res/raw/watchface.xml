@@ -748,7 +748,7 @@
                     <BitmapFont family="weather_icon_night" size="80"
                         color="#ff999999">
                         <Template>%s
-                            <Parameter expression="([WEATHER.IS_ERROR]) ? 0 : [WEATHER.CONDITION]"/>
+                            <Parameter expression="([WEATHER.IS_ERROR]) ? 8 : [WEATHER.CONDITION]"/>
                         </Template>
                     </BitmapFont>
                 </Text>
@@ -1272,8 +1272,7 @@
             <PartImage name="battery_hand"
                 x="38" y="-42" width="8" height="168"
                 pivotX=".5" pivotY=".5"
-                angle="0">
-                <Transform target="angle" value="79*36/10" />
+                angle="-36">
                 <Image resource="@drawable/hand_hour" />
             </PartImage>
             <Group name="complication_numeric_indices"
@@ -1451,6 +1450,32 @@
             </PartImage>
             <Image resource="@drawable/step_index_mark" />
         </Group>
+                <Group name="complication_index_144_deg"
+                    x="0" y="0"
+                    width="84" height="84"
+                    pivotX=".5" pivotY=".5"
+                    angle="-72">
+            <PartText name="complication_index_8"
+                x="-36" y="-42"
+                width="84" height="84">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#ffffff" alpha="255">
+
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText name="complication_index_2"
+                x="-36" y="42"
+                width="84" height="84">
+                <Variant mode="AMBIENT" target="alpha" value="0" />
+                <Text align="CENTER" ellipsis="FALSE">
+                    <Font family="font" weight="EXTRA_BOLD" size="12" color="#000000" alpha="255">
+                        3
+                    </Font>
+                </Text>
+            </PartText>
+                </Group>
             </Complication>
         </ComplicationSlot>
 
@@ -1515,7 +1540,7 @@
                             round([COMPLICATION.TEXT]) == 2000 ||
                             round([COMPLICATION.TEXT]) == 2250 ||
                             round([COMPLICATION.TEXT]) == 2500
-                            ) ? 250 : 0
+                            ) ? 250 : 250
                             )"
                         />
                     <Variant mode="AMBIENT" target="alpha" value="0" />
@@ -1598,22 +1623,10 @@
                     width="84" height="84"
                     pivotX="0.5" pivotY="0.5"
                     angle="0"
-                    alpha="0">
-                    <Transform target="alpha" value="((
-                        round([COMPLICATION.TEXT]) == 250 ||
-                        round([COMPLICATION.TEXT]) == 500 ||
-                        round([COMPLICATION.TEXT]) == 750 ||
-                        round([COMPLICATION.TEXT]) == 1000 ||
-                        round([COMPLICATION.TEXT]) == 1250 ||
-                        round([COMPLICATION.TEXT]) == 1500 ||
-                        round([COMPLICATION.TEXT]) == 1750 ||
-                        round([COMPLICATION.TEXT]) == 2000 ||
-                        round([COMPLICATION.TEXT]) == 2250 ||
-                        round([COMPLICATION.TEXT]) == 2500
-                        ) ? 255 : 0
-                        )" />
+                    alpha="250">
+                    <Transform target="alpha" value="250" />
                     <Transform target="angle" value="(
-                        round([COMPLICATION.TEXT]) / 250 * 36
+                        round(750) / 250 * 36
                     )" />
                     <PartText name="water_intake_text"
                         x="0" y="-42"
@@ -1621,28 +1634,12 @@
                         pivotX="0.5" pivotY="0.5"
                         scaleX="1.3" scaleY="1.3"
                         angle="0">
-                        <Transform target="scaleX" value="((
-                            round([COMPLICATION.TEXT]) == 750 ||
-                            round([COMPLICATION.TEXT]) == 1000 ||
-                            round([COMPLICATION.TEXT]) == 1250 ||
-                            round([COMPLICATION.TEXT]) == 1500 ||
-                            round([COMPLICATION.TEXT]) == 1750
-                            ) ? -1.3 : 1.3
-                            )" />
-                        <Transform target="scaleY" value="((
-                            round([COMPLICATION.TEXT]) == 750 ||
-                            round([COMPLICATION.TEXT]) == 1000 ||
-                            round([COMPLICATION.TEXT]) == 1250 ||
-                            round([COMPLICATION.TEXT]) == 1500 ||
-                            round([COMPLICATION.TEXT]) == 1750
-                            ) ? -1.3 : 1.3
-                            )" />
+                        <Transform target="scaleX" value="-1.3" />
+                        <Transform target="scaleY" value="-1.3" />
                         <Text align="CENTER" ellipsis="FALSE">
                             <Font family="font" weight="EXTRA_BOLD" size="10" color="#000000">
                                 <Template>%s
-                                    <Parameter expression="(
-                                        round([COMPLICATION.TEXT]) / 250
-                                    )" />
+                                    <Parameter expression="3" />
                                 </Template>
                             </Font>
                         </Text>
