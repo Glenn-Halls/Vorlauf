@@ -1927,7 +1927,7 @@
                 angle="0">
                 <Transform target="angle" value="floor([STEP_COUNT]/10000)*36 - 9" />
                 <PartText name="step_index_10k"
-                    x="-52" y="-66"
+                    x="-52" y="-65"
                     width="112" height="112"
                     scaleX="1.5" scaleY="1.5"
                     pivotX=".5" pivotY="0.5"
