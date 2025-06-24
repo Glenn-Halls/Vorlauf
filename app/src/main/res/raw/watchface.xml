@@ -17,9 +17,9 @@
             <ListOption id="6" displayName="display_heart" icon="icon_heart"/>
             <ListOption id="7" displayName="display_note" icon="icon_notif"/>
             <ListOption id="8" displayName="display_date" icon="icon_date"/>
-            <ListOption id="9" displayName="display_weather" icon="" />
+            <ListOption id="9" displayName="display_weather" icon="uv_precip" />
         </ListConfiguration>
-        <BooleanConfiguration id="show_uv_precip" displayName="show_uv_precip" icon=""
+        <BooleanConfiguration id="show_uv_precip" displayName="show_uv_precip" icon="uv_precip"
             screenReaderText="show_uv_precip" defaultValue="TRUE" />
         <BooleanConfiguration id="show_sun_moon" displayName="show_sun_moon" icon=""
             screenReaderText="show_sun_moon" defaultValue="TRUE" />
