@@ -17,7 +17,7 @@
             <ListOption id="6" displayName="display_heart" icon="icon_heart"/>
             <ListOption id="7" displayName="display_note" icon="icon_notif"/>
             <ListOption id="8" displayName="display_date" icon="icon_date"/>
-            <ListOption id="9" displayName="display_weather" icon="uv_precip" />
+            <ListOption id="9" displayName="display_weather" icon="icon_weather" />
         </ListConfiguration>
         <BooleanConfiguration id="show_uv_precip" displayName="show_uv_precip" icon="uv_precip"
             screenReaderText="show_uv_precip" defaultValue="TRUE" />
