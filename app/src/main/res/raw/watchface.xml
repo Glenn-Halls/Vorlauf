@@ -21,9 +21,9 @@
         </ListConfiguration>
         <BooleanConfiguration id="show_uv_precip" displayName="show_uv_precip" icon="uv_precip"
             screenReaderText="show_uv_precip" defaultValue="TRUE" />
-        <BooleanConfiguration id="show_sun_moon" displayName="show_sun_moon" icon=""
+        <BooleanConfiguration id="show_sun_moon" displayName="show_sun_moon" icon="sun_moon"
             screenReaderText="show_sun_moon" defaultValue="TRUE" />
-        <BooleanConfiguration id="second_hand_sweep" displayName="second_hand_sweep" icon=""
+        <BooleanConfiguration id="second_hand_sweep" displayName="second_hand_sweep" icon="second_sweep"
             screenReaderText="second_hand_sweep" defaultValue="TRUE" />
     </UserConfigurations>
 
