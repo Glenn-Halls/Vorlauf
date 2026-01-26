@@ -11,13 +11,13 @@ My first app developed for Wear OS, this watch face can be installed on any larg
 
 
 <h2>About the watch face</h2>
-The watch face consists of 4 central complications and 4 peripheral app shortcuts, all of which can be enabled or disabled / hidden. The watch face can be edited either directly on the watch or via the mobile companion app such as Galaxy Wear (pictured). Please note that you will likely be able to access many more complication options when editing on your watch than can be enabled via the mobile app.
+The watch face consists of 4 central complications and 4 peripheral app shortcuts, which can be enabled or disabled / hidden. The watch face can be edited either directly on the watch or via your mobile companion app such as Galaxy Wear.
 <br>
 <br>
 <ul>
   <li>Top Complication: Digital Display</li>
   <ul>
-    <li>9 options are available for the digital display. The time options can be pressed to access the alarm, the date to access the calendar, and the heart rate to access the default heart-rate-monitor app. The user can select from:</li>
+    <li>10 options are available for the digital display. The time options can be pressed to access the alarm, the date to access the calendar, and the heart rate to access the default heart-rate-monitor app. The user can select from:</li>
       <ul>
         <li>Hidden</li>
         <li>12-hour time</li>
@@ -28,21 +28,19 @@ The watch face consists of 4 central complications and 4 peripheral app shortcut
         <li>Heart Rate</li>
         <li>Notification count (hidden if 0)</li>
         <li>Date (day of week, day of month)</li>
+        <li>Weather</li>
       </ul>
-    <li>What I Use: Military Time</li>
   </ul>
   <li>Left Complication: Battery</li> 
   <ul>
     <li>Analog hand and % indicates battery</li>
     <li>Progress arc represents user-specified “ranged value” from 1-10</li>
     <li>Examples: battery, step goal, moon phase, UV index, precipitation, sunrise / sunset</li>
-    <li>What I Use: UV index in summer, chance of rain in winter</li>
   </ul>
   <li>Right Complication: Short Text</li>
   <ul>
     <li>Displays a 7-character string of the user’s choice, can display information from a wide range of inbuilt and additional complications</li>
     <li>Examples: barometer, heart rate, steps, water intake, weather, sunrise/sunset, next alarm, world clock, WhatsApp, date</li>
-    <li>What I Use: day and date</li>
   </ul>
   <li>Bottom Complication: Step Count</li>
   <ul>
@@ -53,12 +51,10 @@ The watch face consists of 4 central complications and 4 peripheral app shortcut
     <li>White Highlight = steps x 10,000 (hidden below 10,000)</li>
   </ul>
   <li>User can select app to launch on tap such as: recent apps, media controller, assistant, alarm, stopwatch, timer, Spotify, WhatsApp, voice recorder</li>
-  <li>What I Use: Samsung-Health</li>
   </ul>
   <li>Numerals II, IV, VIII and X</li>
   <ul>
   <li>These icons function as user-defined app shortcuts. The first time the icon is pressed the user will be prompted to choose an app for the shortcut. This can be changed or set to “empty” to be disabled.</li>
-  <li>What I Use: Alarm, Timer, Spotify & Water Intake</li>
   </ul>
 </ul>
 
