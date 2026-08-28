@@ -11,7 +11,7 @@
 #    up to date.
 
 # Path to your Android Jar file - this should match the android SDK and android version
-ANDROID_JAR="C:\Users\USERNAME\AppData\Local\Android\Sdk\platforms\android-34\android.jar"
+ANDROID_JAR="C:\Users\[USERNAME]\AppData\Local\Android\Sdk\platforms\android-35\android.jar"
 # Path to your keystore
 KEYSTORE="KEYSTORE"
 # Keystore Password

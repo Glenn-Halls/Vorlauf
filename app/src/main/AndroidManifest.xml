@@ -2,13 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="ghalls.dev.vorlauf"
-    android:versionCode="12"
-    android:versionName="1.2.3">
+    android:versionCode="13"
+    android:versionName="1.2.4">
 
     <uses-feature android:name="android.hardware.type.watch" />
 
-    <uses-sdk android:minSdkVersion="34"
-        android:targetSdkVersion="34"
+    <uses-sdk android:minSdkVersion="35"
+        android:targetSdkVersion="35"
         tools:ignore="GradleOverrides" />
 
     <application
